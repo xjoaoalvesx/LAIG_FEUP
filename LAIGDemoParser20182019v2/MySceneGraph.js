@@ -35,7 +35,7 @@ class MySceneGraph {
         this.axisCoords['y'] = [0, 1, 0];
         this.axisCoords['z'] = [0, 0, 1];
 
-        // File reading 
+        // File reading
         this.reader = new CGFXMLreader();
 
         /*
@@ -143,11 +143,11 @@ class MySceneGraph {
         }
 
         // <TEXTURES>
-        if ((index = nodeNames.indexOf("TEXTURES")) == -1)
+        if ((index = nodeNames.indexOf("textures")) == -1)
             return "tag <TEXTURES> missing";
         else {
             if (index != TEXTURES_INDEX)
-                this.onXMLMinorError("tag <TEXTURES> out of order");
+                this.onXMLMinorError("tag <textures> out of order");
 
             //Parse TEXTURES block
             if ((error = this.parseTextures(nodes[index])) != null)
@@ -155,26 +155,50 @@ class MySceneGraph {
         }
 
         // <MATERIALS>
-        if ((index = nodeNames.indexOf("MATERIALS")) == -1)
-            return "tag <MATERIALS> missing";
+        if ((index = nodeNames.indexOf("materials")) == -1)
+            return "tag <materials> missing";
         else {
             if (index != MATERIALS_INDEX)
-                this.onXMLMinorError("tag <MATERIALS> out of order");
+                this.onXMLMinorError("tag <materials> out of order");
 
             //Parse MATERIALS block
             if ((error = this.parseMaterials(nodes[index])) != null)
                 return error;
         }
 
-        // <NODES>
-        if ((index = nodeNames.indexOf("NODES")) == -1)
-            return "tag <NODES> missing";
+        // <TRANSFORMATIONS>
+        if ((index = nodeNames.indexOf("transformations")) == -1)
+            return "tag <transformations> missing";
         else {
-            if (index != NODES_INDEX)
-                this.onXMLMinorError("tag <NODES> out of order");
+            if (index != TRANSFORMATIONS_INDEX)
+                this.onXMLMinorError("tag <transformations> out of order");
+
+            //Parse MATERIALS block
+            if ((error = this.parseTransformations(nodes[index])) != null)
+                return error;
+        }
+
+        // <PRIMITIVES>
+        if ((index = nodeNames.indexOf("primitives")) == -1)
+            return "tag <primitives> missing";
+        else {
+            if (index != PRIMITIVES_INDEX)
+                this.onXMLMinorError("tag <primitives> out of order");
+
+            //Parse MATERIALS block
+            if ((error = this.parsePrimitives(nodes[index])) != null)
+                return error;
+        }
+
+        // <COMPONENTS>
+        if ((index = nodeNames.indexOf("components")) == -1)
+            return "tag <components> missing";
+        else {
+            if (index != COMPONENTS_INDEX)
+                this.onXMLMinorError("tag <components> out of order");
 
             //Parse NODES block
-            if ((error = this.parseNodes(nodes[index])) != null)
+            if ((error = this.parseComponents(nodes[index])) != null)
                 return error;
         }
     }
@@ -190,7 +214,7 @@ class MySceneGraph {
 	else  this.onXMLMinorError("no axis_length attribute");
 
 	this.log("Parsed scene");
-	return null;	
+	return null;
    }
 
     /**
@@ -225,7 +249,7 @@ class MySceneGraph {
                 }
                 else this.onXMLMinorError("no angle attribute");
 
-                
+
                 var coord1 = [];
                 var coord2 =[];
                 if (cameras[i].children[0].hasAttribute("x")){
@@ -241,7 +265,7 @@ class MySceneGraph {
                  if (cameras[i].children[0].hasAttribute("z")){
                      coord1.z = this.reader.getFloat(cameras[i].children[0], "z");
                 }
-                else this.onXMLMinorError("no z attribute in " + cameras[i].children[0].nodeName); 
+                else this.onXMLMinorError("no z attribute in " + cameras[i].children[0].nodeName);
 
                 if (cameras[i].children[1].hasAttribute("x")){
                     coord2.x = this.reader.getFloat(cameras[i].children[1], "x");
@@ -256,13 +280,13 @@ class MySceneGraph {
                  if (cameras[i].children[1].hasAttribute("z")){
                      coord2.z = this.reader.getFloat(cameras[i].children[1], "z");
                 }
-                else this.onXMLMinorError("no z attribute in " + cameras[i].children[1].nodeName); 
+                else this.onXMLMinorError("no z attribute in " + cameras[i].children[1].nodeName);
 
                 cam.from = coord1;
                 cam.to = coord2;
             }
 
-            
+
             else if (cameras[i].nodeName == "ortho"){
 
                 if(cameras[i].hasAttribute("id")){
@@ -306,7 +330,7 @@ class MySceneGraph {
 
             this.views.push(cam);
         }
-        
+
 
         this.log("Parsed views");
 
@@ -317,7 +341,7 @@ class MySceneGraph {
      * Parses the <AMBIENT> node.
      * @param {ambient block element} ambientNode
      */
-    
+
     parseAmbient(ambientNode){
 
         this.ambient = [];
@@ -328,7 +352,7 @@ class MySceneGraph {
                 color.r = this.reader.getFloat(ambientNode.children[i], "r");
              }
              else this.onXMLMinorError("no r attribute in " + ambientNode.children[i].nodeName);
-            
+
              if (ambientNode.children[i].hasAttribute("g")){
                 color.g = this.reader.getFloat(ambientNode.children[i], "g");
              }
@@ -338,12 +362,12 @@ class MySceneGraph {
                 color.b = this.reader.getFloat(ambientNode.children[i], "b");
              }
              else this.onXMLMinorError("no b attribute in " + ambientNode.children[i].nodeName);
-            
+
              if (ambientNode.children[i].hasAttribute("a")){
                 color.a = this.reader.getFloat(ambientNode.children[i], "a");
              }
              else this.onXMLMinorError("no a attribute in " + ambientNode.children[i].nodeName);
-        
+
              this.ambient.push(color);
 
         }
@@ -364,13 +388,13 @@ class MySceneGraph {
 
         this.lights = [];
         var numLights = 0;
-        
+
 
 
         // Any number of lights.
         for (var i = 0; i < ligthsVect.length; i++) {
             var currLight = {};
-            
+
             // Get id of the current light.
             if (ligthsVect[i].hasAttribute("id")){
                 currLight.id = this.reader.getString(ligthsVect[i], 'id');
@@ -381,7 +405,7 @@ class MySceneGraph {
                 currLight.enable = this.reader.getBoolean(ligthsVect[i], 'enable');
             }
             else this.onXMLMinorError("no enable atribute");
-            
+
             if (ligthsVect[i].nodeName == "omni") {
                 var loc = {};
                 var amb = {};
@@ -414,17 +438,17 @@ class MySceneGraph {
                     amb.r = this.reader.getFloat(ligthsVect[i].children[1], "r");
                  }
                  else this.onXMLMinorError("no r attribute in ambient");
-                
+
                  if (ligthsVect[i].children[1].hasAttribute("g")){
                     amb.g = this.reader.getFloat(ligthsVect[i].children[1], "g");
                  }
                  else this.onXMLMinorError("no g attribute in ambient");
-    
+
                  if (ligthsVect[i].children[1].hasAttribute("b")){
                     amb.b = this.reader.getFloat(ligthsVect[i].children[1], "b");
                  }
                  else this.onXMLMinorError("no b attribute in ambient");
-                
+
                  if (ligthsVect[i].children[1].hasAttribute("a")){
                     amb.a = this.reader.getFloat(ligthsVect[i].children[1], "a");
                  }
@@ -436,17 +460,17 @@ class MySceneGraph {
                     dif.r = this.reader.getFloat(ligthsVect[i].children[2], "r");
                  }
                  else this.onXMLMinorError("no r attribute in diffuse");
-                
+
                  if (ligthsVect[i].children[2].hasAttribute("g")){
                     dif.g = this.reader.getFloat(ligthsVect[i].children[2], "g");
                  }
                  else this.onXMLMinorError("no g attribute in diffuse");
-    
+
                  if (ligthsVect[i].children[2].hasAttribute("b")){
                     dif.b = this.reader.getFloat(ligthsVect[i].children[2], "b");
                  }
                  else this.onXMLMinorError("no b attribute in diffuse");
-                
+
                  if (ligthsVect[i].children[2].hasAttribute("a")){
                     dif.a = this.reader.getFloat(ligthsVect[i].children[2], "a");
                  }
@@ -458,17 +482,17 @@ class MySceneGraph {
                     spec.r = this.reader.getFloat(ligthsVect[i].children[3], "r");
                  }
                  else this.onXMLMinorError("no r attribute in specular");
-                
+
                  if (ligthsVect[i].children[3].hasAttribute("g")){
                     spec.g = this.reader.getFloat(ligthsVect[i].children[3], "g");
                  }
                  else this.onXMLMinorError("no g attribute in specular");
-    
+
                  if (ligthsVect[i].children[3].hasAttribute("b")){
                     spec.b = this.reader.getFloat(ligthsVect[i].children[3], "b");
                  }
                  else this.onXMLMinorError("no b attribute in specular");
-                
+
                  if (ligthsVect[i].children[3].hasAttribute("a")){
                     spec.a = this.reader.getFloat(ligthsVect[i].children[3], "a");
                  }
@@ -484,7 +508,7 @@ class MySceneGraph {
                     currLight.angle = this.reader.getFloat(ligthsVect[i], 'angle');
                 }
                 else this.onXMLMinorError("no angle atribute");
-    
+
                 if (ligthsVect[i].hasAttribute("exponent")){
                     currLight.exponent = this.reader.getFloat(ligthsVect[i], 'exponent');
                 }
@@ -539,17 +563,17 @@ class MySceneGraph {
                     amb.r = this.reader.getFloat(ligthsVect[i].children[2], "r");
                  }
                  else this.onXMLMinorError("no r attribute in ambient");
-                
+
                  if (ligthsVect[i].children[2].hasAttribute("g")){
                     amb.g = this.reader.getFloat(ligthsVect[i].children[2], "g");
                  }
                  else this.onXMLMinorError("no g attribute in ambient");
-    
+
                  if (ligthsVect[i].children[2].hasAttribute("b")){
                     amb.b = this.reader.getFloat(ligthsVect[i].children[2], "b");
                  }
                  else this.onXMLMinorError("no b attribute in ambient");
-                
+
                  if (ligthsVect[i].children[2].hasAttribute("a")){
                     amb.a = this.reader.getFloat(ligthsVect[i].children[2], "a");
                  }
@@ -561,17 +585,17 @@ class MySceneGraph {
                     dif.r = this.reader.getFloat(ligthsVect[i].children[3], "r");
                  }
                  else this.onXMLMinorError("no r attribute in diffuse");
-                
+
                  if (ligthsVect[i].children[3].hasAttribute("g")){
                     dif.g = this.reader.getFloat(ligthsVect[i].children[3], "g");
                  }
                  else this.onXMLMinorError("no g attribute in diffuse");
-    
+
                  if (ligthsVect[i].children[3].hasAttribute("b")){
                     dif.b = this.reader.getFloat(ligthsVect[i].children[3], "b");
                  }
                  else this.onXMLMinorError("no b attribute in diffuse");
-                
+
                  if (ligthsVect[i].children[3].hasAttribute("a")){
                     dif.a = this.reader.getFloat(ligthsVect[i].children[3], "a");
                  }
@@ -583,17 +607,17 @@ class MySceneGraph {
                     spec.r = this.reader.getFloat(ligthsVect[i].children[4], "r");
                  }
                  else this.onXMLMinorError("no r attribute in specular");
-                
+
                  if (ligthsVect[i].children[4].hasAttribute("g")){
                     spec.g = this.reader.getFloat(ligthsVect[i].children[4], "g");
                  }
                  else this.onXMLMinorError("no g attribute in specular");
-    
+
                  if (ligthsVect[i].children[4].hasAttribute("b")){
                     spec.b = this.reader.getFloat(ligthsVect[i].children[4], "b");
                  }
                  else this.onXMLMinorError("no b attribute in specular");
-                
+
                  if (ligthsVect[i].children[4].hasAttribute("a")){
                     spec.a = this.reader.getFloat(ligthsVect[i].children[4], "a");
                  }
@@ -609,7 +633,7 @@ class MySceneGraph {
 
             this.lights.push(currLight);
             numLights++;
-           
+
         }
 
         if (numLights == 0)
@@ -623,15 +647,42 @@ class MySceneGraph {
     }
 
     /**
-     * Parses the <TEXTURES> block. 
+     * Parses the <TEXTURES> block.
      * @param {textures block element} texturesNode
      */
     parseTextures(texturesNode) {
-        // TODO: Parse block
 
-        console.log("Parsed textures");
+        this.textures = [];
+        var text = texturesNode.children;
 
-        return null;
+        // Any number of textures.
+       for (var i = 0; i < text.length; i++) {
+
+           if (text[i].nodeName != "texture") {
+               this.onXMLMinorError("unknown tag <" + text[i].nodeName + ">");
+               continue;
+           }
+
+           // Get id of the current texture.
+           var textureId = this.reader.getString(text[i], 'id');
+           if (textureId == null)
+               return "no ID defined for texture";
+
+           // Checks for repeated IDs.
+           if (this.textures[textureId] != null)
+               return "ID must be unique for each texture (conflict: ID = " + textureId + ")";
+
+           var texturePath = this.reader.getString(text[i], 'file');
+           if (texturePath == null)
+               return "no file path defined for texture with ID = " + textureId + ")";
+
+           this.textures[textureId] = texturePath;
+       }
+
+       console.log("Parsed textures");
+
+       return null;
+
     }
 
     /**
