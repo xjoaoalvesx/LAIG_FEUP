@@ -387,11 +387,13 @@ class MySceneGraph {
         var ligthsVect = lightsNode.children;
 
         this.lights = [];
-        var numLights = 0;
+        var omniLights = 0;
+        var spotLights = 0;
 
 
 
         // Any number of lights.
+        outLoop:
         for (var i = 0; i < ligthsVect.length; i++) {
             var currLight = {};
 
@@ -400,6 +402,12 @@ class MySceneGraph {
                 currLight.id = this.reader.getString(ligthsVect[i], 'id');
             }
             else this.onXMLMinorError("no id atribute");
+
+            for(var l = 0; l < this.lights.length; l++){
+                if(currLight.id = this.lights[l].id){
+                    continue outLoop;
+                }
+            }
 
             if (ligthsVect[i].hasAttribute("enable")){
                 currLight.enable = this.reader.getBoolean(ligthsVect[i], 'enable');
@@ -499,6 +507,8 @@ class MySceneGraph {
                  else this.onXMLMinorError("no a attribute in specular");
 
                  currLight.specular = spec;
+
+                 omniLights++;
 
 
             }
@@ -624,7 +634,7 @@ class MySceneGraph {
                  else this.onXMLMinorError("no a attribute in specular");
 
                  currLight.specular = spec;
-
+                 spotLights++;
 
             }else{
                 this.onXMLMinorError("unknown tag <" + children[i].nodeName + ">");
@@ -636,9 +646,11 @@ class MySceneGraph {
 
         }
 
-        if (numLights == 0)
-            return "at least one light must be defined";
-        else if (numLights > 8)
+        if (omniLights == 0)
+            return "at least one omni light must be defined";
+        else if(spotLights == 0)
+            return "at least one spot light must be defined";
+        else if (omniLights + spotLights > 8)
             this.onXMLMinorError("too many lights defined; WebGL imposes a limit of 8 lights");
 
         this.log("Parsed lights");
