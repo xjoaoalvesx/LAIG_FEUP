@@ -75,17 +75,25 @@
         <!-- Uma "primitive" e' uma primitiva e pode ser usada em nos folha -->
         <!-- Deve existir um ou mais blocos "primitive" -->
         <!-- Os identificadores "id" nao podem ser repetidos -->
-        <primitive id="ss">
-            <!-- apenas pode existir UMA das seguintes tags: -->
+        <!-- apenas pode existir UMA das seguintes tags: -->
             <!--    rectangle, triangle, cylinder, sphere, torus -->
             <!-- os parametros devem ser interpretados, genericamente, -->
             <!-- como em WebGL; o cilindro deve adicionalmente ter tampas -->
-            <rectangle x1="ff" y1="ff" x2="ff" y2="ff" />
-            <triangle   x1="ff" y1="ff" z1="ff"
+        <primitive id="rectangle">
+            <rectangle x1="2" y1="2" x2="5" y2="5" />
+        </primitive >
+        <primitive id="triangle">
+             <triangle  x1="ff" y1="ff" z1="ff"
                         x2="ff" y2="ff" z2="ff"
-                        x3="ff" y3="ff" z3="ff" />
+                        x3="ff" y3="ff" z3="ff" /> 
+        </primitive >
+        <primitive id="cylinder">
             <cylinder base="ff" top="ff" height="ff" slices="ii" stacks="ii" />
+        </primitive >
+        <primitive id="sphere">
             <sphere radius="ff" slices="ii" stacks="ii" />
+        </primitive >
+        <primitive id="torus">
             <torus inner="ff" outer="ff" slices="ii" loops="ii" />
         </primitive >
     </primitives >
