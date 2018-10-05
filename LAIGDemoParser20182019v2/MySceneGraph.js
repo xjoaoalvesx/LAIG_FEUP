@@ -707,6 +707,83 @@ class MySceneGraph {
         return null;
 
     }
+	
+     /**
+     * Parses the <PRIMITIVES> node.
+     * @param {primitives block element} primitivesNode
+     */
+    parsePrimitives(primitivesNode){
+
+        this.elements = [];
+        var primitives = primitivesNode.children;
+
+        for(var i = 0 ; i < primitives.length ; i++){
+            var primitiveId = this.reader.getString(primitives[i] , 'id');
+            for(var u = 0 ; u < primitives[i].children ; u++){
+            var currChild = primitives[i].children[u];
+            switch(primitiveId){
+                case "rectangle" : 
+                    rectangle : {
+                        tag : currChild.nodeName;
+                        x1 : this.reader.getFloat(currChild , 'x1');
+                        y1 : this.reader.getFloat(currChild , 'y1');
+                        x2 : this.reader.getFloat(currChild , 'x2');
+                        y2 : this.reader.getFloat(currChild , 'y2');
+                    }
+                    elements.push(rectangle);
+                    break;
+                case "cylinder" :
+                    cylinder : {
+                        tag : currChild.nodeName;
+                        base : this.reader.getFloat(currChild , 'base');
+                        top : this.reader.getFloat(currChild , 'top');
+                        height : this.reader.getFloat(currChild , 'height');
+                        slices : this.reader.getInteger(currChild , 'slices')
+                        stacks : this.reader.getInteger(currChild , 'stacks');
+                    }
+                    elements.push(cylinder);
+                    break;
+                case "triangle" : 
+                    triangle : {
+                        tag : currChild.nodeName;
+                        x1 : this.reader.getFloat(currChild , 'x1');
+                        y1 : this.reader.getFloat(currChild , 'y1');
+                        z1 : this.reader.getFloat(currChild , 'z1');
+                        x2 : this.reader.getFloat(currChild , 'x2');
+                        y2 : this.reader.getFloat(currChild , 'y2');
+                        z2 : this.reader.getFloat(currChild , 'z2');
+                        x3 : this.reader.getFloat(currChild , 'x3');
+                        y3 : this.reader.getFloat(currChild , 'y3');
+                        z3 : this.reader.getFloat(currChild , 'z3');
+                    }
+                    elements.push(triangle);
+                    break;
+                case "sphere" : 
+                    sphere : {
+                        tag : currChild.nodeName;
+                        radius : this.reader.getFloat(currChild , 'radius');
+                        slices : this.reader.getInteger(currChild , 'slices');
+                        stacks : this.reader.getInteger(currChild , 'stacks');
+                    }
+                    elements.push(sphere);
+                    break;
+                case "torus" :
+                    torus : {
+                        tag : currChild.nodeName;
+                        inner : this.reader.getFloat(currChild , 'inner');
+                        outer : this.reader.getFloat(currChild , 'outer');
+                        slices : this.reader.getInteger(currChild , 'slices');
+                        loops : this.reader.getInteger(currChild , 'loops');
+                    }
+
+                
+            }
+        }
+
+            }
+            this.log("Parsed primitives");
+            return null;
+        }
 
     /**
      * Parses the <NODES> block.
