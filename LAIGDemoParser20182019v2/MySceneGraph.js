@@ -74,6 +74,7 @@ class MySceneGraph {
      * @param {XML root element} rootElement
      */
     parseXMLFile(rootElement) {
+
         if (rootElement.nodeName != "yas")
             return "root tag <yas> missing";
 
@@ -166,6 +167,7 @@ class MySceneGraph {
                 return error;
         }
 
+/*
         // <TRANSFORMATIONS>
         if ((index = nodeNames.indexOf("transformations")) == -1)
             return "tag <transformations> missing";
@@ -177,6 +179,7 @@ class MySceneGraph {
             if ((error = this.parseTransformations(nodes[index])) != null)
                 return error;
         }
+*/
 
         // <PRIMITIVES>
         if ((index = nodeNames.indexOf("primitives")) == -1)
@@ -190,6 +193,7 @@ class MySceneGraph {
                 return error;
         }
 
+        /*
         // <COMPONENTS>
         if ((index = nodeNames.indexOf("components")) == -1)
             return "tag <components> missing";
@@ -201,7 +205,9 @@ class MySceneGraph {
             if ((error = this.parseComponents(nodes[index])) != null)
                 return error;
         }
+    */
     }
+
 
    parseScene(sceneNode){
 
@@ -403,7 +409,7 @@ class MySceneGraph {
             else this.onXMLMinorError("no id atribute");
 
             for(var l = 0; l < this.lights.length; l++){
-                if(currLight.id = this.lights[l].id){
+                if(currLight.id == this.lights[l].id){
                     return "ID must be unique for each light (conflict: ID = " + this.lights[l].id + ")";
                 }
             }
@@ -641,7 +647,7 @@ class MySceneGraph {
             }
 
             this.lights.push(currLight);
-            numLights++;
+            
 
         }
 
@@ -703,11 +709,11 @@ class MySceneGraph {
     parseMaterials(materialsNode) {
         
         this.materials = [];
-        numMaterials = 0;
+        var numMaterials = 0;
 
         var mater = materialsNode.children;
         
-        for (var i = 0; i < text.length; i++) {
+        for (var i = 0; i < mater.length; i++) {
             var currMaterial = {};
 
             if (mater[i].nodeName != "material") {
@@ -729,99 +735,99 @@ class MySceneGraph {
                 currMaterial.shininess = this.reader.getFloat(mater[i], 'shininess');
             else this.onXMLMinorError("no shininess attribute in material " + mater[i].id);
 
-            currentMaterial.emission = [];
+            currMaterial.emission = [];
 
             if(mater[i].children[0].nodeName != "emission"){
                 this.onXMLMinorError("unknown tag <" + mater[i].children[0].nodeName + ">");
                 continue;
             }
             if (mater[i].children[0].hasAttribute("r")){
-                currentMaterial.emission.push(this.reader.getFloat(mater[i].children[0], "r"));
+                currMaterial.emission.push(this.reader.getFloat(mater[i].children[0], "r"));
              }
              else this.onXMLMinorError("no r attribute in emission");
 
              if (mater[i].children[0].hasAttribute("g")){
-                currentMaterial.emission.push(this.reader.getFloat(mater[i].children[0], "g"));             }
+                currMaterial.emission.push(this.reader.getFloat(mater[i].children[0], "g"));             }
              else this.onXMLMinorError("no g attribute in emission");
 
              if (mater[i].children[0].hasAttribute("b")){
-                currentMaterial.emission.push(this.reader.getFloat(mater[i].children[0], "b"));             }
+                currMaterial.emission.push(this.reader.getFloat(mater[i].children[0], "b"));             }
              else this.onXMLMinorError("no b attribute in emission");
 
              if (mater[i].children[0].hasAttribute("a")){
-                currentMaterial.emission.push(this.reader.getFloat(mater[i].children[0], "a"));             }
+                currMaterial.emission.push(this.reader.getFloat(mater[i].children[0], "a"));             }
              else this.onXMLMinorError("no a attribute in emission");
 
 
-            currentMaterial.ambient = [];
+            currMaterial.ambient = [];
 
             if(mater[i].children[1].nodeName != "ambient"){
                 this.onXMLMinorError("unknown tag <" + mater[i].children[1].nodeName + ">");
                 continue;
             }
             if (mater[i].children[1].hasAttribute("r")){
-                currentMaterial.ambient.push(this.reader.getFloat(mater[i].children[1], "r"));
+                currMaterial.ambient.push(this.reader.getFloat(mater[i].children[1], "r"));
              }
              else this.onXMLMinorError("no r attribute in ambient");
 
              if (mater[i].children[1].hasAttribute("g")){
-                currentMaterial.ambient.push(this.reader.getFloat(mater[i].children[1], "g"));             }
+                currMaterial.ambient.push(this.reader.getFloat(mater[i].children[1], "g"));             }
              else this.onXMLMinorError("no g attribute in ambient");
 
              if (mater[i].children[1].hasAttribute("b")){
-                currentMaterial.ambient.push(this.reader.getFloat(mater[i].children[1], "b"));             }
+                currMaterial.ambient.push(this.reader.getFloat(mater[i].children[1], "b"));             }
              else this.onXMLMinorError("no b attribute in ambient");
 
              if (mater[i].children[1].hasAttribute("a")){
-                currentMaterial.ambient.push(this.reader.getFloat(mater[i].children[1], "a"));             }
+                currMaterial.ambient.push(this.reader.getFloat(mater[i].children[1], "a"));             }
              else this.onXMLMinorError("no a attribute in ambient");
 
 
-             currentMaterial.diffuse = [];
+             currMaterial.diffuse = [];
 
             if(mater[i].children[2].nodeName != "diffuse"){
                 this.onXMLMinorError("unknown tag <" + mater[i].children[2].nodeName + ">");
                 continue;
             }
             if (mater[i].children[2].hasAttribute("r")){
-                currentMaterial.diffuse.push(this.reader.getFloat(mater[i].children[2], "r"));
+                currMaterial.diffuse.push(this.reader.getFloat(mater[i].children[2], "r"));
              }
              else this.onXMLMinorError("no r attribute in diffuse");
 
              if (mater[i].children[2].hasAttribute("g")){
-                currentMaterial.diffuse.push(this.reader.getFloat(mater[i].children[2], "g"));             }
+                currMaterial.diffuse.push(this.reader.getFloat(mater[i].children[2], "g"));             }
              else this.onXMLMinorError("no g attribute in diffuse");
 
              if (mater[i].children[2].hasAttribute("b")){
-                currentMaterial.diffuse.push(this.reader.getFloat(mater[i].children[2], "b"));             }
+                currMaterial.diffuse.push(this.reader.getFloat(mater[i].children[2], "b"));             }
              else this.onXMLMinorError("no b attribute in diffuse");
 
              if (mater[i].children[2].hasAttribute("a")){
-                currentMaterial.diffuse.push(this.reader.getFloat(mater[i].children[2], "a"));             }
+                currMaterial.diffuse.push(this.reader.getFloat(mater[i].children[2], "a"));             }
              else this.onXMLMinorError("no a attribute in diffuse");
             
 
-             currentMaterial.specular = [];
+             currMaterial.specular = [];
 
             if(mater[i].children[3].nodeName != "specular"){
                 this.onXMLMinorError("unknown tag <" + mater[i].children[3].nodeName + ">");
                 continue;
             }
             if (mater[i].children[3].hasAttribute("r")){
-                currentMaterial.specular.push(this.reader.getFloat(mater[i].children[3], "r"));
+                currMaterial.specular.push(this.reader.getFloat(mater[i].children[3], "r"));
              }
              else this.onXMLMinorError("no r attribute in specular");
 
              if (mater[i].children[3].hasAttribute("g")){
-                currentMaterial.specular.push(this.reader.getFloat(mater[i].children[3], "g"));             }
+                currMaterial.specular.push(this.reader.getFloat(mater[i].children[3], "g"));             }
              else this.onXMLMinorError("no g attribute in specular");
 
              if (mater[i].children[3].hasAttribute("b")){
-                currentMaterial.specular.push(this.reader.getFloat(mater[i].children[3], "b"));             }
+                currMaterial.specular.push(this.reader.getFloat(mater[i].children[3], "b"));             }
              else this.onXMLMinorError("no b attribute in specular");
 
              if (mater[i].children[3].hasAttribute("a")){
-                currentMaterial.specular.push(this.reader.getFloat(mater[i].children[3], "a"));             }
+                currMaterial.specular.push(this.reader.getFloat(mater[i].children[3], "a"));             }
              else this.onXMLMinorError("no a attribute in specular");
 
              this.materials.push(currMaterial);
