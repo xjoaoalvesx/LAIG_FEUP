@@ -259,35 +259,37 @@ class MySceneGraph {
                 var coord1 = [];
                 var coord2 =[];
                 if (cameras[i].children[0].hasAttribute("x")){
-                    coord1.x = this.reader.getFloat(cameras[i].children[0], "x");
+                    coord1.push(this.reader.getFloat(cameras[i].children[0], "x"));
                  }
                 else this.onXMLMinorError("no x attribute in " + cameras[i].children[0].nodeName);
 
                  if (cameras[i].children[0].hasAttribute("y")){
-                    coord1.y = this.reader.getFloat(cameras[i].children[0], "y");
+                    coord1.push(this.reader.getFloat(cameras[i].children[0], "y"));
                  }
                  else this.onXMLMinorError("no y attribute in " + cameras[i].children[0].nodeName);
 
                  if (cameras[i].children[0].hasAttribute("z")){
-                     coord1.z = this.reader.getFloat(cameras[i].children[0], "z");
+                     coord1.push(this.reader.getFloat(cameras[i].children[0], "z"));
                 }
                 else this.onXMLMinorError("no z attribute in " + cameras[i].children[0].nodeName);
 
                 if (cameras[i].children[1].hasAttribute("x")){
-                    coord2.x = this.reader.getFloat(cameras[i].children[1], "x");
+                    coord2.push(this.reader.getFloat(cameras[i].children[1], "x"));
                  }
                 else this.onXMLMinorError("no x attribute in " + cameras[i].children[1].nodeName);
 
                  if (cameras[i].children[1].hasAttribute("y")){
-                    coord2.y = this.reader.getFloat(cameras[i].children[1], "y");
+                    coord2.push(this.reader.getFloat(cameras[i].children[1], "y"));
                  }
                  else this.onXMLMinorError("no y attribute in " + cameras[i].children[1].nodeName);
 
                  if (cameras[i].children[1].hasAttribute("z")){
-                     coord2.z = this.reader.getFloat(cameras[i].children[1], "z");
+                     coord2.push(this.reader.getFloat(cameras[i].children[1], "z"));
                 }
                 else this.onXMLMinorError("no z attribute in " + cameras[i].children[1].nodeName);
 
+                coord1.push(1);
+                coord2.push(1);
                 cam.from = coord1;
                 cam.to = coord2;
             }
@@ -414,10 +416,10 @@ class MySceneGraph {
                 }
             }
 
-            if (ligthsVect[i].hasAttribute("enable")){
-                currLight.enable = this.reader.getBoolean(ligthsVect[i], 'enable');
+            if (ligthsVect[i].hasAttribute("enabled")){
+                currLight.enabled = this.reader.getBoolean(ligthsVect[i], 'enabled');
             }
-            else this.onXMLMinorError("no enable atribute");
+            else this.onXMLMinorError("no enabled atribute");
 
             if (ligthsVect[i].nodeName == "omni") {
                 var loc = {};
@@ -912,11 +914,17 @@ class MySceneGraph {
                 
             }
         }
+    }
 
-            }
+
+        
+
+            
             this.log("Parsed primitives");
             return null;
         }
+
+
 
     /**
      * Parses the <NODES> block.
@@ -960,5 +968,9 @@ class MySceneGraph {
     displayScene() {
         // entry point for graph rendering
         //TODO: Render loop starting at root of graph
+        //
+        
+    
+        
     }
 }

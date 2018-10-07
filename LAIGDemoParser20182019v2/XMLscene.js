@@ -34,6 +34,8 @@ class XMLscene extends CGFscene {
         this.gl.depthFunc(this.gl.LEQUAL);
 
         this.axis = new CGFaxis(this);
+
+        this.materialDefault = new CGFappearance(this);
     }
 
     /**
@@ -65,11 +67,11 @@ class XMLscene extends CGFscene {
                 this.lights[i].setSpecular(light.specular.r, light.specular.g, light.specular.b, light.specular.a);
 
                 this.lights[i].setVisible(true);
-               /* if (light.enabled)
+                if (light.enabled)
                     this.lights[i].enable();
                 else
                     this.lights[i].disable();
-*/
+
                 this.lights[i].update();
 
                 i++;
@@ -82,20 +84,34 @@ class XMLscene extends CGFscene {
      * As loading is asynchronous, this may be called already after the application has started the run loop
      */
     onGraphLoaded() {
-        this.camera.near = this.graph.near;
-        this.camera.far = this.graph.far;
+
+        this.camera.near = this.graph.views[0].near;
+        this.camera.far = this.graph.views[0].far;
+        this.camera.fov = this.graph.views[0].angle;
+        this.camera.position = vec3.fromValues(this.graph.views[0].from[0], this.graph.views[0].from[1], this.graph.views[0].from[2]);
+        this.camera.target = vec3.fromValues(this.graph.views[0].to[0], this.graph.views[0].to[1], this.graph.views[0].to[2]);
+
+
+        console.log(this.camera);
 
         //TODO: Change reference length according to parsed graph
-        //this.axis = new CGFaxis(this, this.graph.referenceLength);
+        this.axis = new CGFaxis(this, this.graph.axis_length);
 
         // TODO: Change ambient and background details according to parsed graph
-
+        this.gl.clearColor(this.graph.ambient[1].r,this.graph.ambient[1].g , this.graph.ambient[1].b,this.graph.ambient[1].a);
+        this.setGlobalAmbientLight(this.graph.ambient[0].r,this.graph.ambient[0].g , this.graph.ambient[0].b,this.graph.ambient[0].a);
         this.initLights();
 
         // Adds lights group.
         this.interface.addLightsGroup(this.graph.lights);
 
         this.sceneInited = true;
+
+        
+        this.materialDefault.apply();
+
+
+        
     }
 
 
@@ -118,8 +134,10 @@ class XMLscene extends CGFscene {
 
         this.pushMatrix();
 
+
         if (this.sceneInited) {
-            // Draw axis
+
+            // Draw axis    
             this.axis.display();
 
             var i = 0;

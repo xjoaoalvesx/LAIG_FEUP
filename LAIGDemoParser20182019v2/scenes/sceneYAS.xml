@@ -12,29 +12,29 @@
 <yas>
     <!-- deve definir-se um objeto para raiz da arvore, assim -->
     <!-- como o comprimento dos tres eixos (cilindros) -->
-    <scene root="first" axis_length="10" />
+    <scene root="first" axis_length="5" />
     <views default="camera1" >
         <!-- tem de existir, pelo menos, uma vista de -->
         <!-- entre as seguintes (perspective ou ortho) -->
-        <perspective id="camera1" near="1" far="0" angle="ff">
-            <from x="20" y="20" z="15" />
+        <perspective id="camera1" near="0.1" far="500" angle="0.4">
+            <from x="15" y="15" z="15" />
             <to x="0" y="0" z="0" />
         </perspective>
         <ortho id="camera2"  near="0" far="1"
                         left="ff" right="ff" top="ff" bottom="ff" />
     </views>
     <ambient>
-        <ambient r="ff" g="ff" b="ff" a="ff" />
-        <background r="ff" g="ff" b="ff" a="ff" />
+        <ambient r="0.5" g="0.5" b="0.5" a="1.0" />
+        <background r="0" g="0" b="0" a="1" />
     </ambient>
     <lights>
         <!-- Deve existir um ou mais blocos "omni" ou "spot" -->
         <!-- Os identificadores "id" nao podem ser repetidos -->
         <omni id="omni1" enabled="1" >
-            <location x="3" y="3" z="4" w="0" />
-            <ambient r="0.25" g="ff" b="ff" a="ff" />
-            <diffuse r="ff" g="ff" b="ff" a="ff" />
-            <specular r="ff" g="ff" b="ff" a="1" />
+            <location x="1" y="0" z="1" w="1" />
+            <ambient r="0.25" g="0.25" b="0.25" a="0" />
+            <diffuse r="0.25" g="0.25" b="0.25" a="1" />
+            <specular r="0.25" g="0.25" b="0.25" a="1" />
         </omni>
         <spot id="spot1" enabled="1" angle="0" exponent="1">
             <location x="10" y="10" z="10" w="0" />
@@ -80,7 +80,7 @@
             <!-- os parametros devem ser interpretados, genericamente, -->
             <!-- como em WebGL; o cilindro deve adicionalmente ter tampas -->
         <primitive id="rectangle">
-            <rectangle x1="2" y1="2" x2="5" y2="5" />
+            <rectangle x1="2" y1="0" x2="10" y2="0" />
         </primitive >
         <primitive id="triangle">
              <triangle  x1="ff" y1="ff" z1="ff"
