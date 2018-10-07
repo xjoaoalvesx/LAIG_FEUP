@@ -854,63 +854,67 @@ class MySceneGraph {
 
         for(var i = 0 ; i < primitives.length ; i++){
             var primitiveId = this.reader.getString(primitives[i] , 'id');
-            for(var u = 0 ; u < primitives[i].children ; u++){
-            var currChild = primitives[i].children[u];
-            switch(primitiveId){
-                case "rectangle" : 
-                    rectangle : {
-                        tag : currChild.nodeName;
-                        x1 : this.reader.getFloat(currChild , 'x1');
-                        y1 : this.reader.getFloat(currChild , 'y1');
-                        x2 : this.reader.getFloat(currChild , 'x2');
-                        y2 : this.reader.getFloat(currChild , 'y2');
-                    }
-                    elements.push(rectangle);
-                    break;
-                case "cylinder" :
-                    cylinder : {
-                        tag : currChild.nodeName;
-                        base : this.reader.getFloat(currChild , 'base');
-                        top : this.reader.getFloat(currChild , 'top');
-                        height : this.reader.getFloat(currChild , 'height');
-                        slices : this.reader.getInteger(currChild , 'slices')
-                        stacks : this.reader.getInteger(currChild , 'stacks');
-                    }
-                    elements.push(cylinder);
-                    break;
-                case "triangle" : 
-                    triangle : {
-                        tag : currChild.nodeName;
-                        x1 : this.reader.getFloat(currChild , 'x1');
-                        y1 : this.reader.getFloat(currChild , 'y1');
-                        z1 : this.reader.getFloat(currChild , 'z1');
-                        x2 : this.reader.getFloat(currChild , 'x2');
-                        y2 : this.reader.getFloat(currChild , 'y2');
-                        z2 : this.reader.getFloat(currChild , 'z2');
-                        x3 : this.reader.getFloat(currChild , 'x3');
-                        y3 : this.reader.getFloat(currChild , 'y3');
-                        z3 : this.reader.getFloat(currChild , 'z3');
-                    }
-                    elements.push(triangle);
-                    break;
+            console.log(primitiveId);
+            console.log(primitives[i].children);
+            for(var u = 0 ; u < primitives[i].children.length ; u++){
+                
+                var currChild = primitives[i].children[u];
+                switch(primitiveId){
+                    case "rectangle" : 
+                        var x1 = this.reader.getFloat(currChild , 'x1');
+                        var y1 = this.reader.getFloat(currChild , 'y1');
+                        var x2 = this.reader.getFloat(currChild , 'x2');
+                        var y2 = this.reader.getFloat(currChild , 'y2');
+                        var quad = new MyQuad(this.scene,x1,x2,y1,y2);
+                        this.elements.push(quad);
+                        break;
+                    case "cylinder" :
+                        var cylinder = {};
+                            cylinder.tag = currChild.nodeName;
+                            cylinder.base = this.reader.getFloat(currChild , 'base');
+                            cylinder.top = this.reader.getFloat(currChild , 'top');
+                            cylinder.height = this.reader.getFloat(currChild , 'height');
+                            cylinder.slices = this.reader.getInteger(currChild , 'slices')
+                            cylinder.stacks = this.reader.getInteger(currChild , 'stacks');
+                    
+                        this.elements.push(cylinder);
+                        break;
+                    case "triangle" : 
+                        var triangle = {};
+                            triangle.tag = currChild.nodeName;
+                            triangle.x1 = this.reader.getFloat(currChild , 'x1');
+                            triangle.y1 = this.reader.getFloat(currChild , 'y1');
+                            triangle.z1 = this.reader.getFloat(currChild , 'z1');
+                            triangle.x2 = this.reader.getFloat(currChild , 'x2');
+                            triangle.y2 = this.reader.getFloat(currChild , 'y2');
+                            triangle.z2 = this.reader.getFloat(currChild , 'z2');
+                            triangle.x3 = this.reader.getFloat(currChild , 'x3');
+                            triangle.y3 = this.reader.getFloat(currChild , 'y3');
+                            triangle.z3 = this.reader.getFloat(currChild , 'z3');
+                    
+                        this.elements.push(triangle);
+                        break;
                 case "sphere" : 
-                    sphere : {
-                        tag : currChild.nodeName;
-                        radius : this.reader.getFloat(currChild , 'radius');
-                        slices : this.reader.getInteger(currChild , 'slices');
-                        stacks : this.reader.getInteger(currChild , 'stacks');
-                    }
-                    elements.push(sphere);
+                    var sphere = {};
+                        sphere.tag = currChild.nodeName;
+                        sphere.radius = this.reader.getFloat(currChild , 'radius');
+                        sphere.slices = this.reader.getInteger(currChild , 'slices');
+                        sphere.stacks = this.reader.getInteger(currChild , 'stacks');
+                    
+                    this.elements.push(sphere);
                     break;
                 case "torus" :
-                    torus : {
-                        tag : currChild.nodeName;
-                        inner : this.reader.getFloat(currChild , 'inner');
-                        outer : this.reader.getFloat(currChild , 'outer');
-                        slices : this.reader.getInteger(currChild , 'slices');
-                        loops : this.reader.getInteger(currChild , 'loops');
-                    }
-
+                    var torus = {};
+                        torus.tag = currChild.nodeName;
+                        torus.inner = this.reader.getFloat(currChild , 'inner');
+                        torus.outer = this.reader.getFloat(currChild , 'outer');
+                        torus.slices = this.reader.getInteger(currChild , 'slices');
+                        torus.loops = this.reader.getInteger(currChild , 'loops');
+                     this.elements.push(torus);
+                     break;
+                    
+                 default:
+                    break;
                 
             }
         }
@@ -918,7 +922,7 @@ class MySceneGraph {
 
 
         
-
+            console.log(this.elements);
             
             this.log("Parsed primitives");
             return null;
@@ -967,8 +971,9 @@ class MySceneGraph {
      */
     displayScene() {
         // entry point for graph rendering
-        //TODO: Render loop starting at root of graph
-        //
+        for(var i = 0; i < this.elements.length; i++){
+            this.elements[i].display();
+        }
         
     
         
