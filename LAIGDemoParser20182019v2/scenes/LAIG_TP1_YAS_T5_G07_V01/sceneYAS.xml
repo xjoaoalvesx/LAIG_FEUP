@@ -24,7 +24,7 @@
                         left="ff" right="ff" top="ff" bottom="ff" />
     </views>
     <ambient>
-        <ambient r="1" g="0.5" b="0.5" a="1.0" />
+        <ambient r="0.5" g="0.5" b="0.5" a="1.0" />
         <background r="0" g="0" b="0" a="1" />
     </ambient>
     <lights>
@@ -37,11 +37,11 @@
             <specular r="0.25" g="0.25" b="0.25" a="1" />
         </omni>
         <spot id="spot1" enabled="1" angle="0" exponent="1">
-            <location x="0" y="2" z="0" w="0" />
-            <target x="2" y="2" z="0" />
-            <ambient r="0.25" g="0.25" b="0.25" a="1" />
-            <diffuse r="0.25" g="0.25" b="0.25" a="1" />
-            <specular r="0.25" g="0.25" b="0.25" a="1" />
+            <location x="10" y="10" z="10" w="0" />
+            <target x="0" y="0" z="0" />
+            <ambient r="0" g="0" b="0" a="1" />
+            <diffuse r="0" g="0" b="0" a="1" />
+            <specular r="0" g="0" b="0" a="1" />
         </spot>
     </lights>
     <textures>
@@ -63,12 +63,12 @@
         <!-- Deve existir um ou mais blocos "transformation" -->
         <!-- Os identificadores "id" nao podem ser repetidos -->
         <!-- Os angulos sao expressos em graus -->
-        <transformation id="basic">
+        <transformation id="ss">
             <!-- instrucoes a usar sem limite nem ordem -->
             <!-- deve existir pelo menos uma transformacao -->
-            <translate x="1" y="0" z="0" />
-            <rotate axis="y" angle="0" />
-            <scale x="0" y="0" z="0" />
+            <translate x="ff" y="ff" z="ff" />
+            <rotate axis="cc" angle="ff" />
+            <scale x="ff" y="ff" z="ff" />
       </transformation>
     </transformations>
     <primitives>
