@@ -108,8 +108,6 @@ class XMLscene extends CGFscene {
 
         this.sceneInited = true;
 
-        console.log(this.transformations);
-        
         this.materialDefault.apply();
 
 

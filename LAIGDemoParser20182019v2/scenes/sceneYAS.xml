@@ -24,7 +24,7 @@
                         left="ff" right="ff" top="ff" bottom="ff" />
     </views>
     <ambient>
-        <ambient r="1" g="0.5" b="0.5" a="1.0" />
+        <ambient r="0.1" g="0.1" b="0.1" a="1.0" />
         <background r="0" g="0" b="0" a="1" />
     </ambient>
     <lights>
@@ -32,31 +32,31 @@
         <!-- Os identificadores "id" nao podem ser repetidos -->
         <omni id="omni1" enabled="1" >
             <location x="1" y="0" z="1" w="1" />
-            <ambient r="0.25" g="0.25" b="0.25" a="0" />
-            <diffuse r="0.25" g="0.25" b="0.25" a="1" />
+            <ambient r="0.0" g="0.0" b="0.0" a="1" />
+            <diffuse r="1" g="1" b="1" a="1" />
             <specular r="0.25" g="0.25" b="0.25" a="1" />
         </omni>
         <spot id="spot1" enabled="1" angle="0" exponent="1">
             <location x="0" y="2" z="0" w="0" />
             <target x="2" y="2" z="0" />
-            <ambient r="0.25" g="0.25" b="0.25" a="1" />
-            <diffuse r="0.25" g="0.25" b="0.25" a="1" />
+            <ambient r="0.0" g="0.0" b="0.0" a="1" />
+            <diffuse r="1" g="1" b="1" a="1" />
             <specular r="0.25" g="0.25" b="0.25" a="1" />
         </spot>
     </lights>
     <textures>
         <!-- Deve existir um ou mais blocos "texture" -->
         <!-- Os identificadores "id" nao podem ser repetidos -->
-        <texture id="ss" file="ss" />
+        <texture id="leaves" file="scenes/images/leaves.jpg" />
     </textures>
     <materials>
         <!-- Deve existir um ou mais blocos "material" -->
         <!-- Os identificadores "id" nao podem ser repetidos -->
-        <material id="ss" shininess = "ff" >
-            <emission r="ff" g="ff" b="ff" a="ff" />
-            <ambient r="ff" g="ff" b="ff" a="ff" />
-            <diffuse r="ff" g="ff" b="ff" a="ff" />
-            <specular r="ff" g="ff" b="ff" a="ff" />
+        <material id="sphereApp" shininess = "1.0" >
+            <emission r="0.0" g="0.0" b="0.0" a="1.0" />
+            <ambient r="0.2" g="0.2" b="0.2" a="1.0" />
+            <diffuse r="0.8" g="0.8" b="0.8" a="1.0" />
+            <specular r="0.1" g="0.1" b="0.1" a="1.0" />
         </material>
     </materials>
     <transformations>
@@ -91,21 +91,21 @@
             <cylinder base="4" top="4" height="5" slices="10" stacks="5" />
         </primitive >
         <primitive id="sphere">
-            <sphere radius="1" slices="10" stacks="6" />
+            <sphere radius="1" slices="18" stacks="6" />
         </primitive >
         <primitive id="torus">
             <torus inner="0.5" outer="1" slices="4" loops="5" />
         </primitive >
     </primitives >
     <components>
-        <component id="first">
+        <component id="esfera">
             <!-- Uma "component" e' um objeto composto e pode ser -->
             <!--      usada em nos intermédios -->
             <!-- bloco "transformation" e' obrigatorio -->
             <transformation>
                 <!-- deve conter uma referencia a uma das "transformation" -->
                 <!-- declaradas anteriormente -->
-                <transformationref id="ss" />
+                <transformationref id="oi" /> 
                 <!-- ou, ALTERNATIVAMENTE, transformacoes explicitas, -->
                 <!-- usando zero ou mais das instrucoes seguintes, sem -->
                 <!--        limite nem ordem -->
@@ -121,7 +121,7 @@
             <!-- o material muda para o proximo material da lista; do -->
             <!-- ultimo material da lista volta ao primeiro -->
             <materials>
-                <material id="ss" />
+                <material id="sphereApp" />
             </materials>
             <!-- declaracao obrigatoria de texture -->
             <!-- id="inherit" mantem (herda) a textura do objecto "pai" -->
@@ -138,7 +138,7 @@
              <!-- do tipo escalamento violem esta regra.        -->
             <!-- Nao e' necessario aplicar fatores de escala em  -->
             <!-- quadricas (esfera, cilindro...) -->
-            <texture id="ss" length_s="ff" length_t="ff" />
+            <texture id="leaves" length_s="0" length_t="0" />
             <!-- bloco "children" obrigatorio num "component" -->
             <children>
                     <!-- deve existir uma ou mais tags "componentref" e/ou -->

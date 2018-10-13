@@ -167,7 +167,7 @@
                 return error;
         }
 
-    /*
+    
         // <TRANSFORMATIONS>
         if ((index = nodeNames.indexOf("transformations")) == -1)
             return "tag <transformations> missing";
@@ -179,7 +179,7 @@
             if ((error = this.parseTransformations(nodes[index])) != null)
                 return error;
         }
-        */
+        
 
         // <PRIMITIVES>
         if ((index = nodeNames.indexOf("primitives")) == -1)
@@ -193,7 +193,7 @@
                 return error;
         }
 
-        /*
+        
         // <COMPONENTS>
         if ((index = nodeNames.indexOf("components")) == -1)
             return "tag <components> missing";
@@ -205,7 +205,7 @@
             if ((error = this.parseComponents(nodes[index])) != null)
                 return error;
         }
-        */
+        
     }
 
 
@@ -831,13 +831,13 @@
                                                         if (mater[i].children[3].hasAttribute("a")){
                                                             currMaterial.specular.push(this.reader.getFloat(mater[i].children[3], "a"));             }
                                                             else this.onXMLMinorError("no a attribute in specular");
-
                                                             this.materials.push(currMaterial);
                                                             numMaterials++;
                                                         }
 
                                                         if(numMaterials == 0)
                                                             return "at least one material must be defined";
+                                                        console.log(JSON.stringify(this.materials));
                                                         this.log("Parsed materials");
                                                         return null;
 
@@ -924,7 +924,6 @@
 
                             this.transformations[transId] = currTransBlock;
                         }
-      //  console.log(this.transformations);
       this.log("Parsed transformations");
       return null;
     }
@@ -1014,9 +1013,10 @@
      parseComponents(componentsNode) {
 
         this.components = [];
-        var comp = componentsNode.nodeName;
+        var comp = componentsNode.children;
         for(var i = 0; i < comp.length; i++){
-            currComponent = [];
+            
+            var currComponent = [];
             if (comp[i].nodeName != "component") {
                this.onXMLMinorError("unknown tag <" + comp[i].nodeName + ">");
                continue;
@@ -1036,7 +1036,7 @@
                   continue;
               }
 
-              if (this.reader.getString(comp[i].children[0].children[0].nodeName == 'transformationref')){
+              if (this.reader.getString(comp[i].children[0].children[0].nodeName) == 'transformationref'){
                 var trId = this.reader.getString(comp[i].children[0].children[0], 'id');
                 if(this.transformations[trId] != null)
                   return "There is no transformation " + trId;
@@ -1133,7 +1133,7 @@
                     this.onXMLMinorError("unknown tag <" + child[u].nodeName + "> expected componentref or primitiveref tag");
                     continue;
                 }
-                if(chils[u].nodeName != "componentref"){
+                if(chils[u].nodeName == "componentref"){
                    currChild.type = "component";
                }
                else {
@@ -1150,7 +1150,7 @@
         
     }
 
-
+    console.log(this.components);
     this.log("Parsed components");
     return null;
     }
@@ -1205,8 +1205,8 @@
         }*/
 
       // this.elements[0].display();
-      this.elements[1].display();
-      this.elements[2].display();
+      //this.elements[1].display();
+      //this.elements[2].display();
       this.elements[3].display();
 
 
