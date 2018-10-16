@@ -1070,9 +1070,9 @@ parseComponents(componentsNode) {
 
     this.components = [];
     var comp = componentsNode.children;
-
+    console.log(comp);
     for(var i = 0; i < comp.length; i++){
-
+        
         var currComponent = [];
         if (comp[i].nodeName != "component") {
             this.onXMLMinorError("unknown tag <" + comp[i].nodeName + ">");
@@ -1158,7 +1158,7 @@ parseComponents(componentsNode) {
                                             
                         else this.onXMLMinorError("no angle attribute in rotate");
 
-                        mat4.rotate(matrix, matrix, currTrans[2]*DEGREE_TO_RAD , this.axisCoords[currTrans[1]]);
+                        mat4.rotate(transfBlock, transfBlock, currTrans[2]*DEGREE_TO_RAD , this.axisCoords[currTrans[1]]);
                         break;
 
                     case "scale":
@@ -1182,7 +1182,7 @@ parseComponents(componentsNode) {
 
                         else this.onXMLMinorError("no z attribute in scale");
 
-                        mat4.scale(matrix, matrix, [currTrans[1],currTrans[2],currTrans[3]]);
+                        mat4.scale(transfBlock, transfBlock, [currTrans[1],currTrans[2],currTrans[3]]);
                         break;
 
                     default:
@@ -1191,7 +1191,7 @@ parseComponents(componentsNode) {
                 }
                                                 
 
-                transfBlock.push(currTrans);
+             
             }
 
             //currComponent.push(transfBlock);
@@ -1275,6 +1275,7 @@ parseComponents(componentsNode) {
             else {
                 this.onXMLMinorError("no id attribute in " + childs[u].nodeName);
             }
+           
 
             childrenBlock.push(currChild);
         }
@@ -1345,6 +1346,7 @@ parseComponents(componentsNode) {
     //this.elements[2].display();
     //this.elements[3].display();
     //
+    
     this.components[this.root].display();
 
 

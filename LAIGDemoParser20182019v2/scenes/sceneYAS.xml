@@ -12,7 +12,7 @@
 <yas>
     <!-- deve definir-se um objeto para raiz da arvore, assim -->
     <!-- como o comprimento dos tres eixos (cilindros) -->
-    <scene root="esfera" axis_length="5" />
+    <scene root="inicio" axis_length="5" />
     <views default="camera1" >
         <!-- tem de existir, pelo menos, uma vista de -->
         <!-- entre as seguintes (perspective ou ortho) -->
@@ -98,7 +98,7 @@
         </primitive >
     </primitives >
     <components>
-        <component id="root">
+        <component id="inicio">
             <!-- Uma "component" e' um objeto composto e pode ser -->
             <!--      usada em nos intermédios -->
             <!-- bloco "transformation" e' obrigatorio -->
@@ -144,8 +144,8 @@
                     <!-- deve existir uma ou mais tags "componentref" e/ou -->
                     <!-- "primitiveref", identificando outros -->
                     <!-- componentes ou primitivas -->
-                    <componentref id="quadrado" />
-                    <componentref id="esfera">
+                    <!-- <componentref id="quadrado" /> -->
+                    <componentref id="esfera"> 
                     <!-- <primitiveref id="rectangle" /> -->
              </children>
         </component>
@@ -170,11 +170,10 @@
                     <primitiveref id="rectangle" />
              </children>
         </component>
-        </component>
          <component id="esfera">
             <transformation>
                 
-                <transformationref id="basic" /> 
+                .<transformationref id="basic" /> 
                 
                 <translate x="ff" y="ff" z="ff" />
                 <rotate axis="cc" angle="ff" />
