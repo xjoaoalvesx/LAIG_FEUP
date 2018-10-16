@@ -36,6 +36,8 @@ class XMLscene extends CGFscene {
         this.axis = new CGFaxis(this);
 
         this.materialDefault = new CGFappearance(this);
+
+     
     }
 
     /**

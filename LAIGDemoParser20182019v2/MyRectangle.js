@@ -1,10 +1,10 @@
 /**
- * MyQuad
+ * MyRectangle
  * @param gl {WebGLRenderingContext}
  * @constructor
  */
 
-class MyQuad extends CGFobject
+class MyRectangle extends CGFobject
 {
 	constructor(scene, x1, x2, y1, y2) 
 	{
@@ -15,8 +15,8 @@ class MyQuad extends CGFobject
 		this.y2 = y2;
 		this.minS = 0;
 		this.minT = 0;
-		this.maxS = 1;
-		this.maxT = 1;
+		this.maxS = x2-x1;
+		this.maxT = y2-y1;
 		this.initBuffers();
 		
 	};
@@ -52,4 +52,15 @@ class MyQuad extends CGFobject
 		this.primitiveType=this.scene.gl.TRIANGLES;
 		this.initGLBuffers();
 	};
+
+	//funcao muda textcoord
+	//
+	//mS= maxS/length_s
+	//
+	//mT = maxT/length_t
+	//
+	// this.textCoords  = [...]
+	//
+	//
+	//this.updateTextCoordsGLBuffers();
 };

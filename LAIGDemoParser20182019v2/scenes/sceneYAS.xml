@@ -12,7 +12,7 @@
 <yas>
     <!-- deve definir-se um objeto para raiz da arvore, assim -->
     <!-- como o comprimento dos tres eixos (cilindros) -->
-    <scene root="first" axis_length="5" />
+    <scene root="esfera" axis_length="5" />
     <views default="camera1" >
         <!-- tem de existir, pelo menos, uma vista de -->
         <!-- entre as seguintes (perspective ou ortho) -->
@@ -47,7 +47,7 @@
     <textures>
         <!-- Deve existir um ou mais blocos "texture" -->
         <!-- Os identificadores "id" nao podem ser repetidos -->
-        <texture id="leaves" file="scenes/images/leaves.jpg" />
+        <texture id="leaves" file="scenes/images/vidral.jpg" />
     </textures>
     <materials>
         <!-- Deve existir um ou mais blocos "material" -->
@@ -55,7 +55,7 @@
         <material id="sphereApp" shininess = "1.0" >
             <emission r="0.0" g="0.0" b="0.0" a="1.0" />
             <ambient r="0.2" g="0.2" b="0.2" a="1.0" />
-            <diffuse r="0.8" g="0.8" b="0.8" a="1.0" />
+            <diffuse r="1" g="0.0" b="0.0" a="1.0" />
             <specular r="0.1" g="0.1" b="0.1" a="1.0" />
         </material>
     </materials>
@@ -68,7 +68,7 @@
             <!-- deve existir pelo menos uma transformacao -->
             <translate x="1" y="0" z="0" />
             <rotate axis="y" angle="0" />
-            <scale x="0" y="0" z="0" />
+            <scale x="1" y="1" z="1" />
       </transformation>
     </transformations>
     <primitives>
@@ -80,7 +80,7 @@
             <!-- os parametros devem ser interpretados, genericamente, -->
             <!-- como em WebGL; o cilindro deve adicionalmente ter tampas -->
         <primitive id="rectangle">
-            <rectangle x1="0" y1="0" x2="10" y2="5" />
+            <rectangle x1="0" y1="0" x2="1" y2="1" />
         </primitive >
         <primitive id="triangle">
              <triangle  x1="0" y1="0" z1="0"
@@ -98,14 +98,14 @@
         </primitive >
     </primitives >
     <components>
-        <component id="esfera">
+        <component id="root">
             <!-- Uma "component" e' um objeto composto e pode ser -->
             <!--      usada em nos intermédios -->
             <!-- bloco "transformation" e' obrigatorio -->
             <transformation>
                 <!-- deve conter uma referencia a uma das "transformation" -->
                 <!-- declaradas anteriormente -->
-                <transformationref id="oi" /> 
+                <transformationref id="basic" /> 
                 <!-- ou, ALTERNATIVAMENTE, transformacoes explicitas, -->
                 <!-- usando zero ou mais das instrucoes seguintes, sem -->
                 <!--        limite nem ordem -->
@@ -144,8 +144,52 @@
                     <!-- deve existir uma ou mais tags "componentref" e/ou -->
                     <!-- "primitiveref", identificando outros -->
                     <!-- componentes ou primitivas -->
-                    <componentref id="ss" />
-                    <primitiveref id="ss" />
+                    <componentref id="quadrado" />
+                    <componentref id="esfera">
+                    <!-- <primitiveref id="rectangle" /> -->
+             </children>
+        </component>
+         <component id="quadrado">
+            <transformation>
+                
+                <transformationref id="basic" /> 
+                
+                <translate x="ff" y="ff" z="ff" />
+                <rotate axis="cc" angle="ff" />
+                <scale x="ff" y="ff" z="ff" />
+            </transformation>
+            
+            <materials>
+                <material id="sphereApp" />
+            </materials>
+            
+            <texture id="leaves" length_s="0" length_t="0" />
+            
+            <children>
+                    
+                    <primitiveref id="rectangle" />
+             </children>
+        </component>
+        </component>
+         <component id="esfera">
+            <transformation>
+                
+                <transformationref id="basic" /> 
+                
+                <translate x="ff" y="ff" z="ff" />
+                <rotate axis="cc" angle="ff" />
+                <scale x="ff" y="ff" z="ff" />
+            </transformation>
+            
+            <materials>
+                <material id="sphereApp" />
+            </materials>
+            
+            <texture id="leaves" length_s="0" length_t="0" />
+            
+            <children>
+                    
+                    <primitiveref id="sphere" />
              </children>
         </component>
     </components>
