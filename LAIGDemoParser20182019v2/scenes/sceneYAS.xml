@@ -113,7 +113,7 @@
             <sphere radius="1" slices="18" stacks="6" />
         </primitive >
         <primitive id="torus">
-            <torus inner="3.5" outer="4.0" slices="40" loops="40" />
+            <torus inner="4.5" outer="5.0" slices="40" loops="40" />
         </primitive >
     </primitives >
     <components>
@@ -166,6 +166,7 @@
                     <!-- <componentref id="quadrado" /> -->
                     <!-- <componentref id="esfera" /> -->
                     <componentref id="Insideplane" />
+                    <componentref id="InsideplaneFloor" />
                     <!-- <primitiveref id="rectangle" /> -->
                     <componentref id="cubo" />
              </children>
@@ -219,7 +220,7 @@
                 
                 <translate x="0" y="0" z="0" />
                 <rotate axis="x" angle="0" />
-                <scale x="1.0" y="1.0" z="1.0" />
+                <scale x="1.0" y="1.0" z="19.0" />
             </transformation>
             
             <materials>
@@ -231,6 +232,27 @@
             <children>
                     
                     <primitiveref id="torus" />
+             </children>
+        </component>
+        <component id="InsideplaneFloor">
+            <transformation>
+                <!--.<transformationref id="basic" /> -->
+                
+                <translate x="0" y="-1.5" z="0" />
+                <scale x="9.0" y="2.0" z="10.0" />
+                <rotate axis="x" angle="-90" />
+                
+            </transformation>
+            
+            <materials>
+                <material id="inherit" />
+            </materials>
+            
+            <texture id="none" length_s="1" length_t="1" />
+            
+            <children>
+                    
+                    <primitiveref id="rectangle" />
              </children>
         </component>
 
@@ -262,7 +284,7 @@
                 
                 <!--.<transformationref id="basic" /> -->
                 
-                <translate x="0" y="0" z="0" />
+                <translate x="0" y="0" z="4" />
                 <rotate axis="x" angle="0" />
             </transformation>
             
