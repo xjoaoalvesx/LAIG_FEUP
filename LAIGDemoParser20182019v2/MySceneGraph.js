@@ -179,7 +179,7 @@ class MySceneGraph {
         if ((error = this.parseTransformations(nodes[index])) != null)
             return error;
     }
-    
+
 
     // <PRIMITIVES>
     if ((index = nodeNames.indexOf("primitives")) == -1)
@@ -193,7 +193,7 @@ class MySceneGraph {
             return error;
     }
 
-    
+
     // <COMPONENTS>
     if ((index = nodeNames.indexOf("components")) == -1)
         return "tag <components> missing";
@@ -205,7 +205,7 @@ class MySceneGraph {
         if ((error = this.parseComponents(nodes[index])) != null)
             return error;
     }
-    
+
 }
 
 
@@ -309,7 +309,7 @@ return null;
 
             if(cameras[i].hasAttribute("far")){
                 cam.far = this.reader.getFloat(cameras[i], "far");
-            }       
+            }
             else this.onXMLMinorError("no far attribute");
 
             if(cameras[i].hasAttribute("left")){
@@ -324,7 +324,7 @@ return null;
 
             if(cameras[i].hasAttribute("top")){
                 cam.top = this.reader.getFloat(cameras[i], "top");
-            }   
+            }
             else this.onXMLMinorError("no top attribute");
 
             if(cameras[i].hasAttribute("bottom")){
@@ -714,7 +714,7 @@ return null;
     var numMaterials = 0;
 
     var mater = materialsNode.children;
-    
+
     for (var i = 0; i < mater.length; i++) {
         var currMaterial = {};
 
@@ -732,7 +732,7 @@ return null;
         // Checks for repeated IDs.
         if (this.materials[currMaterial.materId] != null)
             return "ID must be unique for each material (conflict: ID = " + currMaterial.materId + ")";
-        
+
         // Get shininess of current material
         if(mater[i].hasAttribute("shininess"))
             currMaterial.shininess = this.reader.getFloat(mater[i], 'shininess');
@@ -750,21 +750,21 @@ return null;
         else this.onXMLMinorError("no r attribute in emission");
 
         if (mater[i].children[0].hasAttribute("g")){
-            currMaterial.emission.push(this.reader.getFloat(mater[i].children[0], "g"));             
+            currMaterial.emission.push(this.reader.getFloat(mater[i].children[0], "g"));
         }
-        
+
         else this.onXMLMinorError("no g attribute in emission");
 
         if (mater[i].children[0].hasAttribute("b")){
-            currMaterial.emission.push(this.reader.getFloat(mater[i].children[0], "b"));            
+            currMaterial.emission.push(this.reader.getFloat(mater[i].children[0], "b"));
         }
-               
+
         else this.onXMLMinorError("no b attribute in emission");
 
         if (mater[i].children[0].hasAttribute("a")){
-            currMaterial.emission.push(this.reader.getFloat(mater[i].children[0], "a"));            
+            currMaterial.emission.push(this.reader.getFloat(mater[i].children[0], "a"));
         }
-        
+
         else this.onXMLMinorError("no a attribute in emission");
 
 
@@ -774,7 +774,7 @@ return null;
             this.onXMLMinorError("unknown tag <" + mater[i].children[1].nodeName + ">");
             continue;
         }
-                    
+
         if (mater[i].children[1].hasAttribute("r")){
             currMaterial.ambient.push(this.reader.getFloat(mater[i].children[1], "r"));
         }
@@ -782,21 +782,21 @@ return null;
         else this.onXMLMinorError("no r attribute in ambient");
 
         if (mater[i].children[1].hasAttribute("g")){
-            currMaterial.ambient.push(this.reader.getFloat(mater[i].children[1], "g"));             
+            currMaterial.ambient.push(this.reader.getFloat(mater[i].children[1], "g"));
         }
-                        
+
         else this.onXMLMinorError("no g attribute in ambient");
 
         if (mater[i].children[1].hasAttribute("b")){
-            currMaterial.ambient.push(this.reader.getFloat(mater[i].children[1], "b"));             
+            currMaterial.ambient.push(this.reader.getFloat(mater[i].children[1], "b"));
         }
-                            
+
         else this.onXMLMinorError("no b attribute in ambient");
 
         if (mater[i].children[1].hasAttribute("a")){
-            currMaterial.ambient.push(this.reader.getFloat(mater[i].children[1], "a"));            
+            currMaterial.ambient.push(this.reader.getFloat(mater[i].children[1], "a"));
         }
-                                
+
         else this.onXMLMinorError("no a attribute in ambient");
 
 
@@ -806,29 +806,29 @@ return null;
             this.onXMLMinorError("unknown tag <" + mater[i].children[2].nodeName + ">");
             continue;
         }
-                                
+
         if (mater[i].children[2].hasAttribute("r")){
             currMaterial.diffuse.push(this.reader.getFloat(mater[i].children[2], "r"));
         }
-                                
+
         else this.onXMLMinorError("no r attribute in diffuse");
 
         if(mater[i].children[2].hasAttribute("g")){
-            currMaterial.diffuse.push(this.reader.getFloat(mater[i].children[2], "g"));           
+            currMaterial.diffuse.push(this.reader.getFloat(mater[i].children[2], "g"));
         }
-                                    
+
         else this.onXMLMinorError("no g attribute in diffuse");
 
         if(mater[i].children[2].hasAttribute("b")){
-            currMaterial.diffuse.push(this.reader.getFloat(mater[i].children[2], "b"));            
+            currMaterial.diffuse.push(this.reader.getFloat(mater[i].children[2], "b"));
         }
-                                        
+
         else this.onXMLMinorError("no b attribute in diffuse");
 
         if(mater[i].children[2].hasAttribute("a")){
-            currMaterial.diffuse.push(this.reader.getFloat(mater[i].children[2], "a"));            
+            currMaterial.diffuse.push(this.reader.getFloat(mater[i].children[2], "a"));
         }
-                                    
+
         else this.onXMLMinorError("no a attribute in diffuse");
 
 
@@ -838,48 +838,48 @@ return null;
             this.onXMLMinorError("unknown tag <" + mater[i].children[3].nodeName + ">");
             continue;
         }
-         
+
         if (mater[i].children[3].hasAttribute("r")){
             currMaterial.specular.push(this.reader.getFloat(mater[i].children[3], "r"));
-         
+
         }
-                                            
+
         else this.onXMLMinorError("no r attribute in specular");
 
         if (mater[i].children[3].hasAttribute("g")){
-            currMaterial.specular.push(this.reader.getFloat(mater[i].children[3], "g"));             
+            currMaterial.specular.push(this.reader.getFloat(mater[i].children[3], "g"));
         }
-                                                
+
         else this.onXMLMinorError("no g attribute in specular");
 
         if (mater[i].children[3].hasAttribute("b")){
-            currMaterial.specular.push(this.reader.getFloat(mater[i].children[3], "b"));            
+            currMaterial.specular.push(this.reader.getFloat(mater[i].children[3], "b"));
         }
-                                                    
+
         else this.onXMLMinorError("no b attribute in specular");
 
         if (mater[i].children[3].hasAttribute("a")){
-            currMaterial.specular.push(this.reader.getFloat(mater[i].children[3], "a"));           
+            currMaterial.specular.push(this.reader.getFloat(mater[i].children[3], "a"));
         }
-                                                        
+
         else this.onXMLMinorError("no a attribute in specular");
-        
+
         var appearance = new CGFappearance(this.scene);
 
         appearance.setAmbient(currMaterial.ambient[0],currMaterial.ambient[1],currMaterial.ambient[2],currMaterial.ambient[3]);
         appearance.setDiffuse(currMaterial.diffuse[0],currMaterial.diffuse[1],currMaterial.diffuse[2],currMaterial.diffuse[3]);
         appearance.setSpecular(currMaterial.specular[0],currMaterial.specular[1],currMaterial.specular[2],currMaterial.specular[3]);
-        appearance.setEmission(currMaterial.emission[0],currMaterial.emission[1],currMaterial.emission[2],currMaterial.emission[3]);  
+        appearance.setEmission(currMaterial.emission[0],currMaterial.emission[1],currMaterial.emission[2],currMaterial.emission[3]);
         appearance.setShininess(currMaterial.shininess);
 
         this.materials[currMaterial.materId] = appearance;
         numMaterials++;
     }
 
-                                                    
+
     if(numMaterials == 0)
         return "at least one material must be defined";
-                                                    
+
     console.log(JSON.stringify(this.materials));
     this.log("Parsed materials");
     return null;
@@ -945,7 +945,7 @@ return null;
                         currTrans.push(this.reader.getFloat(trans[i].children[u], "angle"));             }
                         else this.onXMLMinorError("no angle attribute in rotate");
 
-                        
+
                         mat4.rotate(matrix, matrix, currTrans[2]*DEGREE_TO_RAD , this.axisCoords[currTrans[1]]);
 
                         break;
@@ -970,11 +970,11 @@ return null;
                                 this.onXMLMinorError("unknown tag <" + trans[i].children[u].nodeName + ">");
                                 break;
                             }
-                            
+
                         }
 
 
-                        
+
 
                         this.transformations[transId] = matrix;
                     }
@@ -1000,7 +1000,7 @@ return null;
 
             var currChild = primitives[i].children[u];
             switch(currChild.nodeName){
-                case "rectangle" : 
+                case "rectangle" :
                 var x1 = this.reader.getFloat(currChild , 'x1');
                 var y1 = this.reader.getFloat(currChild , 'y1');
                 var x2 = this.reader.getFloat(currChild , 'x2');
@@ -1017,7 +1017,7 @@ return null;
                 var cylinder = new MyCylinder(this.scene , slices , stacks)
                 this.elements[primitiveId] = cylinder;
                 break;
-                case "triangle" : 
+                case "triangle" :
                 var x1 = this.reader.getFloat(currChild , 'x1');
                 var y1 = this.reader.getFloat(currChild , 'y1');
                 var z1 = this.reader.getFloat(currChild , 'z1');
@@ -1030,7 +1030,7 @@ return null;
                 var triangle = new Triangle(this.scene, x1 ,x2 ,x3 , y1, y2, y3, z1, z2, z3);
                 this.elements[primitiveId] = triangle;
                 break;
-                case "sphere" : 
+                case "sphere" :
                 var radius = this.reader.getFloat(currChild , 'radius');
                 var slices = this.reader.getInteger(currChild , 'slices');
                 var stacks = this.reader.getInteger(currChild , 'stacks');
@@ -1045,7 +1045,7 @@ return null;
                 var torus = new Torus(this.scene, inner, outer, slices, loops);
                 this.elements[primitiveId] = torus;
                 break;
-                
+
                 default:
                 break;
 
@@ -1070,7 +1070,7 @@ parseComponents(componentsNode) {
     var comp = componentsNode.children;
     console.log(comp);
     for(var i = 0; i < comp.length; i++){
-        
+
         var currComponent = [];
         if (comp[i].nodeName != "component") {
             this.onXMLMinorError("unknown tag <" + comp[i].nodeName + ">");
@@ -1094,107 +1094,107 @@ parseComponents(componentsNode) {
         }
 
         var transfBlock = mat4.create();
+        console.log(comp[i]);
+        if(comp[i].children[0].children[0] != null){
+          if (comp[i].children[0].children[0].nodeName == "transformationref"){
+              var trId = this.reader.getString(comp[i].children[0].children[0], 'id');
+
+              if(this.transformations[trId] == null)
+                  return "There is no transformation " + trId;
+
+              transfBlock = this.transformations[trId];
+          }
+
+          else{
+
+              var trans = comp[i].children[0].children;
+
+              for(var u = 0; u < trans.length; u++){
+
+                  var currTrans = [];
+
+                  var transformationtype = trans[u].nodeName;
+
+                  switch(transformationtype){
+
+                      case "translate":
+
+                          currTrans.push("translate");
+                          if (trans[u].hasAttribute("x")){
+                              currTrans.push(this.reader.getFloat(trans[u], "x"));
+                          }
+
+                          else this.onXMLMinorError("no x attribute in translate");
+
+                          if (trans[u].hasAttribute("y")){
+                              currTrans.push(this.reader.getFloat(trans[u], "y"));
+                          }
+
+                          else this.onXMLMinorError("no y attribute in translate");
+
+                          if (trans[u].hasAttribute("z")){
+                              currTrans.push(this.reader.getFloat(trans[u], "z"));
+                          }
+
+                          else this.onXMLMinorError("no z attribute in translate");
+
+                          mat4.translate(transfBlock ,transfBlock ,[currTrans[1],currTrans[2],currTrans[3]]);
+                          break;
+
+                      case "rotate":
+
+                          currTrans.push("rotate");
+                          if (trans[u].hasAttribute("axis")){
+                              currTrans.push(this.reader.getString(trans[u], "axis"));
+                          }
+
+                          else this.onXMLMinorError("no axis attribute in rotate");
+
+                          if (trans[u].hasAttribute("angle")){
+                              currTrans.push(this.reader.getFloat(trans[u], "angle"));
+                          }
+
+                          else this.onXMLMinorError("no angle attribute in rotate");
+
+                          mat4.rotate(transfBlock, transfBlock, currTrans[2]*DEGREE_TO_RAD , this.axisCoords[currTrans[1]]);
+                          break;
+
+                      case "scale":
+
+                          currTrans.push("scale");
+                          if (trans[u].hasAttribute("x")){
+                              currTrans.push(this.reader.getFloat(trans[u], "x"));
+                          }
+
+                          else this.onXMLMinorError("no x attribute in scale");
+
+                          if (trans[u].hasAttribute("y")){
+                              currTrans.push(this.reader.getFloat(trans[u], "y"));
+                          }
+
+                          else this.onXMLMinorError("no y attribute in scale");
+
+                          if (trans[u].hasAttribute("z")){
+                              currTrans.push(this.reader.getFloat(trans[u], "z"));
+                          }
+
+                          else this.onXMLMinorError("no z attribute in scale");
+
+                          mat4.scale(transfBlock, transfBlock, [currTrans[1],currTrans[2],currTrans[3]]);
+                          break;
+
+                      default:
+                          this.onXMLMinorError("unknown tag <" + trans[u].nodeName + ">");
+                          break;
+                  }
 
 
-        if (comp[i].children[0].children[0].nodeName == "transformationref"){
-            var trId = this.reader.getString(comp[i].children[0].children[0], 'id');
 
-            if(this.transformations[trId] == null)
-                return "There is no transformation " + trId;
+              }
 
-            transfBlock = this.transformations[trId];
+              //currComponent.push(transfBlock);
+          }
         }
-
-        else{
-
-            var trans = comp[i].children[0].children;
-            
-            for(var u = 0; u < trans.length; u++){
-
-                var currTrans = [];
-
-                var transformationtype = trans[u].nodeName;
-
-                switch(transformationtype){
-
-                    case "translate":
-
-                        currTrans.push("translate");
-                        if (trans[u].hasAttribute("x")){
-                            currTrans.push(this.reader.getFloat(trans[u], "x"));
-                        }
-
-                        else this.onXMLMinorError("no x attribute in translate");
-
-                        if (trans[u].hasAttribute("y")){
-                            currTrans.push(this.reader.getFloat(trans[u], "y"));             
-                        }
-                        
-                        else this.onXMLMinorError("no y attribute in translate");
-
-                        if (trans[u].hasAttribute("z")){
-                            currTrans.push(this.reader.getFloat(trans[u], "z"));             
-                        }
-                                              
-                        else this.onXMLMinorError("no z attribute in translate");
-
-                        mat4.translate(transfBlock ,transfBlock ,[currTrans[1],currTrans[2],currTrans[3]]);
-                        break;
-                                            
-                    case "rotate":
-
-                        currTrans.push("rotate");
-                        if (trans[u].hasAttribute("axis")){
-                            currTrans.push(this.reader.getString(trans[u], "axis"));
-                        }
-                                            
-                        else this.onXMLMinorError("no axis attribute in rotate");
-
-                        if (trans[u].hasAttribute("angle")){
-                            currTrans.push(this.reader.getFloat(trans[u], "angle"));             
-                        }
-                                            
-                        else this.onXMLMinorError("no angle attribute in rotate");
-
-                        mat4.rotate(transfBlock, transfBlock, currTrans[2]*DEGREE_TO_RAD , this.axisCoords[currTrans[1]]);
-                        break;
-
-                    case "scale":
-
-                        currTrans.push("scale");
-                        if (trans[u].hasAttribute("x")){
-                            currTrans.push(this.reader.getFloat(trans[u], "x"));
-                        }
-
-                        else this.onXMLMinorError("no x attribute in scale");
-
-                        if (trans[u].hasAttribute("y")){
-                            currTrans.push(this.reader.getFloat(trans[u], "y"));             
-                        }
-
-                        else this.onXMLMinorError("no y attribute in scale");
-
-                        if (trans[u].hasAttribute("z")){
-                            currTrans.push(this.reader.getFloat(trans[u], "z"));             
-                        }
-
-                        else this.onXMLMinorError("no z attribute in scale");
-
-                        mat4.scale(transfBlock, transfBlock, [currTrans[1],currTrans[2],currTrans[3]]);
-                        break;
-
-                    default:
-                        this.onXMLMinorError("unknown tag <" + trans[u].nodeName + ">");
-                        break;
-                }
-                                                
-
-             
-            }
-
-            //currComponent.push(transfBlock);
-        }
-
 
         if(comp[i].children[1].nodeName != "materials"){
             this.onXMLMinorError("unknown tag <" + comp[i].children[1].nodeName + "> expected materials tag");
@@ -1267,29 +1267,29 @@ parseComponents(componentsNode) {
             }
 
             if(childs[u].hasAttribute("id")){
-                currChild.id = this.reader.getString(childs[u], 'id');  
+                currChild.id = this.reader.getString(childs[u], 'id');
             }
 
             else {
                 this.onXMLMinorError("no id attribute in " + childs[u].nodeName);
             }
-           
+
 
             childrenBlock.push(currChild);
         }
-    
-                                      
+
+
         //currComponent.push(childrenBlock);
         this.components[compId] = new Component(this.scene , compId, transfBlock, materialBlock, textu, childrenBlock);
     }
         console.log(this.components);
         this.log("Parsed components");
         return null;
-        
+
 }
 
 
-                          
+
 
 
 
@@ -1334,7 +1334,7 @@ parseComponents(componentsNode) {
  */
  displayScene() {
     // entry point for graph rendering
-   
+
     /*for(var i = 0; i < this.elements.length; i++){
         this.elements[i].display();
     }*/
@@ -1344,7 +1344,7 @@ parseComponents(componentsNode) {
     //this.elements[2].display();
     //this.elements[3].display();
     //
-    
+
     this.components[this.root].display();
 
 
