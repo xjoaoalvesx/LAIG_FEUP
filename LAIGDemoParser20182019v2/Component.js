@@ -26,26 +26,33 @@ class Component {
 		//var matrix = mat4.create();
 		//mat4.translate(matrix , matrix , [3,0,0]);	
 		this.scene.multMatrix(this.transformations);
+		var tempString = "";
+		var tempString2 = "";
 
 		if(this.materials[0] == "inherit"){
 			var mat = this.scene.graph.materials[materialFather] ;
+			tempString = materialFather;
 		}
 		else {
 			var mat = this.scene.graph.materials[this.materials[0]] ;
+			tempString = this.materials[0];
 		}
 		
 		switch(this.texture.id){
 
 			case "inherit" :
 				mat.setTexture(this.scene.graph.textures[textureFather]);
+				tempString2 = textureFather;
 				break;
 
 			case "none" :
 				mat.setTexture(null);
+				tempString2 = "none";
 				break;
 
 			default :
 				mat.setTexture(this.scene.graph.textures[this.texture.id]);
+				tempString2 = this.texture.id;
 				break;
 		}
 
@@ -58,7 +65,7 @@ class Component {
 				this.scene.graph.elements[this.children[i].id].display();
 			}
 			else {
-			this.scene.graph.components[this.children[i].id].display(this.texture.id , this.materials[0]);
+			this.scene.graph.components[this.children[i].id].display(tempString2 , tempString);
 			}
 		}
 
