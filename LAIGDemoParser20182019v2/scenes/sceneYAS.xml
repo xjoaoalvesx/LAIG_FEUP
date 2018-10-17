@@ -173,7 +173,6 @@
                     <!-- <componentref id="esfera" /> -->
                     <componentref id="Insideplane" />
                     <componentref id="InsideplaneFloor" />
-                    <!-- <primitiveref id="rectangle" /> -->
                     <componentref id="chairComplex" />
              </children>
         </component>
@@ -463,13 +462,17 @@
               <componentref id="chairBaseComp1" />
               <componentref id="chairBaseComp2" />
               <componentref id="chairBaseComp3" />
+              <componentref id="chairBaseComp4" />
+              <componentref id="chairBaseComp5" />
+              <componentref id="chairBaseComp6" />
+              <componentref id="chairBaseComp7" />
            </children>
 
         </component>
 
         <component id = "chairBaseComp1">
           <transformation>
-            <scale x="1" y="1" z= "0.2"/>
+            <scale x="0.2" y="1" z= "0.2"/>
           </transformation>
 
           <materials>
@@ -486,8 +489,8 @@
 
         <component id = "chairBaseComp2">
           <transformation>
-            <translate x="0" y="0" z="0.8"/>
-            <scale x="1" y="1" z= "0.2"/>
+            <translate x="0.8" y="0" z="0"/>
+            <scale x="0.2" y="1" z= "0.2"/>
           </transformation>
 
           <materials>
@@ -504,8 +507,79 @@
 
         <component id = "chairBaseComp3">
           <transformation>
-            <translate x="0" y="0.5" z="0"/>
-            <scale x="1" y="0.5" z= "1"/>
+            <scale x="0.2" y="0.2" z= "1"/>
+          </transformation>
+
+          <materials>
+              <material id="inherit" />
+          </materials>
+
+          <texture id="inherit" length_s="1" length_t="1" />
+
+          <children>
+              <componentref id="cubo" />
+           </children>
+
+        </component>
+
+        <component id = "chairBaseComp4">
+          <transformation>
+            <translate x="0" y="0" z="0.8"/>
+            <scale x="0.2" y="1" z= "0.2"/>
+          </transformation>
+
+          <materials>
+              <material id="inherit" />
+          </materials>
+
+          <texture id="inherit" length_s="1" length_t="1" />
+
+          <children>
+              <componentref id="cubo" />
+           </children>
+
+        </component>
+
+        <component id = "chairBaseComp5">
+          <transformation>
+            <translate x="0.8" y="0" z="0.8"/>
+            <scale x="0.2" y="1" z= "0.2"/>
+          </transformation>
+
+          <materials>
+              <material id="inherit" />
+          </materials>
+
+          <texture id="inherit" length_s="1" length_t="1" />
+
+          <children>
+              <componentref id="cubo" />
+           </children>
+
+        </component>
+
+        <component id = "chairBaseComp6">
+          <transformation>
+            <translate x="0.8" y="0" z="0"/>
+            <scale x="0.2" y="0.2" z= "1"/>
+          </transformation>
+
+          <materials>
+              <material id="inherit" />
+          </materials>
+
+          <texture id="inherit" length_s="1" length_t="1" />
+
+          <children>
+              <componentref id="cubo" />
+           </children>
+
+        </component>
+
+        <component id = "chairBaseComp7">
+          <transformation>
+            <translate x="0" y="0.6" z="0"/>
+            <scale x="1" y="0.4" z= "1"/>
           </transformation>
 
           <materials>
@@ -535,6 +609,9 @@
               <componentref id="chairTopComp1" />
               <componentref id="chairTopComp2" />
               <componentref id="chairTopComp3" />
+              <componentref id="chairTopComp4" />
+              <componentref id="chairTopComp5" />
+              <componentref id="chairTopComp6" />
           </children>
 
         </component>
@@ -588,6 +665,60 @@
 
           <children>
               <componentref id="cubo" />
+           </children>
+
+        </component>
+
+        <component id = "chairTopComp4">
+          <transformation>
+            <translate x="0.8" y="0" z="0.8"/>
+            <scale x="0.2" y="0.2" z= "0.2"/>
+          </transformation>
+
+          <materials>
+              <material id="inherit" />
+          </materials>
+
+          <texture id="inherit" length_s="1" length_t="1" />
+
+          <children>
+              <componentref id="cubo" />
+           </children>
+
+        </component>
+
+        <component id = "chairTopComp5">
+          <transformation>
+            <translate x="0.8" y="0" z="0"/>
+            <scale x="0.2" y="0.2" z= "0.2"/>
+          </transformation>
+
+          <materials>
+              <material id="inherit" />
+          </materials>
+
+          <texture id="inherit" length_s="1" length_t="1" />
+
+          <children>
+              <componentref id="cubo" />
+           </children>
+
+        </component>
+
+        <component id = "chairTopComp6">
+          <transformation>
+            <translate x="0.25" y="0.8" z="0.5"/>
+            <scale x="0.025" y="0.1" z= "0.4"/>
+          </transformation>
+
+          <materials>
+              <material id="inherit" />
+          </materials>
+
+          <texture id="inherit" length_s="1" length_t="1" />
+
+          <children>
+              <primitiveref id="sphere" />
            </children>
 
         </component>
