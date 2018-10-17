@@ -270,79 +270,79 @@ return null;
 
             if (cameras[i].children[0].hasAttribute("z")){
              coord1.push(this.reader.getFloat(cameras[i].children[0], "z"));
-         }
-         else this.onXMLMinorError("no z attribute in " + cameras[i].children[0].nodeName);
+            }
+            else this.onXMLMinorError("no z attribute in " + cameras[i].children[0].nodeName);
 
-         if (cameras[i].children[1].hasAttribute("x")){
-            coord2.push(this.reader.getFloat(cameras[i].children[1], "x"));
+            if (cameras[i].children[1].hasAttribute("x")){
+                coord2.push(this.reader.getFloat(cameras[i].children[1], "x"));
+            }
+            else this.onXMLMinorError("no x attribute in " + cameras[i].children[1].nodeName);
+
+            if (cameras[i].children[1].hasAttribute("y")){
+                coord2.push(this.reader.getFloat(cameras[i].children[1], "y"));
+            }
+            else this.onXMLMinorError("no y attribute in " + cameras[i].children[1].nodeName);
+
+            if (cameras[i].children[1].hasAttribute("z")){
+                coord2.push(this.reader.getFloat(cameras[i].children[1], "z"));
+            }
+            else this.onXMLMinorError("no z attribute in " + cameras[i].children[1].nodeName);
+
+            coord1.push(1);
+            coord2.push(1);
+            cam.from = coord1;
+            cam.to = coord2;
         }
-        else this.onXMLMinorError("no x attribute in " + cameras[i].children[1].nodeName);
 
-        if (cameras[i].children[1].hasAttribute("y")){
-            coord2.push(this.reader.getFloat(cameras[i].children[1], "y"));
+
+        else if (cameras[i].nodeName == "ortho"){
+
+            if(cameras[i].hasAttribute("id")){
+                cam.id = this.reader.getString(cameras[i], "id");
+            }
+            else this.onXMLMinorError("no camera id attribute");
+
+            if(cameras[i].hasAttribute("near")){
+                cam.near = this.reader.getFloat(cameras[i], "near");
+            }
+            else this.onXMLMinorError("no near attribute");
+
+            if(cameras[i].hasAttribute("far")){
+                cam.far = this.reader.getFloat(cameras[i], "far");
+            }       
+            else this.onXMLMinorError("no far attribute");
+
+            if(cameras[i].hasAttribute("left")){
+                cam.left = this.reader.getFloat(cameras[i], "left");
+            }
+            else this.onXMLMinorError("no left attribute");
+
+            if(cameras[i].hasAttribute("right")){
+                cam.right = this.reader.getFloat(cameras[i], "right");
+            }
+            else this.onXMLMinorError("no right attribute");
+
+            if(cameras[i].hasAttribute("top")){
+                cam.top = this.reader.getFloat(cameras[i], "top");
+            }   
+            else this.onXMLMinorError("no top attribute");
+
+            if(cameras[i].hasAttribute("bottom")){
+                cam.bottom = this.reader.getFloat(cameras[i], "bottom");
+            }
+            else this.onXMLMinorError("no bottom attribute");
+
         }
-        else this.onXMLMinorError("no y attribute in " + cameras[i].children[1].nodeName);
-
-        if (cameras[i].children[1].hasAttribute("z")){
-         coord2.push(this.reader.getFloat(cameras[i].children[1], "z"));
-     }
-     else this.onXMLMinorError("no z attribute in " + cameras[i].children[1].nodeName);
-
-     coord1.push(1);
-     coord2.push(1);
-     cam.from = coord1;
-     cam.to = coord2;
- }
 
 
- else if (cameras[i].nodeName == "ortho"){
 
-    if(cameras[i].hasAttribute("id")){
-        cam.id = this.reader.getString(cameras[i], "id");
+        this.views.push(cam);
     }
-    else this.onXMLMinorError("no camera id attribute");
-
-    if(cameras[i].hasAttribute("near")){
-        cam.near = this.reader.getFloat(cameras[i], "near");
-    }
-    else this.onXMLMinorError("no near attribute");
-
-    if(cameras[i].hasAttribute("far")){
-        cam.far = this.reader.getFloat(cameras[i], "far");
-    }
-    else this.onXMLMinorError("no far attribute");
-
-    if(cameras[i].hasAttribute("left")){
-        cam.left = this.reader.getFloat(cameras[i], "left");
-    }
-    else this.onXMLMinorError("no left attribute");
-
-    if(cameras[i].hasAttribute("right")){
-        cam.right = this.reader.getFloat(cameras[i], "right");
-    }
-    else this.onXMLMinorError("no right attribute");
-
-    if(cameras[i].hasAttribute("top")){
-        cam.top = this.reader.getFloat(cameras[i], "top");
-    }
-    else this.onXMLMinorError("no top attribute");
-
-    if(cameras[i].hasAttribute("bottom")){
-        cam.bottom = this.reader.getFloat(cameras[i], "bottom");
-    }
-    else this.onXMLMinorError("no bottom attribute");
-
-}
 
 
+    this.log("Parsed views");
 
-this.views.push(cam);
-}
-
-
-this.log("Parsed views");
-
-return null;
+    return null;
 }
 
  /**
@@ -1006,7 +1006,6 @@ return null;
                 var x2 = this.reader.getFloat(currChild , 'x2');
                 var y2 = this.reader.getFloat(currChild , 'y2');
                 var quad = new MyRectangle(this.scene,x1,x2,y1,y2);
-                console.log(quad);
                 this.elements[primitiveId] = quad;
                 break;
                 case "cylinder" :
@@ -1016,7 +1015,7 @@ return null;
                 var slices = this.reader.getInteger(currChild , 'slices')
                 var stacks = this.reader.getInteger(currChild , 'stacks');
                 var cylinder = new MyCylinder(this.scene , slices , stacks)
-                this.elements.push(cylinder);
+                this.elements[primitiveId] = cylinder;
                 break;
                 case "triangle" : 
                 var x1 = this.reader.getFloat(currChild , 'x1');
@@ -1029,23 +1028,22 @@ return null;
                 var y3 = this.reader.getFloat(currChild , 'y3');
                 var z3 = this.reader.getFloat(currChild , 'z3');
                 var triangle = new Triangle(this.scene, x1 ,x2 ,x3 , y1, y2, y3, z1, z2, z3);
-                this.elements.push(triangle);
+                this.elements[primitiveId] = triangle;
                 break;
                 case "sphere" : 
                 var radius = this.reader.getFloat(currChild , 'radius');
                 var slices = this.reader.getInteger(currChild , 'slices');
                 var stacks = this.reader.getInteger(currChild , 'stacks');
                 var sphere = new Sphere(this.scene , radius , slices , stacks);
-                this.elements.push(sphere);
+                this.elements[primitiveId] = sphere;
                 break;
                 case "torus" :
-                var torus = {};
-                torus.tag = currChild.nodeName;
-                torus.inner = this.reader.getFloat(currChild , 'inner');
-                torus.outer = this.reader.getFloat(currChild , 'outer');
-                torus.slices = this.reader.getInteger(currChild , 'slices');
-                torus.loops = this.reader.getInteger(currChild , 'loops');
-                //this.elements.push(torus);
+                var inner = this.reader.getFloat(currChild , 'inner');
+                var outer = this.reader.getFloat(currChild , 'outer');
+                var slices = this.reader.getInteger(currChild , 'slices');
+                var loops = this.reader.getInteger(currChild , 'loops');
+                var torus = new Torus(this.scene, inner, outer, slices, loops);
+                this.elements[primitiveId] = torus;
                 break;
                 
                 default:
@@ -1147,7 +1145,7 @@ parseComponents(componentsNode) {
 
                         currTrans.push("rotate");
                         if (trans[u].hasAttribute("axis")){
-                            currTrans.push(this.reader.getFloat(trans[u], "axis"));
+                            currTrans.push(this.reader.getString(trans[u], "axis"));
                         }
                                             
                         else this.onXMLMinorError("no axis attribute in rotate");
@@ -1215,7 +1213,7 @@ parseComponents(componentsNode) {
 
             var material = this.reader.getString(mater[u], 'id');
 
-            if(this.materials[material] == null){
+            if(this.materials[material] == null && (material != "inherit")){
                 this.onXMLMinorError("the material " + material + " does not exist");
                 continue;
             }
