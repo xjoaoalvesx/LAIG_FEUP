@@ -26,7 +26,7 @@ class Torus extends CGFobject {
     this.vertices = [];
     this.indices = [];
     this.normals = [];
-    this.texCoords = [];
+    this.texCoordstemp = [];
 
     for (var stack = 0; stack <= this.stacks; stack++) {
         var theta = stack * 2 * Math.PI / this.stacks;
@@ -46,7 +46,7 @@ class Torus extends CGFobject {
 
             this.vertices.push(x, y, z);
             this.normals.push(x, y, z);
-            this.texCoords.push(s, t);
+            this.texCoordstemp.push(s, t);
         }
     }
 
@@ -60,9 +60,9 @@ class Torus extends CGFobject {
         }
     }
 
-
+    this.textCoords = this.texCoordstemp.slice();
     this.primitiveType = this.scene.gl.TRIANGLES;
     this.initGLBuffers();
     }
-    
+
 };
