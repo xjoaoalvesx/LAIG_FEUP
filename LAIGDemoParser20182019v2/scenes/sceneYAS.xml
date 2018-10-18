@@ -66,7 +66,8 @@
     <textures>
         <!-- Deve existir um ou mais blocos "texture" -->
         <!-- Os identificadores "id" nao podem ser repetidos -->
-        <texture id="leaves" file="scenes/images/trunk-image.jpg" />
+        <texture id="leaves" file="scenes/images/leaves.jpg" />
+        <texture id="bank" file="scenes/images/bank.jpg" />
     </textures>
     <materials>
         <!-- Deve existir um ou mais blocos "material" -->
@@ -250,10 +251,10 @@
             </transformation>
 
             <materials>
-                <material id="inherit" />
+                <material id="white" />
             </materials>
 
-            <texture id="none" length_s="1" length_t="1" />
+            <texture id="bank" length_s="1" length_t="1" />
 
             <children>
 
