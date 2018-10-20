@@ -6,13 +6,14 @@ var DEGREE_TO_RAD = Math.PI / 180;
 class XMLscene extends CGFscene {
     /**
      * @constructor
-     * @param {MyInterface} myinterface 
+     * @param {MyInterface} myinterface
      */
     constructor(myinterface) {
         super();
 
         this.interface = myinterface;
         this.lightValues = {};
+
     }
 
     /**
@@ -37,7 +38,9 @@ class XMLscene extends CGFscene {
 
         this.materialDefault = new CGFappearance(this);
 
-     
+        this.setUpdatePeriod(100);
+
+
     }
 
     /**
@@ -82,7 +85,7 @@ class XMLscene extends CGFscene {
     }
 
 
-    /* Handler called when the graph is finally loaded. 
+    /* Handler called when the graph is finally loaded.
      * As loading is asynchronous, this may be called already after the application has started the run loop
      */
     onGraphLoaded() {
@@ -113,7 +116,7 @@ class XMLscene extends CGFscene {
         this.materialDefault.apply();
 
 
-        
+
     }
 
 
@@ -139,7 +142,7 @@ class XMLscene extends CGFscene {
 
         if (this.sceneInited) {
 
-            // Draw axis    
+            // Draw axis
             this.axis.display();
 
             var i = 0;
@@ -169,4 +172,22 @@ class XMLscene extends CGFscene {
         this.popMatrix();
         // ---- END Background, camera and axis setup
     }
+
+    checkKey() {
+		if (this.gui.isKeyPressed("KeyM")) {
+
+      for(var key in this.graph.components){
+         if(this.graph.components.hasOwnProperty(key)){
+           this.graph.components[key].update();
+         }
+      }
+    }
+
+	}
+
+
+	update() {
+		this.checkKey();
+
+	}
 }

@@ -148,6 +148,7 @@
             <!-- ultimo material da lista volta ao primeiro -->
             <materials>
                 <material id="sphereApp" />
+                <material id="white" />
             </materials>
             <!-- declaracao obrigatoria de texture -->
             <!-- id="inherit" mantem (herda) a textura do objecto "pai" -->
