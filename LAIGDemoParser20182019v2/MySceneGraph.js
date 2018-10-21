@@ -1013,7 +1013,6 @@ return null;
 
                         this.transformations[transId] = matrix;
                     }
-                    console.log(this.transformations);
                     this.log("Parsed transformations");
                     return null;
 }
@@ -1103,7 +1102,6 @@ parseComponents(componentsNode) {
 
     this.components = [];
     var comp = componentsNode.children;
-    console.log(comp);
     for(var i = 0; i < comp.length; i++){
 
         var currComponent = [];
