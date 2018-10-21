@@ -230,6 +230,7 @@ return null;
  parseViews(viewsNode) {
 
     var cameras = viewsNode.children;
+    this.defaultCamID = this.reader.getString(viewsNode , "default");
     this.views = [];
     for(var i = 0 ; i < cameras.length ; i++){
         var cam = {};
@@ -292,7 +293,10 @@ return null;
             coord2.push(1);
             cam.from = coord1;
             cam.to = coord2;
-            this.views.push(new CGFcamera(cam.angle, cam.near, cam.far, cam.from, cam.to));
+            var tempV = {};
+            tempV.id = cam.id;
+            tempV.cam = new CGFcamera(cam.angle, cam.near, cam.far, cam.from, cam.to);
+            this.views.push(tempV);
         }
 
 
@@ -368,14 +372,19 @@ return null;
             cam.from = coord1;
             cam.to = coord2;
 
-            this.views.push(new CGFcamera( cam.left, cam.right, cam.bottom, cam.top, cam.near, cam.far, cam.position, cam.target, [0,1,0] ));
+            var tempV = {};
+            tempV.id = cam.id;
+            tempV.cam = new CGFcameraOrtho(cam.left, cam.right, cam.bottom, cam.top, cam.near, cam.far, cam.from, cam.to, [0,1,0]);
+            this.views.push(tempV);
+
+      
 
         }
 
 
     }
 
-
+    console.log(this.views);
     this.log("Parsed views");
 
     return null;
@@ -916,10 +925,7 @@ return null;
     if(numMaterials == 0)
         return "at least one material must be defined";
 
-<<<<<<< Updated upstream
-=======
-    
->>>>>>> Stashed changes
+
     this.log("Parsed materials");
     return null;
 
@@ -1017,10 +1023,7 @@ return null;
 
                         this.transformations[transId] = matrix;
                     }
-<<<<<<< Updated upstream
-=======
-                  
->>>>>>> Stashed changes
+
                     this.log("Parsed transformations");
                     return null;
 }
@@ -1069,7 +1072,7 @@ return null;
                 var x3 = this.reader.getFloat(currChild , 'x3');
                 var y3 = this.reader.getFloat(currChild , 'y3');
                 var z3 = this.reader.getFloat(currChild , 'z3');
-                var triangle = new Triangle(this.scene, x1 ,x2 ,x3 , y1, y2, y3, z1, z2, z3);
+                var triangle = new Triangle(this.scene, x1 ,y1 ,z1 ,x2 ,y2 ,z2, x3, y3 ,z3);
                 this.elements[primitiveId] = triangle;
                 break;
                 case "sphere" :
@@ -1322,10 +1325,7 @@ parseComponents(componentsNode) {
         //currComponent.push(childrenBlock);
         this.components[compId] = new Component(this.scene , compId, transfBlock, materialBlock, textu, childrenBlock);
     }
-<<<<<<< Updated upstream
-=======
-       
->>>>>>> Stashed changes
+
         this.log("Parsed components");
         return null;
 

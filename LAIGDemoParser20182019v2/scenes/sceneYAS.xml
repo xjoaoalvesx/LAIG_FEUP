@@ -13,7 +13,7 @@
     <!-- deve definir-se um objeto para raiz da arvore, assim -->
     <!-- como o comprimento dos tres eixos (cilindros) -->
     <scene root="init" axis_length="5" />
-    <views default="camera1" >
+    <views default="camera2" >
         <!-- tem de existir, pelo menos, uma vista de -->
         <!-- entre as seguintes (perspective ou ortho) -->
         <perspective id="camera0" near="0.1" far="500" angle="0.4">
@@ -24,10 +24,14 @@
           <from x="0" y="1" z="0" />
           <to x="0" y="1" z="1" />
         </perspective>
-        <!--<ortho id="camera2"  near="0" far="1" left="ff" right="ff" top="ff" bottom="ff" >
+        <perspective id="camera2" near="0.1" far="500" angle="0.4">
+          <from x="15" y="15" z="15" />
+          <to x="0" y="0" z="0" />
+        </perspective>
+        <ortho id="camera3"  near="0.1" far="500" left="-5" right="5" top="5" bottom="-5" >
            <from x="15" y="15" z="15" />
            <to x="0" y="0" z="0" />
-        </ortho>-->
+        </ortho>
     </views>
     <ambient>
         <ambient r="0.1" g="0.1" b="0.1" a="1.0" />
@@ -75,7 +79,7 @@
         <texture id="leaves" file="scenes/images/leaves.jpg" />
         <texture id="bank" file="scenes/images/bank.jpg" />
         <texture id="chairText" file="scenes/images/chairTexture.png" />
-        <texture id="floorText1" file="scenes/images/floorTexture.png" />
+        <texture id="floorText1" file="scenes/images/floorTexture.jpg" />
     </textures>
     <materials>
         <!-- Deve existir um ou mais blocos "material" -->
@@ -174,24 +178,24 @@
              <!-- do tipo escalamento violem esta regra.        -->
             <!-- Nao e' necessario aplicar fatores de escala em  -->
             <!-- quadricas (esfera, cilindro...) -->
-            <texture id="inherit" length_s="1" length_t="1" />
+            <texture id="leaves" length_s="1" length_t="1" />
             <!-- bloco "children" obrigatorio num "component" -->
             <children>
                     <!-- deve existir uma ou mais tags "componentref" e/ou -->
                     <!-- "primitiveref", identificando outros -->
                     <!-- componentes ou primitivas -->
                     <!-- <componentref id="quadrado" /> -->
-                    <!-- <componentref id="esfera" /> -->
+
                     <componentref id="airplaneBody" />
                     <componentref id="leftWing" />
-                    <componentref id="rightWing" />
+                    <componentref id="rightWing" /> 
              </children>
         </component>
 
 
         <component id = "rightWing">
           <transformation>
-            <translate x="4.8" y="0.5" z="2" />
+            <translate x="4.8" y="-0.5" z="2" />
             <rotate axis="x" angle="-90"/>
             <rotate axis="z" angle="-90"/>
           </transformation>
@@ -202,6 +206,7 @@
           <children>
             <componentref id="leftWingTriangular" />
             <componentref id="leftWingRectangle" />
+            <componentref id ="cylinderRight"/>
           </children>
         </component>
 
@@ -246,6 +251,7 @@
           <children>
             <componentref id="leftWingTriangular" />
             <componentref id="leftWingRectangle" />
+            <componentref id ="cylinderLeft"/>
           </children>
         </component>
 
@@ -296,7 +302,7 @@
 
         <component id = "airplaneSectionBackest">
           <transformation>
-            <translate x="0" y="0" z="-27" />
+            <translate x="0" y="0" z="-25" />
           </transformation>
           <materials>
             <material id="inherit" />
@@ -676,7 +682,7 @@
 
             <children>
 
-                    <primitiveref id="triangle" />
+                    <componentref id="triangleReverse" />
              </children>
         </component>
 
@@ -752,7 +758,7 @@
 
             <children>
 
-                    <primitiveref id="triangle" />
+                    <componentref id="triangleReverse" />
              </children>
         </component>
 
@@ -1351,6 +1357,60 @@
 
           <children>
               <componentref id="chair" />
+          </children>
+
+        </component>
+
+        <component id = "triangleReverse">
+          <transformation>
+              <rotate axis="x" angle="180"/>
+              <rotate axis="z" angle="-90"/>
+          </transformation>
+
+          <materials>
+              <material id="inherit" />
+          </materials>
+
+          <texture id="inherit" length_s="1" length_t="1" />
+
+          <children>
+              <primitiveref id="triangle" />
+          </children>
+
+        </component>
+        <component id = "cylinderLeft">
+          <transformation>
+                <translate x="0" y="8" z="2" />
+                <rotate axis="y" angle="90"/>
+                <scale x="2" y="2" z="8" />
+          </transformation>
+
+          <materials>
+              <material id="inherit" />
+          </materials>
+
+          <texture id="inherit" length_s="1" length_t="1" />
+
+          <children>
+              <primitiveref id="cylinder" />
+          </children>
+
+        </component>
+        <component id = "cylinderRight">
+          <transformation>
+              <translate x="0" y="8" z="-1" />
+              <rotate axis="y" angle="90"/>
+              <scale x="2" y="2" z="8" />
+          </transformation>
+
+          <materials>
+              <material id="inherit" />
+          </materials>
+
+          <texture id="inherit" length_s="1" length_t="1" />
+
+          <children>
+              <primitiveref id="cylinder" />
           </children>
 
         </component>

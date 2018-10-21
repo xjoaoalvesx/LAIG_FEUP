@@ -98,8 +98,7 @@ class XMLscene extends CGFscene {
         this.camera.position = vec3.fromValues(this.graph.views[0].from[0], this.graph.views[0].from[1], this.graph.views[0].from[2]);
         this.camera.target = vec3.fromValues(this.graph.views[0].to[0], this.graph.views[0].to[1], this.graph.views[0].to[2]);*/
 
-        this.camera = this.graph.views[0];
-        this.interface.setActiveCamera(this.camera);
+        
 
 
         //TODO: Change reference length according to parsed graph
@@ -113,13 +112,22 @@ class XMLscene extends CGFscene {
         // Adds lights group.
         this.interface.addLightsGroup(this.graph.lights);
 
-        //Adds Views Group
-        this.interface.addViewsGroup(this.graph.views);
-
-        this.sceneInited = true;
+        
+        
 
         this.materialDefault.apply();
 
+        for(var i = 0; i < this.graph.views.length; i++){
+            if(this.graph.views[i].id == this.graph.defaultCamID){
+                 this.camera = this.graph.views[i].cam;
+                this.interface.setActiveCamera(this.camera);
+            }
+        }
+        //Adds Views Group
+        this.interface.addViewsGroup(this.graph.views);
+       
+
+        this.sceneInited = true;
 
 
     }
@@ -190,11 +198,13 @@ class XMLscene extends CGFscene {
 
 	}
 
-  updateViews(){
-    //Diferent from null so it waits for parsing
-    this.camera = this.graph.views[this.View-1];
-    this.interface.setActiveCamera(this.camera);
-  }
+    updateViews(){
+        //Diferent from null so it waits for parsing
+        if (this.sceneInited){
+            this.camera = this.graph.views[this.View-1].cam;
+            this.interface.setActiveCamera(this.camera);
+        }
+    }
 
 
 	update() {
