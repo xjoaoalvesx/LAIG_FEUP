@@ -17,7 +17,7 @@
         <!-- tem de existir, pelo menos, uma vista de -->
         <!-- entre as seguintes (perspective ou ortho) -->
         <perspective id="camera0" near="0.1" far="500" angle="0.4">
-          <from x="15" y="15" z="15" />
+          <from x="60" y="60" z="60" />
           <to x="0" y="0" z="0" />
         </perspective>
         <perspective id="camera1" near="0.1" far="500" angle="0.4">
@@ -153,6 +153,7 @@
             <!-- o material muda para o proximo material da lista; do -->
             <!-- ultimo material da lista volta ao primeiro -->
             <materials>
+
                 <material id="sphereApp" />
                 <material id="white" />
             </materials>
@@ -171,7 +172,7 @@
              <!-- do tipo escalamento violem esta regra.        -->
             <!-- Nao e' necessario aplicar fatores de escala em  -->
             <!-- quadricas (esfera, cilindro...) -->
-            <texture id="leaves" length_s="1" length_t="1" />
+            <texture id="inherit" length_s="1" length_t="1" />
             <!-- bloco "children" obrigatorio num "component" -->
             <children>
                     <!-- deve existir uma ou mais tags "componentref" e/ou -->
@@ -179,11 +180,113 @@
                     <!-- componentes ou primitivas -->
                     <!-- <componentref id="quadrado" /> -->
                     <!-- <componentref id="esfera" /> -->
-                    <componentref id="Insideplane" />
-                    <componentref id="InsideplaneFloor" />
-                    <componentref id="chairComplex" />
+                    <componentref id="airplaneSectionBack" />
+                    <componentref id="airplaneSectionMiddle" />
+                    <componentref id="airplaneSectionFront" />
+                    <componentref id="leftWing" />
              </children>
         </component>
+
+
+        <component id = "leftWing">
+          <transformation>
+            <translate x="-4.8" y="0.5" z="2" />
+            <rotate axis="x" angle="-90"/>
+            <rotate axis="z" angle="90"/>
+            <rotate axis="y" angle="180"/>
+          </transformation>
+          <materials>
+            <material id="inherit" />
+          </materials>
+          <texture id="inherit" length_s="1" length_t="1" />
+          <children>
+            <componentref id="leftWingTriangular" />
+            <componentref id="leftWingRectangle" />
+          </children>
+        </component>
+
+        <component id = "leftWingTriangular">
+          <transformation>
+            <translate x="0" y="10" z="0" />
+            <scale x="5" y="10" z="0.5" />
+          </transformation>
+          <materials>
+            <material id="inherit" />
+          </materials>
+          <texture id="inherit" length_s="1" length_t="1" />
+          <children>
+            <componentref id="prismaTriangular" />
+          </children>
+        </component>
+
+        <component id = "leftWingRectangle">
+          <transformation>
+            <scale x="10" y="10" z="1" />
+          </transformation>
+          <materials>
+            <material id="inherit" />
+          </materials>
+          <texture id="inherit" length_s="1" length_t="1" />
+          <children>
+            <componentref id="cubo" />
+          </children>
+        </component>
+
+
+        <component id = "airplaneSectionBack">
+          <transformation>
+            <translate x="0" y="0" z="-9" />
+          </transformation>
+          <materials>
+            <material id="inherit" />
+          </materials>
+          <texture id="leaves" length_s="1" length_t="1" />
+          <children>
+            <componentref id="airplaneSection" />
+          </children>
+        </component>
+
+        <component id = "airplaneSectionMiddle">
+          <transformation>
+            <translate x="0" y="0" z="0" />
+          </transformation>
+          <materials>
+            <material id="inherit" />
+          </materials>
+          <texture id="leaves" length_s="1" length_t="1" />
+          <children>
+            <componentref id="airplaneSection" />
+          </children>
+        </component>
+
+        <component id = "airplaneSectionFront">
+          <transformation>
+            <translate x="0" y="0" z="9" />
+          </transformation>
+          <materials>
+            <material id="inherit" />
+          </materials>
+          <texture id="leaves" length_s="1" length_t="1" />
+          <children>
+            <componentref id="airplaneSection" />
+          </children>
+        </component>
+
+
+        <component id = "airplaneSection">
+          <transformation>
+          </transformation>
+          <materials>
+            <material id="inherit" />
+          </materials>
+          <texture id="inherit" length_s="1" length_t="1" />
+          <children>
+            <componentref id="Insideplane" />
+            <componentref id="InsideplaneFloor" />
+            <componentref id="chairComplex" />
+          </children>
+        </component>
+
          <component id="quadrado">
             <transformation>
 
@@ -240,7 +343,7 @@
                 <material id="inherit" />
             </materials>
 
-            <texture id="none" length_s="1" length_t="1" />
+            <texture id="leaves" length_s="1" length_t="1" />
 
             <children>
 
@@ -448,7 +551,7 @@
                 <material id="inherit" />
             </materials>
 
-            <texture id="none" length_s="1" length_t="1" />
+            <texture id="inherit" length_s="1" length_t="1" />
 
             <children>
                     <componentref id="prismaTriangularBase" />
@@ -564,7 +667,7 @@
               <material id="inherit" />
           </materials>
 
-          <texture id="none" length_s="1" length_t="1" />
+          <texture id="bank" length_s="1" length_t="1" />
 
           <children>
               <componentref id="chairBase" />
