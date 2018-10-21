@@ -162,7 +162,7 @@
             <materials>
                 <material id="white" />
                 <material id="red" />
-                
+
             </materials>
             <!-- declaracao obrigatoria de texture -->
             <!-- id="inherit" mantem (herda) a textura do objecto "pai" -->
@@ -189,7 +189,7 @@
 
                     <componentref id="airplaneBody" />
                     <componentref id="leftWing" />
-                    <componentref id="rightWing" /> 
+                    <componentref id="rightWing" />
              </children>
         </component>
 
@@ -207,7 +207,7 @@
           <children>
             <componentref id="leftWingTriangular" />
             <componentref id="leftWingRectangle" />
-            <componentref id ="cylinderRight"/>
+            <componentref id ="rightEngine"/>
           </children>
         </component>
 
@@ -252,7 +252,7 @@
           <children>
             <componentref id="leftWingTriangular" />
             <componentref id="leftWingRectangle" />
-            <componentref id ="cylinderLeft"/>
+            <componentref id ="leftEngine"/>
           </children>
         </component>
 
@@ -298,6 +298,21 @@
             <componentref id="airplaneSectionMiddle" />
             <componentref id="airplaneSectionFront" />
             <componentref id="airplaneSectionFronter" />
+            <componentref id= "airass"/>
+          </children>
+        </component>
+
+        <component id = "airass">
+          <transformation>
+            <translate x="0" y="0" z="-33" />
+            <scale x="5" y="5" z="0" />
+          </transformation>
+          <materials>
+            <material id="inherit" />
+          </materials>
+          <texture id="planeText" length_s="1" length_t="1" />
+          <children>
+            <primitiveref id="sphere" />
           </children>
         </component>
 
@@ -1379,6 +1394,25 @@
           </children>
 
         </component>
+
+        <component id = "leftEngine">
+          <transformation>
+          </transformation>
+
+          <materials>
+              <material id="inherit" />
+          </materials>
+
+          <texture id="inherit" length_s="1" length_t="1" />
+
+          <children>
+              <componentref id="cylinderLeft" />
+              <componentref id="topCylinderLeft" />
+              <componentref id="botCylinderLeft" />
+          </children>
+
+        </component>
+
         <component id = "cylinderLeft">
           <transformation>
                 <translate x="0" y="8" z="2" />
@@ -1395,8 +1429,55 @@
           <children>
               <primitiveref id="cylinder" />
           </children>
+        </component>
+
+        <component id = "topCylinderLeft">
+          <transformation>
+            <translate x="8" y="8" z="2" />
+            <scale x="0" y="2" z="2" />
+          </transformation>
+          <materials>
+            <material id="inherit" />
+          </materials>
+          <texture id="planeText" length_s="1" length_t="1" />
+          <children>
+            <primitiveref id="sphere" />
+          </children>
+        </component>
+
+        <component id = "botCylinderLeft">
+          <transformation>
+            <translate x="0.1" y="8" z="2" />
+            <scale x="0" y="2" z="2" />
+          </transformation>
+          <materials>
+            <material id="inherit" />
+          </materials>
+          <texture id="planeText" length_s="1" length_t="1" />
+          <children>
+            <primitiveref id="sphere" />
+          </children>
+        </component>
+
+
+        <component id = "rightEngine">
+          <transformation>
+          </transformation>
+
+          <materials>
+              <material id="inherit" />
+          </materials>
+
+          <texture id="inherit" length_s="1" length_t="1" />
+
+          <children>
+              <componentref id="cylinderRight" />
+              <componentref id="topCylinderRight" />
+              <componentref id="botCylinderRight" />
+          </children>
 
         </component>
+
         <component id = "cylinderRight">
           <transformation>
               <translate x="0" y="8" z="-1" />
@@ -1415,6 +1496,35 @@
           </children>
 
         </component>
+
+        <component id = "topCylinderRight">
+          <transformation>
+            <translate x="8" y="8" z="-1" />
+            <scale x="0" y="2" z="2" />
+          </transformation>
+          <materials>
+            <material id="inherit" />
+          </materials>
+          <texture id="planeText" length_s="1" length_t="1" />
+          <children>
+            <primitiveref id="sphere" />
+          </children>
+        </component>
+
+        <component id = "botCylinderRight">
+          <transformation>
+            <translate x="0.1" y="8" z="-1" />
+            <scale x="0" y="2" z="2" />
+          </transformation>
+          <materials>
+            <material id="inherit" />
+          </materials>
+          <texture id="planeText" length_s="1" length_t="1" />
+          <children>
+            <primitiveref id="sphere" />
+          </children>
+        </component>
+
 
 
 
