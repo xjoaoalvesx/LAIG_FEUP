@@ -80,11 +80,12 @@
         <texture id="bank" file="scenes/images/bank.jpg" />
         <texture id="chairText" file="scenes/images/chairTexture.png" />
         <texture id="floorText1" file="scenes/images/floorTexture.jpg" />
+        <texture id="planeText" file="scenes/images/planeTexture.jpg" />
     </textures>
     <materials>
         <!-- Deve existir um ou mais blocos "material" -->
         <!-- Os identificadores "id" nao podem ser repetidos -->
-        <material id="sphereApp" shininess = "1.0" >
+        <material id="red" shininess = "1.0" >
             <emission r="0.0" g="0.0" b="0.0" a="1.0" />
             <ambient r="0.2" g="0.2" b="0.2" a="1.0" />
             <diffuse r="1" g="0.0" b="0.0" a="1.0" />
@@ -159,9 +160,9 @@
             <!-- o material muda para o proximo material da lista; do -->
             <!-- ultimo material da lista volta ao primeiro -->
             <materials>
-
-                <material id="sphereApp" />
                 <material id="white" />
+                <material id="red" />
+                
             </materials>
             <!-- declaracao obrigatoria de texture -->
             <!-- id="inherit" mantem (herda) a textura do objecto "pai" -->
@@ -178,7 +179,7 @@
              <!-- do tipo escalamento violem esta regra.        -->
             <!-- Nao e' necessario aplicar fatores de escala em  -->
             <!-- quadricas (esfera, cilindro...) -->
-            <texture id="leaves" length_s="1" length_t="1" />
+            <texture id="planeText" length_s="1" length_t="1" />
             <!-- bloco "children" obrigatorio num "component" -->
             <children>
                     <!-- deve existir uma ou mais tags "componentref" e/ou -->
@@ -289,7 +290,7 @@
           <materials>
             <material id="inherit" />
           </materials>
-          <texture id="leaves" length_s="1" length_t="1" />
+          <texture id="inherit" length_s="1" length_t="1" />
           <children>
             <componentref id="airplaneSectionBackest" />
             <componentref id="airplaneSectionBacker" />
@@ -307,7 +308,7 @@
           <materials>
             <material id="inherit" />
           </materials>
-          <texture id="leaves" length_s="1" length_t="1" />
+          <texture id="inherit" length_s="1" length_t="1" />
           <children>
             <componentref id="airplaneSection" />
           </children>
@@ -320,7 +321,7 @@
           <materials>
             <material id="inherit" />
           </materials>
-          <texture id="leaves" length_s="1" length_t="1" />
+          <texture id="inherit" length_s="1" length_t="1" />
           <children>
             <componentref id="airplaneSection" />
           </children>
@@ -333,7 +334,7 @@
           <materials>
             <material id="inherit" />
           </materials>
-          <texture id="leaves" length_s="1" length_t="1" />
+          <texture id="inherit" length_s="1" length_t="1" />
           <children>
             <componentref id="airplaneSection" />
           </children>
@@ -346,7 +347,7 @@
           <materials>
             <material id="inherit" />
           </materials>
-          <texture id="leaves" length_s="1" length_t="1" />
+          <texture id="inherit" length_s="1" length_t="1" />
           <children>
             <componentref id="airplaneSection" />
           </children>
@@ -359,7 +360,7 @@
           <materials>
             <material id="inherit" />
           </materials>
-          <texture id="leaves" length_s="1" length_t="1" />
+          <texture id="inherit" length_s="1" length_t="1" />
           <children>
             <componentref id="airplaneSection" />
           </children>
@@ -372,7 +373,7 @@
           <materials>
             <material id="inherit" />
           </materials>
-          <texture id="leaves" length_s="1" length_t="1" />
+          <texture id="inherit" length_s="1" length_t="1" />
           <children>
             <componentref id="airplaneSection" />
           </children>
@@ -404,7 +405,7 @@
             </transformation>
 
             <materials>
-                <material id="sphereApp" />
+                <material id="red" />
             </materials>
 
             <texture id="leaves" length_s="1" length_t="1" />
@@ -449,7 +450,7 @@
                 <material id="inherit" />
             </materials>
 
-            <texture id="leaves" length_s="1" length_t="1" />
+            <texture id="inherit" length_s="1" length_t="1" />
 
             <children>
 
