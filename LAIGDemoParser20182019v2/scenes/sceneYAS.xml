@@ -180,13 +180,55 @@
                     <!-- componentes ou primitivas -->
                     <!-- <componentref id="quadrado" /> -->
                     <!-- <componentref id="esfera" /> -->
-                    <componentref id="airplaneSectionBack" />
-                    <componentref id="airplaneSectionMiddle" />
-                    <componentref id="airplaneSectionFront" />
+                    <componentref id="airplaneBody" />
                     <componentref id="leftWing" />
+                    <componentref id="rightWing" />
              </children>
         </component>
 
+
+        <component id = "rightWing">
+          <transformation>
+            <translate x="4.8" y="0.5" z="2" />
+            <rotate axis="x" angle="-90"/>
+            <rotate axis="z" angle="-90"/>
+          </transformation>
+          <materials>
+            <material id="inherit" />
+          </materials>
+          <texture id="inherit" length_s="1" length_t="1" />
+          <children>
+            <componentref id="leftWingTriangular" />
+            <componentref id="leftWingRectangle" />
+          </children>
+        </component>
+
+        <component id = "rightWingTriangular">
+          <transformation>
+            <translate x="0" y="10" z="0" />
+            <scale x="5" y="10" z="0.5" />
+          </transformation>
+          <materials>
+            <material id="inherit" />
+          </materials>
+          <texture id="inherit" length_s="1" length_t="1" />
+          <children>
+            <componentref id="prismaTriangular" />
+          </children>
+        </component>
+
+        <component id = "rightWingRectangle">
+          <transformation>
+            <scale x="10" y="10" z="1" />
+          </transformation>
+          <materials>
+            <material id="inherit" />
+          </materials>
+          <texture id="inherit" length_s="1" length_t="1" />
+          <children>
+            <componentref id="cubo" />
+          </children>
+        </component>
 
         <component id = "leftWing">
           <transformation>
@@ -233,6 +275,49 @@
         </component>
 
 
+        <component id = "airplaneBody">
+          <transformation>
+          </transformation>
+          <materials>
+            <material id="inherit" />
+          </materials>
+          <texture id="leaves" length_s="1" length_t="1" />
+          <children>
+            <componentref id="airplaneSectionBackest" />
+            <componentref id="airplaneSectionBacker" />
+            <componentref id="airplaneSectionBack" />
+            <componentref id="airplaneSectionMiddle" />
+            <componentref id="airplaneSectionFront" />
+            <componentref id="airplaneSectionFronter" />
+          </children>
+        </component>
+
+        <component id = "airplaneSectionBackest">
+          <transformation>
+            <translate x="0" y="0" z="-27" />
+          </transformation>
+          <materials>
+            <material id="inherit" />
+          </materials>
+          <texture id="leaves" length_s="1" length_t="1" />
+          <children>
+            <componentref id="airplaneSection" />
+          </children>
+        </component>
+
+        <component id = "airplaneSectionBacker">
+          <transformation>
+            <translate x="0" y="0" z="-18" />
+          </transformation>
+          <materials>
+            <material id="inherit" />
+          </materials>
+          <texture id="leaves" length_s="1" length_t="1" />
+          <children>
+            <componentref id="airplaneSection" />
+          </children>
+        </component>
+
         <component id = "airplaneSectionBack">
           <transformation>
             <translate x="0" y="0" z="-9" />
@@ -262,6 +347,19 @@
         <component id = "airplaneSectionFront">
           <transformation>
             <translate x="0" y="0" z="9" />
+          </transformation>
+          <materials>
+            <material id="inherit" />
+          </materials>
+          <texture id="leaves" length_s="1" length_t="1" />
+          <children>
+            <componentref id="airplaneSection" />
+          </children>
+        </component>
+
+        <component id = "airplaneSectionFronter">
+          <transformation>
+            <translate x="0" y="0" z="18" />
           </transformation>
           <materials>
             <material id="inherit" />

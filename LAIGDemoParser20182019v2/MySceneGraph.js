@@ -916,7 +916,6 @@ return null;
     if(numMaterials == 0)
         return "at least one material must be defined";
 
-    console.log(JSON.stringify(this.materials));
     this.log("Parsed materials");
     return null;
 
@@ -1130,7 +1129,6 @@ parseComponents(componentsNode) {
         }
 
         var transfBlock = mat4.create();
-        console.log(comp[i]);
         if(comp[i].children[0].children[0] != null){
           if (comp[i].children[0].children[0].nodeName == "transformationref"){
               var trId = this.reader.getString(comp[i].children[0].children[0], 'id');
@@ -1318,7 +1316,6 @@ parseComponents(componentsNode) {
         //currComponent.push(childrenBlock);
         this.components[compId] = new Component(this.scene , compId, transfBlock, materialBlock, textu, childrenBlock);
     }
-        console.log(this.components);
         this.log("Parsed components");
         return null;
 

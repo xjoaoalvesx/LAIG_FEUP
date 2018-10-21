@@ -66,7 +66,6 @@ class XMLscene extends CGFscene {
             if (this.graph.lights.hasOwnProperty(key)) {
                 var light = this.graph.lights[key];
 
-                console.log(light);
                 //lights are predefined in cgfscene
                 this.lights[i].setPosition(light.location.x, light.location.y, light.location.z, light.location.w);
                 this.lights[i].setAmbient(light.ambient.r, light.ambient.g, light.ambient.b, light.ambient.a);
@@ -102,13 +101,10 @@ class XMLscene extends CGFscene {
         this.interface.setActiveCamera(this.camera);
 
 
-        console.log(this.graph.views[2]);
-
         //TODO: Change reference length according to parsed graph
         this.axis = new CGFaxis(this, this.graph.axis_length);
 
         // TODO: Change ambient and background details according to parsed graph
-        console.log(this.graph.ambient);
         this.gl.clearColor(this.graph.ambient[1].r,this.graph.ambient[1].g , this.graph.ambient[1].b,this.graph.ambient[1].a);
         this.setGlobalAmbientLight(this.graph.ambient[0].r,this.graph.ambient[0].g , this.graph.ambient[0].b,this.graph.ambient[0].a);
         this.initLights();
