@@ -29,7 +29,7 @@
           <to x="0" y="0" z="0" />
         </perspective>
         <ortho id="camera3"  near="0.1" far="500" left="-5" right="5" top="5" bottom="-5" >
-           <from x="15" y="15" z="15" />
+           <from x="0" y="5" z="30" />
            <to x="0" y="0" z="0" />
         </ortho>
     </views>
@@ -81,6 +81,7 @@
         <texture id="chairText" file="scenes/images/chairTexture.png" />
         <texture id="floorText1" file="scenes/images/floorTexture.jpg" />
         <texture id="planeText" file="scenes/images/planeTexture.jpg" />
+        <texture id="engine" file="scenes/images/engine.jpg" />
     </textures>
     <materials>
         <!-- Deve existir um ou mais blocos "material" -->
@@ -1439,7 +1440,7 @@
           <materials>
             <material id="inherit" />
           </materials>
-          <texture id="planeText" length_s="1" length_t="1" />
+          <texture id="engine" length_s="1" length_t="1" />
           <children>
             <primitiveref id="sphere" />
           </children>
@@ -1453,7 +1454,7 @@
           <materials>
             <material id="inherit" />
           </materials>
-          <texture id="planeText" length_s="1" length_t="1" />
+          <texture id="engine" length_s="1" length_t="1" />
           <children>
             <primitiveref id="sphere" />
           </children>
@@ -1505,7 +1506,7 @@
           <materials>
             <material id="inherit" />
           </materials>
-          <texture id="planeText" length_s="1" length_t="1" />
+          <texture id="engine" length_s="1" length_t="1" />
           <children>
             <primitiveref id="sphere" />
           </children>
@@ -1519,7 +1520,7 @@
           <materials>
             <material id="inherit" />
           </materials>
-          <texture id="planeText" length_s="1" length_t="1" />
+          <texture id="engine" length_s="1" length_t="1" />
           <children>
             <primitiveref id="sphere" />
           </children>
