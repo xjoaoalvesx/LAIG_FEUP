@@ -16,12 +16,18 @@
     <views default="camera1" >
         <!-- tem de existir, pelo menos, uma vista de -->
         <!-- entre as seguintes (perspective ou ortho) -->
-        <perspective id="camera1" near="0.1" far="500" angle="0.4">
-            <from x="15" y="15" z="15" />
-            <to x="0" y="0" z="0" />
+        <perspective id="camera0" near="0.1" far="500" angle="0.4">
+          <from x="15" y="15" z="15" />
+          <to x="0" y="0" z="0" />
         </perspective>
-        <ortho id="camera2"  near="0" far="1"
-                        left="ff" right="ff" top="ff" bottom="ff" />
+        <perspective id="camera1" near="0.1" far="500" angle="0.4">
+          <from x="0" y="1" z="0" />
+          <to x="0" y="1" z="1" />
+        </perspective>
+        <ortho id="camera2"  near="0" far="1" left="ff" right="ff" top="ff" bottom="ff" >
+           <from x="15" y="15" z="15" />
+           <to x="0" y="0" z="0" />
+        </ortho>
     </views>
     <ambient>
         <ambient r="0.1" g="0.1" b="0.1" a="1.0" />

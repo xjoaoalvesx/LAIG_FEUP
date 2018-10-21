@@ -45,6 +45,24 @@ class MyInterface extends CGFinterface {
         }
     }
 
+
+    /**
+     * Adds a folder containing the indexes of the views in a dropdown.
+     * @param {array} views
+     */
+    addViewsGroup(views) {
+
+      var group = this.gui.addFolder("Views");
+      group.open();
+
+      var temp = [];
+      for(var i=0; i < views.length; i++){
+        temp.push(i+1);
+      }
+
+      group.add(this.scene, "View", temp);
+    }
+
     /**
 	 * processKeyboard
 	 * @param event {Event}
@@ -54,14 +72,14 @@ class MyInterface extends CGFinterface {
 		this.scene.gui = this;
 		this.processKeyboard = function () { };
 		this.activeKeys = {};
-	}
-	processKeyDown(event) {
+	 }
+   processKeyDown(event) {
 		this.activeKeys[event.code] = true;
-	};
-	processKeyUp(event) {
+	 };
+	 processKeyUp(event) {
 		this.activeKeys[event.code] = false;
-	};
-	isKeyPressed(keyCode) {
-		return this.activeKeys[keyCode] || false;
-	}
+	 };
+	 isKeyPressed(keyCode) {
+		 return this.activeKeys[keyCode] || false;
+ 	 };
 }
