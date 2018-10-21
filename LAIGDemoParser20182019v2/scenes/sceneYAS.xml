@@ -24,10 +24,10 @@
           <from x="0" y="1" z="0" />
           <to x="0" y="1" z="1" />
         </perspective>
-        <ortho id="camera2"  near="0" far="1" left="ff" right="ff" top="ff" bottom="ff" >
+        <!--<ortho id="camera2"  near="0" far="1" left="ff" right="ff" top="ff" bottom="ff" >
            <from x="15" y="15" z="15" />
            <to x="0" y="0" z="0" />
-        </ortho>
+        </ortho>-->
     </views>
     <ambient>
         <ambient r="0.1" g="0.1" b="0.1" a="1.0" />
@@ -74,6 +74,8 @@
         <!-- Os identificadores "id" nao podem ser repetidos -->
         <texture id="leaves" file="scenes/images/leaves.jpg" />
         <texture id="bank" file="scenes/images/bank.jpg" />
+        <texture id="chairText" file="scenes/images/chairTexture.png" />
+        <texture id="floorText1" file="scenes/images/floorTexture.png" />
     </textures>
     <materials>
         <!-- Deve existir um ou mais blocos "material" -->
@@ -126,7 +128,7 @@
             <sphere radius="1" slices="18" stacks="6" />
         </primitive >
         <primitive id="torus">
-            <torus inner="4.5" outer="5.0" slices="40" loops="40" />
+            <torus inner="0.5" outer="5.0" slices="40" loops="40" />
         </primitive >
     </primitives >
     <components>
@@ -462,7 +464,7 @@
                 <material id="inherit" />
             </materials>
 
-            <texture id="bank" length_s="1" length_t="1" />
+            <texture id="floorText1" length_s="1" length_t="1" />
 
             <children>
 
@@ -765,7 +767,7 @@
               <material id="inherit" />
           </materials>
 
-          <texture id="bank" length_s="1" length_t="1" />
+          <texture id="inherit" length_s="1" length_t="1" />
 
           <children>
               <componentref id="chairBase" />
@@ -1148,7 +1150,7 @@
               <material id="white" />
           </materials>
 
-          <texture id="inherit" length_s="1" length_t="1" />
+          <texture id="chairText" length_s="1" length_t="1" />
 
           <children>
             <componentref id = "leftRow" />

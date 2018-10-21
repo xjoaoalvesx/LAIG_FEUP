@@ -1,68 +1,104 @@
 /**
  * Torus
+ * @param gl {WebGLRenderingContext}
  * @constructor
  */
-
-class Torus extends CGFobject {
-
-
-    constructor(scene, inner, outer, slices, loops){
-
+ 
+class Torus extends CGFobject
+{
+    constructor(scene, inner = 2, outer = 3, slices = 100, loops = 500)
+    {
+ 
         super(scene);
-
-        var torusRadius = (outer - inner) / 2;
-
-        this.r = torusRadius;
-        this.R = inner + torusRadius;
+ 
+                this.inner = inner;
+        this.outer = outer;
         this.slices = slices;
-        this.stacks = loops;
-
+        this.loops = loops;
+ 
+ 
+        this.indices = [];
+        this.vertices = [];
+        this.normals = [];
+        this.texCoords = [];
+ 
         this.initBuffers();
-
-    }
-
-    initBuffers() {
-
-    this.vertices = [];
-    this.indices = [];
-    this.normals = [];
-    this.texCoordstemp = [];
-
-    for (var stack = 0; stack <= this.stacks; stack++) {
-        var theta = stack * 2 * Math.PI / this.stacks;
-        var sinTheta = Math.sin(theta);
-        var cosTheta = Math.cos(theta);
-
-        for (var slice = 0; slice <= this.slices; slice++) {
-            var phi = slice * 2 * Math.PI / this.slices;
-            var sinPhi = Math.sin(phi);
-            var cosPhi = Math.cos(phi);
-
-            var x = (this.R + (this.r * cosTheta)) * cosPhi;
-            var y = (this.R + (this.r * cosTheta)) * sinPhi
-            var z = this.r * sinTheta;
-            var s = 1 - (stack / this.stacks);
-            var t = 1 - (slice / this.slices);
-
-            this.vertices.push(x, y, z);
-            this.normals.push(x, y, z);
-            this.texCoordstemp.push(s, t);
+    };
+ 
+    initBuffers()
+    {
+        var center = {x: 0, y:0, z:0};
+        var vertex = {x: 0, y:0, z:0};
+        var normal = {x: 0, y:0, z:0};
+ 
+        var j, i;
+ 
+        // generate vertices, normals and uvs
+ 
+        for ( j = 0; j <= this.slices; j ++ ) {
+ 
+            for ( i = 0; i <= this.loops; i ++ ) {
+ 
+                var u = i / this.loops * Math.PI * 2;
+                var v = j / this.slices * Math.PI * 2;
+ 
+                // vertex
+ 
+                vertex.x = ( this.outer + this.inner * Math.cos( v ) ) * Math.cos( u );
+                vertex.y = ( this.outer + this.inner * Math.cos( v ) ) * Math.sin( u );
+                vertex.z = this.inner * Math.sin( v );
+ 
+                this.vertices.push( vertex.x, vertex.y, vertex.z );
+ 
+                // normal
+ 
+                center.x = this.outer * Math.cos( u );
+                center.y = this.outer * Math.sin( u );
+ 
+                normal.x = vertex.x - center.x;
+                normal.y = vertex.y - center.y;
+                normal.z = vertex.z - center.z;
+ 
+                let norm = Math.sqrt(normal.x*normal.x + normal.y*normal.y + normal.z*normal.z);
+ 
+                normal.x /= norm;
+                normal.y /= norm;
+                normal.z /= norm;
+ 
+                this.normals.push( normal.x, normal.y, normal.z );
+ 
+                // uv
+ 
+                this.texCoords.push( i / this.loops );
+                this.texCoords.push( j / this.slices );
+ 
+            }
+ 
         }
-    }
-
-    for (var stack = 0; stack < this.stacks; stack++) {
-        for (var slice = 0; slice < this.slices; slice++) {
-            var first = (stack * (this.slices + 1)) + slice;
-            var second = first + this.slices + 1;
-
-            this.indices.push(first, second + 1, second);
-            this.indices.push(first, first + 1, second + 1);
+ 
+        // generate indices
+ 
+        for ( j = 1; j <= this.slices; j ++ ) {
+ 
+            for ( i = 1; i <= this.loops; i ++ ) {
+ 
+                // indices
+ 
+                var a = ( this.loops + 1 ) * j + i - 1;
+                var b = ( this.loops + 1 ) * ( j - 1 ) + i - 1;
+                var c = ( this.loops + 1 ) * ( j - 1 ) + i;
+                var d = ( this.loops + 1 ) * j + i;
+ 
+                // faces
+ 
+                this.indices.push( a, b, d );
+                this.indices.push( b, c, d );
+ 
+            }
+ 
         }
-    }
-
-    this.textCoords = this.texCoordstemp.slice();
-    this.primitiveType = this.scene.gl.TRIANGLES;
-    this.initGLBuffers();
-    }
-
+ 
+        this.primitiveType=this.scene.gl.TRIANGLES;
+        this.initGLBuffers();
+    };
 };

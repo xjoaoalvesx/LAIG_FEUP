@@ -66,6 +66,7 @@ class XMLscene extends CGFscene {
             if (this.graph.lights.hasOwnProperty(key)) {
                 var light = this.graph.lights[key];
 
+                
                 //lights are predefined in cgfscene
                 this.lights[i].setPosition(light.location.x, light.location.y, light.location.z, light.location.w);
                 this.lights[i].setAmbient(light.ambient.r, light.ambient.g, light.ambient.b, light.ambient.a);

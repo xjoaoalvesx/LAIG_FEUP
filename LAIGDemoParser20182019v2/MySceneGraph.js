@@ -916,6 +916,10 @@ return null;
     if(numMaterials == 0)
         return "at least one material must be defined";
 
+<<<<<<< Updated upstream
+=======
+    
+>>>>>>> Stashed changes
     this.log("Parsed materials");
     return null;
 
@@ -1013,6 +1017,10 @@ return null;
 
                         this.transformations[transId] = matrix;
                     }
+<<<<<<< Updated upstream
+=======
+                  
+>>>>>>> Stashed changes
                     this.log("Parsed transformations");
                     return null;
 }
@@ -1314,6 +1322,10 @@ parseComponents(componentsNode) {
         //currComponent.push(childrenBlock);
         this.components[compId] = new Component(this.scene , compId, transfBlock, materialBlock, textu, childrenBlock);
     }
+<<<<<<< Updated upstream
+=======
+       
+>>>>>>> Stashed changes
         this.log("Parsed components");
         return null;
 
