@@ -258,7 +258,7 @@
             </transformation>
 
             <materials>
-                <material id="white" />
+                <material id="inherit" />
             </materials>
 
             <texture id="bank" length_s="1" length_t="1" />

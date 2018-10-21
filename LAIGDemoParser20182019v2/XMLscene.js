@@ -102,7 +102,7 @@ class XMLscene extends CGFscene {
         this.interface.setActiveCamera(this.camera);
 
 
-        console.log(this.graph.views[0]);
+        console.log(this.graph.views[2]);
 
         //TODO: Change reference length according to parsed graph
         this.axis = new CGFaxis(this, this.graph.axis_length);
