@@ -67,4 +67,9 @@ class Triangle extends CGFobject
 		this.initGLBuffers();
 	};
 
+	updateTextCoords(length_s, length_t){
+        
+
+    };
+
 };

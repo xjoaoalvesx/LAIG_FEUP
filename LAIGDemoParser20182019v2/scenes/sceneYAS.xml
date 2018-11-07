@@ -82,6 +82,7 @@
         <texture id="floorText1" file="scenes/images/floorTexture.jpg" />
         <texture id="planeText" file="scenes/images/planeTexture.jpg" />
         <texture id="engine" file="scenes/images/engine.jpg" />
+        <texture id="cao" file="scenes/images/cao.jpeg" />
     </textures>
     <materials>
         <!-- Deve existir um ou mais blocos "material" -->
@@ -111,6 +112,23 @@
             <scale x="1" y="1" z="1" />
       </transformation>
     </transformations>
+
+    <!--informacao de animacao -->
+    <!--o bloco "animations" deve ser declarado -->
+    <!--imediatamente antes do bloco "primitives" -->
+    <animations>
+    <!--o bloco animations pode ser vazio, isto é, pode -->
+    <!--não ser declarada qualquer animação, linear ou circular -->
+    <!--Span é o tempo, em segundos, que a animação deve demorar -->
+        <linear id="1" span="10">
+            <controlpoint xx="0" yy="0" zz="0"/>
+            <controlpoint xx="1" yy="0" zz="0"/>
+        </linear>
+
+        <circular id="2" span="20" center="10 10 10" radius="5" startang="40" rotang="20" />
+
+    </animations>
+
     <primitives>
         <!-- Uma "primitive" e' uma primitiva e pode ser usada em nos folha -->
         <!-- Deve existir um ou mais blocos "primitive" -->
@@ -249,7 +267,7 @@
           <materials>
             <material id="inherit" />
           </materials>
-          <texture id="inherit" length_s="1" length_t="1" />
+          <texture id="cao" length_s="2" length_t="2" />
           <children>
             <componentref id="leftWingTriangular" />
             <componentref id="leftWingRectangle" />
@@ -529,7 +547,7 @@
                 <material id="inherit" />
             </materials>
 
-            <texture id="inherit" length_s="1" length_t="1" />
+            <texture id="inherit" length_s="2" length_t="2" />
 
             <children>
 
@@ -555,7 +573,7 @@
                 <material id="inherit" />
             </materials>
 
-            <texture id="inherit" length_s="1" length_t="1" />
+            <texture id="inherit" length_s="2" length_t="2" />
 
             <children>
 
@@ -575,7 +593,7 @@
                 <material id="inherit" />
             </materials>
 
-            <texture id="inherit" length_s="1" length_t="1" />
+            <texture id="inherit" length_s="2" length_t="2" />
 
             <children>
 
@@ -594,7 +612,7 @@
                 <material id="inherit" />
             </materials>
 
-            <texture id="inherit" length_s="1" length_t="1" />
+            <texture id="inherit" length_s="2" length_t="2" />
 
             <children>
 
@@ -615,7 +633,7 @@
                 <material id="inherit" />
             </materials>
 
-            <texture id="inherit" length_s="1" length_t="1" />
+            <texture id="inherit" length_s="2" length_t="2" />
 
             <children>
 
@@ -636,7 +654,7 @@
                 <material id="inherit" />
             </materials>
 
-            <texture id="inherit" length_s="1" length_t="1" />
+            <texture id="inherit" length_s="2" length_t="2" />
 
             <children>
 
@@ -656,7 +674,7 @@
                 <material id="inherit" />
             </materials>
 
-            <texture id="inherit" length_s="1" length_t="1" />
+            <texture id="inherit" length_s="2" length_t="2" />
 
             <children>
 

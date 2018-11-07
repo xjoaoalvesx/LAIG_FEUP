@@ -8,8 +8,9 @@ var LIGHTS_INDEX = 3;
 var TEXTURES_INDEX = 4;
 var MATERIALS_INDEX = 5;
 var TRANSFORMATIONS_INDEX = 6;
-var PRIMITIVES_INDEX = 7;
-var COMPONENTS_INDEX = 8;
+var ANIMATIONS_INDEX = 7
+var PRIMITIVES_INDEX = 8;
+var COMPONENTS_INDEX = 9;
 
 
 /**
@@ -177,6 +178,18 @@ class MySceneGraph {
 
         //Parse MATERIALS block
         if ((error = this.parseTransformations(nodes[index])) != null)
+            return error;
+    }
+
+    // <ANIMATIONS>
+    if ((index = nodeNames.indexOf("animations")) == -1)
+        return "tag <animations> missing";
+    else {
+        if (index != ANIMATIONS_INDEX)
+            this.onXMLMinorError("tag <animations> out of order");
+
+        //Parse ANIMATIONS block
+        if ((error = this.parseAnimations(nodes[index])) != null)
             return error;
     }
 
@@ -384,7 +397,7 @@ return null;
 
     }
 
-    console.log(this.views);
+    
     this.log("Parsed views");
 
     return null;
@@ -1029,6 +1042,103 @@ return null;
 }
 
 
+/**
+ * Parses the <ANIMATIONS> node.
+ * @param {animations block element} animationsNode
+*/
+
+
+parseAnimations(animationsNode){
+
+
+    this.animations = [];
+    var anim = animationsNode.children;
+
+    for(var i = 0; i<anim.length; i++){
+
+        var currAnimation = anim[i];
+        var animationID = this.reader.getString(currAnimation, 'id');
+
+        if (animationID == null)
+           return "no ID defined for animation";
+
+        if (this.animations[animationID] != null)
+           return "ID must be unique for each animation (conflict: ID = " + animationID + ")";
+
+
+        var animationType = currAnimation.nodeName;
+
+        if (currAnimation.hasAttribute("span")){
+            var span = this.reader.getFloat(currAnimation, "span");
+        }
+        else this.onXMLMinorError("no span attribute");
+
+        if(animationType == "linear"){
+
+            if(currAnimation.children.length < 2)
+                return "Must have at least 2 controlPoints!";
+
+            var controlPoints = [];
+            for(var u = 0; u<currAnimation.children.length; u++){
+
+                var controlP = [];
+                if (currAnimation.children[u].hasAttribute("xx")){
+                    controlP.push(this.reader.getFloat(currAnimation.children[u], "xx"));
+                }
+                else this.onXMLMinorError("no x attribute");
+
+                if (currAnimation.children[u].hasAttribute("yy")){
+                    controlP.push(this.reader.getFloat(currAnimation.children[u], "yy"));           
+                }
+                else this.onXMLMinorError("no y attribute");
+
+                if (currAnimation.children[u].hasAttribute("zz")){
+                    controlP.push(this.reader.getFloat(currAnimation.children[u], "zz"));             }
+                else this.onXMLMinorError("no z attribute");
+
+                controlPoints.push(controlP);
+
+            }
+
+            this.animations[animationID] = new LinearAnimation(this.scene, span, controlPoints);
+        }
+
+        else if(animationType == "circular"){
+
+            if (currAnimation.hasAttribute("center")){
+                var center = this.reader.getVector3(currAnimation, "center");
+            }
+            else this.onXMLMinorError("no center attribute");
+
+            if (currAnimation.hasAttribute("radius")){
+                var radius = this.reader.getFloat(currAnimation, "radius");           
+            }
+            else this.onXMLMinorError("no radius attribute");
+
+            if (currAnimation.hasAttribute("startang")){
+                var startang = this.reader.getFloat(currAnimation, "startang");            
+            }
+            else this.onXMLMinorError("no startang attribute");
+
+            if (currAnimation.hasAttribute("rotang")){
+                var rotang = this.reader.getFloat(currAnimation, "rotang");            
+            }
+            else this.onXMLMinorError("no rotang attribute");
+
+            this.animations[animationID] = new CircularAnimation(this.scene, span, center, radius, startang, rotang);
+
+        }
+
+
+
+    }
+
+    console.log(this.animations);
+    this.log("Parsed animations");
+    return null;
+
+
+}
 
  /**
  * Parses the <PRIMITIVES> node.
@@ -1376,20 +1486,8 @@ parseComponents(componentsNode) {
  * Displays the scene, processing each node, starting in the root node.
  */
  displayScene() {
-    // entry point for graph rendering
-
-    /*for(var i = 0; i < this.elements.length; i++){
-        this.elements[i].display();
-    }*/
-
-    //this.elements[0].display();
-    //this.elements[1].display();
-    //this.elements[2].display();
-    //this.elements[3].display();
-    //
-
+    
     this.components[this.root].display();
-
-
-}
+ }
+ 
 }

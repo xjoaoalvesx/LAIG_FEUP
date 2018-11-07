@@ -209,6 +209,6 @@ class XMLscene extends CGFscene {
 
 	update() {
 		this.checkKey();
-    this.updateViews();
+        this.updateViews();
 	}
 }

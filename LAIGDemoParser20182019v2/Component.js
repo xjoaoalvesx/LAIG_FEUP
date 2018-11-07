@@ -24,8 +24,7 @@ class Component {
 
 		this.scene.pushMatrix();
 
-		//var matrix = mat4.create();
-		//mat4.translate(matrix , matrix , [3,0,0]);
+		
 		this.scene.multMatrix(this.transformations);
 		var tempString = "";
 		var tempString2 = "";
@@ -63,6 +62,7 @@ class Component {
 		for(var i = 0 ; i < this.children.length ; i++){
 
 			if(this.children[i].type == "primitive"){
+				this.scene.graph.elements[this.children[i].id].updateTextCoords(this.texture.length_s, this.texture.length_t);
 				this.scene.graph.elements[this.children[i].id].display();
 			}
 			else {

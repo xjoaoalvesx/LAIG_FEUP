@@ -64,6 +64,6 @@ class MyRectangle extends CGFobject
 			mS,mT
 		];
 
-		this.updateTextCoordsGLBuffers();
-	}
+		this.updateTexCoordsGLBuffers();
+	};
 };

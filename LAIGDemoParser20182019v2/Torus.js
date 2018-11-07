@@ -101,4 +101,8 @@ class Torus extends CGFobject
         this.primitiveType=this.scene.gl.TRIANGLES;
         this.initGLBuffers();
     };
+
+    updateTextCoords(length_s, length_t){
+        
+    };
 };
