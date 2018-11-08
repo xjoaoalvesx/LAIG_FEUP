@@ -14,18 +14,16 @@ class Animation  {
 		this.span = span;
 		this.x_ang = 0;  // rotation in xx axis
 		this.y_ang = 0;  // rotation in yy axis
-	};
-
-	update(){
-
+		this.matrix = mat4.create();
 	};
 
 
-	apply(transform){
+	apply(){
+		this.scene.multMatrix(this.matrix);
+	}
 
-		
 
-	};
+	
 
 
 

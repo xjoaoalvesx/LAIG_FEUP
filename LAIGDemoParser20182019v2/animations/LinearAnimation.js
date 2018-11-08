@@ -15,6 +15,9 @@ class LinearAnimation extends Animation {
 
 	};
 
+	update(currTime){
+		
+	}
 
 
 

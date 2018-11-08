@@ -1223,8 +1223,10 @@ parseComponents(componentsNode) {
 
     this.components = [];
     var comp = componentsNode.children;
-    for(var i = 0; i < comp.length; i++){
+    
 
+    for(var i = 0; i < comp.length; i++){
+        var blockID = 0;
         var currComponent = [];
         if (comp[i].nodeName != "component") {
             this.onXMLMinorError("unknown tag <" + comp[i].nodeName + ">");
@@ -1242,15 +1244,15 @@ parseComponents(componentsNode) {
             return ("ID must be unique for each component (conflict: ID = " + compId + ")");
         }
 
-        if(comp[i].children[0].nodeName != "transformation"){
+        if(comp[i].children[blockID].nodeName != "transformation"){
             this.onXMLMinorError("unknown tag <" + comp[i].children[0].nodeName + "> expected transformation tag");
             continue;
         }
 
         var transfBlock = mat4.create();
-        if(comp[i].children[0].children[0] != null){
-          if (comp[i].children[0].children[0].nodeName == "transformationref"){
-              var trId = this.reader.getString(comp[i].children[0].children[0], 'id');
+        if(comp[i].children[blockID].children[0] != null){
+          if (comp[i].children[blockID].children[0].nodeName == "transformationref"){
+              var trId = this.reader.getString(comp[i].children[blockID].children[0], 'id');
 
               if(this.transformations[trId] == null)
                   return "There is no transformation " + trId;
@@ -1260,7 +1262,7 @@ parseComponents(componentsNode) {
 
           else{
 
-              var trans = comp[i].children[0].children;
+              var trans = comp[i].children[blockID].children;
 
               for(var u = 0; u < trans.length; u++){
 
@@ -1349,13 +1351,26 @@ parseComponents(componentsNode) {
           }
         }
 
-        if(comp[i].children[1].nodeName != "materials"){
-            this.onXMLMinorError("unknown tag <" + comp[i].children[1].nodeName + "> expected materials tag");
+        blockID++;
+
+        var animations = [];
+
+        if(comp[i].children[blockID].nodeName == "animations"){
+
+            for(var a = 0; a < comp[i].children[blockID].children.length ; a++ ){
+             animations.push(this.reader.getString(comp[i].children[blockID].children[a], "id"));
+            }
+            blockID++;
+        }
+
+
+        if(comp[i].children[blockID].nodeName != "materials"){
+            this.onXMLMinorError("unknown tag <" + comp[i].children[blockID].nodeName + "> expected materials tag");
             continue;
         }
 
         var materialBlock = [];
-        var mater = comp[i].children[1].children;
+        var mater = comp[i].children[blockID].children;
 
         for(var u = 0; u < mater.length; u++){
 
@@ -1376,33 +1391,34 @@ parseComponents(componentsNode) {
 
         //currComponent.push(materialBlock);
 
+        blockID++;
         var textu = {};
 
-        if(comp[i].children[2].nodeName != "texture"){
-            this.onXMLMinorError("unknown tag <" + comp[i].children[2].nodeName + "> expected texture tag");
+        if(comp[i].children[blockID].nodeName != "texture"){
+            this.onXMLMinorError("unknown tag <" + comp[i].children[blockID].nodeName + "> expected texture tag");
             continue;
         }
 
-        if(comp[i].children[2].hasAttribute('id'))
-            textu.id = this.reader.getString(comp[i].children[2], 'id');
+        if(comp[i].children[blockID].hasAttribute('id'))
+            textu.id = this.reader.getString(comp[i].children[blockID], 'id');
 
         else{
             this.onXMLMinorError("No id atribute in texture in component " + compId);
             continue;
         }
 
-        textu.length_s = this.reader.getFloat(comp[i].children[2], 'length_s');
-        textu.length_t = this.reader.getFloat(comp[i].children[2], 'length_t');
+        textu.length_s = this.reader.getFloat(comp[i].children[blockID], 'length_s');
+        textu.length_t = this.reader.getFloat(comp[i].children[blockID], 'length_t');
 
         //currComponent.push(textu);
-
-        if(comp[i].children[3].nodeName != "children"){
-            this.onXMLMinorError("unknown tag <" + comp[i].children[2].nodeName + "> expected children tag");
+        blockID++;
+        if(comp[i].children[blockID].nodeName != "children"){
+            this.onXMLMinorError("unknown tag <" + comp[i].children[blockID].nodeName + "> expected children tag");
             continue;
         }
 
         var childrenBlock = [];
-        var childs = comp[i].children[3].children;
+        var childs = comp[i].children[blockID].children;
 
         for(var u = 0; u < childs.length; u++){
 
@@ -1431,11 +1447,13 @@ parseComponents(componentsNode) {
             childrenBlock.push(currChild);
         }
 
+        
+
 
         //currComponent.push(childrenBlock);
-        this.components[compId] = new Component(this.scene , compId, transfBlock, materialBlock, textu, childrenBlock);
+        this.components[compId] = new Component(this.scene , compId, transfBlock, animations, materialBlock, textu, childrenBlock);
     }
-
+        console.log(this.components);
         this.log("Parsed components");
         return null;
 

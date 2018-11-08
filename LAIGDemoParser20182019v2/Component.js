@@ -7,11 +7,12 @@
 class Component {
 
 
-	constructor(scene, id, transformations, materials, texture, children){
+	constructor(scene, id, transformations, animations , materials, texture, children){
 
 		this.scene = scene;
 		this.id = id;
 		this.transformations = transformations;
+		this.animations = animations;
 		this.materials = materials;
 		this.texture = texture;
 		this.children = children;
@@ -24,6 +25,11 @@ class Component {
 
 		this.scene.pushMatrix();
 
+		if(this.animations.length > 0){
+			for(var a=0; a<this.animations.length; a++){
+				this.scene.graph.animations[this.animations[a]].apply();
+			}
+		}
 		
 		this.scene.multMatrix(this.transformations);
 		var tempString = "";

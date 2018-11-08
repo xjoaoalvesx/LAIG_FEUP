@@ -25,7 +25,7 @@ class XMLscene extends CGFscene {
 
         this.sceneInited = false;
 
-        this.View = 1;
+        this.View = 3;
 
         this.initCameras();
 
@@ -206,9 +206,19 @@ class XMLscene extends CGFscene {
         }
     }
 
+    updateAnimations(currTime){
 
-	update() {
+        if(this.sceneInited){
+            for(var a=1; a<this.graph.animations.length; a++){
+                this.graph.animations[a].update(currTime);
+            }
+        }
+    }
+
+
+	update(currTime) {
 		this.checkKey();
         this.updateViews();
+        this.updateAnimations(currTime);
 	}
 }
