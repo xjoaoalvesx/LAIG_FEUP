@@ -37,9 +37,10 @@ class CircularAnimation extends Animation {
 
 		var currAng = this.rotAng*this.deltaT/this.span;
 
-		mat4.identity(this.matrix);
-		mat4.rotateY(this.matrix, this.matrix, currAng);
-		//mat4.rotateY(this.matrix, this.matrix, this.startAng);
+		mat4.identity(this.transMatrix);
+		//mat4.translate(this.transMatrix, this.transMatrix, this.center);
+		mat4.rotateY(this.transMatrix, this.transMatrix, currAng);
+		//mat4.rotateY(this.transMatrix, this.transMatrix, this.startAng);
 
 
 

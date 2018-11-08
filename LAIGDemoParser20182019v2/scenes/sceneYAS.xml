@@ -125,7 +125,7 @@
             <controlpoint xx="1" yy="0" zz="0"/>
         </linear>
 
-        <circular id="2" span="20" center="5 5 5" radius="5" startang="40" rotang="20" />
+        <circular id="2" span="5" center="0 0 0" radius="5" startang="40" rotang="90" />
 
     </animations>
 
