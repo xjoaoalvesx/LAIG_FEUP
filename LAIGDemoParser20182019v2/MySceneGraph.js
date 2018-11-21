@@ -1200,7 +1200,40 @@ parseAnimations(animationsNode){
                 var torus = new Torus(this.scene, inner, outer, slices, loops);
                 this.elements[primitiveId] = torus;
                 break;
+                case "plane" :
+                var udiv = this.reader.getInteger(currChild, "npartsU");
+                var vdiv = this.reader.getInteger(currChild, "npartsV");
+                var plane = new Plane(this.scene, udiv, vdiv);
+                this.elements[primitiveId] = plane;
+                break;
+                case "patch":
+                var npointsU = this.reader.getInteger(currChild, 'npointsU');
+                var npointsV = this.reader.getInteger(currChild, 'npointsV');
+                var npartsU = this.reader.getInteger(currChild, 'npartsU');
+                var npartsV = this.reader.getInteger(currChild, 'npartsV');
+                var controlPoints=[];
+                var line= [];
 
+                var pointsBlock = currChild.children;
+
+                for(var v = 0; v < pointsBlock.length; v++){
+                    
+                    var x = this.reader.getFloat(pointsBlock[v], 'xx');
+                    var y = this.reader.getFloat(pointsBlock[v], 'yy');
+                    var z = this.reader.getFloat(pointsBlock[v], 'zz');
+
+                    var newPoint = [x,y,z];
+                    newPoint.push(1);
+                    line.push(newPoint);
+
+                    if((v+1) % npointsV == 0){
+                        controlPoints.push(line);
+                        line = [];
+                    }
+                }
+                var patch = new Patch(this.scene, npartsU, npartsV, controlPoints);
+                this.elements[primitiveId] = patch;
+                break;
                 default:
                 break;
 

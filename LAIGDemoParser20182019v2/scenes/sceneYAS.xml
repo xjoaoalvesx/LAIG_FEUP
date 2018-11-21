@@ -154,6 +154,19 @@
         <primitive id="torus">
             <torus inner="0.5" outer="5.0" slices="40" loops="40" />
         </primitive >
+        <primitive id="plane">
+            <plane npartsU="5" npartsV="5"/>
+        </primitive>
+        <primitive id="patch">
+            <patch npointsU="3" npointsV="2" npartsU="5" npartsV="5">
+              <controlpoint xx="-1.5" yy="-1.5" zz="0.0"/>
+              <controlpoint xx="-1.5" yy="1.5" zz="0.0"/>
+              <controlpoint xx="0" yy="-1.5" zz="3.0"/>
+              <controlpoint xx="0" yy="1.5" zz="3.0"/>
+              <controlpoint xx="1.5" yy="-1.5" zz="0.0"/>
+              <controlpoint xx="1.5" yy="1.5" zz="0.0"/>
+            </patch>
+        </primitive>  
     </primitives >
     <components>
         <component id="init">
@@ -209,7 +222,7 @@
                     <!--<componentref id="airplaneBody" /> -->
                     <!--<componentref id="leftWing" /> -->
                     <!--<componentref id="rightWing" />-->
-                    <componentref id="esfera"/>
+                    <componentref id="plano"/>
              </children>
         </component>
 
@@ -471,7 +484,30 @@
 
                     <primitiveref id="sphere" />
              </children>
+
+
         </component>
+
+        <component id="plano">
+            <transformation>
+                <!--.<transformationref id="basic" /> -->
+
+                <translate x="0" y="0" z="0" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+
+            <texture id="leaves" length_s="1" length_t="1" />
+
+            <children>
+
+                    <primitiveref id="patch" />
+             </children>
+
+          
+        </component>
+
         <component id="Insideplane">
             <transformation>
 
