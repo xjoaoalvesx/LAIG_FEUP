@@ -20,19 +20,24 @@ class LinearAnimation extends Animation {
 		this.currVect = 0;
 		this.previousVectors = [0,0,0];
 
+
+		this.component = {};
+		this.positionVec = [0,0,0];
+
 	};
 
 	update(currTime){
 		currTime = (Math.round(currTime/10))/100;
 
 		if(this.deltaT == 0){
+		this.animating = true;
 		 this.deltaT = currTime;
 		 return null;
 		}
 
 		let timeDelta = (currTime) - this.deltaT;
-
-		if(this.currVect >= this.numVec || timeDelta > this.span){
+		if(this.currVect >= this.numVec || timeDelta >= this.span){
+			this.animating = false;
 			return null;
 		}
 
@@ -57,16 +62,24 @@ class LinearAnimation extends Animation {
 											this.previousVectors[2]+(this.controlPoints[this.currVect+1][2]-this.controlPoints[this.currVect][2])*progress];
 		}
 
-		//console.log(translateVec);
 
 		mat4.identity(this.transMatrix);
 
 		mat4.translate(this.transMatrix, this.transMatrix, translateVec);
-		//console.log("ProgVect: " + (this.currVect+1)/this.numVec);
-		//console.log("Quociente: " + Math.floor(this.span/timeDelta));
-		//console.log("ProgressTotal: " + 1/Math.floor(this.span/timeDelta));
 
-	}
+		let rotationVec =[translateVec[0] - this.previousVectors[0],translateVec[1] - this.previousVectors[1],translateVec[2] - this.previousVectors[2]]
+
+		let angleY = Math.acos((rotationVec[2])/(1 * Math.sqrt(rotationVec[2]*rotationVec[2] + rotationVec[0]*rotationVec[0])));
+		if((1 * Math.sqrt(rotationVec[2]*rotationVec[2] + rotationVec[0]*rotationVec[0])) == 0){
+			angleY = 0;
+		}else if (rotationVec[0] < 0){
+			angleY = - angleY;
+		}
+
+		mat4.rotateY(this.transMatrix, this.transMatrix, angleY);
+
+	};
+
 
 
 
