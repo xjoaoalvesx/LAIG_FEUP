@@ -1251,6 +1251,15 @@ parseAnimations(animationsNode){
                 var water = new Water(this.scene, idtexture, wavemap, parts, heightscale, texscale);
                 this.elements[primitiveId] = water;
                 break;
+                case "cylinder2" :
+                var base = this.reader.getFloat(currChild, 'base');
+                var top = this.reader.getFloat(currChild, 'top');
+                var height = this.reader.getFloat(currChild, 'height');
+                var slices = this.reader.getInteger(currChild, 'slices');
+                var stacks = this.reader.getInteger(currChild, 'stacks');
+                var cylinder2 = new Cylinder2(this.scene, base, top, height, slices, stacks);
+                this.elements[primitiveId] = cylinder2;
+                break;
                 default:
                 break;
 

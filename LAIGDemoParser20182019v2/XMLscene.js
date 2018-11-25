@@ -40,13 +40,12 @@ class XMLscene extends CGFscene {
 
         this.materialDefault = new CGFappearance(this);
 
-        this.terrainShader = new CGFshader(this.gl, "shaders/terrain.vert", "shaders/terrain.frag");
-        this.terrainShader.setUniformsValues({uSampler2: 1});
+        
 
         this.waterShader = new CGFshader(this.gl, "shaders/water.vert", "shaders/water.frag");
         this.waterShader.setUniformsValues({uSampler2: 1});
 
-        this.setUpdatePeriod(18);
+        this.setUpdatePeriod(50);
 
 
     }
@@ -135,7 +134,7 @@ class XMLscene extends CGFscene {
 
         this.sceneInited = true;
 
-
+        this.TimeFactorAux = 0;
     }
 
 
@@ -197,7 +196,7 @@ class XMLscene extends CGFscene {
 
       for(var key in this.graph.components){
          if(this.graph.components.hasOwnProperty(key)){
-           this.graph.components[key].update();
+           this.graph.components[key].updateMaterial();
          }
       }
     }
@@ -212,25 +211,32 @@ class XMLscene extends CGFscene {
         }
     }
 
-    updateAnimations(currTime){
+    updateComponent(currTime){
 
-        if(this.sceneInited){
-            for(var a=1; a<this.graph.animations.length; a++){
-                this.graph.animations[a].update(currTime);
-            }
-        }
+        for(var key in this.graph.components){
+         if(this.graph.components.hasOwnProperty(key)){
+           this.graph.components[key].update(currTime);
+         }
+      }
+        
     }
 
     updateWaterShader(currTime){
-        let t = (Math.sin(currTime / 1000) + 1) / 2;
-        this.waterShader.setUniformsValues({timeFactor: t});
+        
+        let t = (Math.sin(currTime / 1000));
+
+        this.TimeFactorAux = this.TimeFactorAux+ 0.002;
+
+        let t1 = this.TimeFactorAux;
+
+        this.waterShader.setUniformsValues({timeFactor: t, timeFactor1 : t1});
     }
 
 
 	update(currTime) {
 		this.checkKey();
         this.updateViews();
-        this.updateAnimations(currTime);
+        this.updateComponent(currTime);
         this.updateWaterShader(currTime);
 	}
 }

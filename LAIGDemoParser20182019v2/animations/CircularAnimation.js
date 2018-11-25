@@ -18,7 +18,6 @@ class CircularAnimation extends Animation {
 		this.startAng = startAng*degToRad;
 		this.rotAng = rotAng*degToRad;
 		this.deltaT = 0;
-		this.animating = false;
 
 	};
 
@@ -32,6 +31,7 @@ class CircularAnimation extends Animation {
 		 this.deltaT = (currTime*toSec) - this.deltaT;
 
 		 if (this.deltaT > this.span){
+		 	 this.animating = true;
 			 return null;
 		 }
 

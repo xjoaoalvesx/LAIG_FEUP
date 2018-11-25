@@ -15,6 +15,7 @@ class Animation  {
 		this.x_ang = 0;  // rotation in xx axis
 		this.y_ang = 0;  // rotation in yy axis
 		this.transMatrix = mat4.create();
+		this.animating = false;
 	};
 
 

@@ -17,7 +17,7 @@ class Component {
 		this.texture = texture;
 		this.children = children;
 		this.materialNumber = 0;
-
+		this.animationCounter = 0;
 
 	};
 
@@ -25,11 +25,21 @@ class Component {
 
 		this.scene.pushMatrix();
 
+
+		/*
+
 		if(this.animations.length > 0){
 			for(var a=0; a<this.animations.length; a++){
 				this.scene.graph.animations[this.animations[a]].apply();
 			}
-		}
+		}*/
+
+		 if(this.animations.length > 0){
+		 	if(this.animationCounter < this.animations.length){
+		 		this.scene.graph.animations[this.animations[this.animationCounter]].apply();
+		 	}
+		 }
+		
 		
 		this.scene.multMatrix(this.transformations);
 		var tempString = "";
@@ -82,11 +92,29 @@ class Component {
 
 	};
 
-	update(){
+	update(currTime){
+		
+		console.log(this.animations);
+        if(this.animations.length > 0){
+			if(this.animationCounter < this.animations.length){
+				console.log(this.animationCounter + "   " + this.scene.graph.animations[this.animations[this.animationCounter]].animating);
+				if(this.scene.graph.animations[this.animations[this.animationCounter]].animating == false){
+					this.scene.graph.animations[this.animations[this.animationCounter]].update(currTime);
+				}
+				else{
+					console.log("pilas");
+					this.animationCounter++;
+				}
+			}
+		}
+	}
+
+	updateMaterial(){
 		this.materialNumber++;
 		if(this.materialNumber == this.materials.length){
 			this.materialNumber = 0;
 		}
+
 	}
 
 };

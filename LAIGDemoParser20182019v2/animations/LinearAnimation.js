@@ -30,14 +30,13 @@ class LinearAnimation extends Animation {
 		currTime = (Math.round(currTime/10))/100;
 
 		if(this.deltaT == 0){
-		this.animating = true;
 		 this.deltaT = currTime;
 		 return null;
 		}
 
 		let timeDelta = (currTime) - this.deltaT;
 		if(this.currVect >= this.numVec || timeDelta >= this.span){
-			this.animating = false;
+			this.animating = true;
 			return null;
 		}
 
