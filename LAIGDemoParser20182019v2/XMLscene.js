@@ -46,7 +46,7 @@ class XMLscene extends CGFscene {
         this.waterShader = new CGFshader(this.gl, "shaders/water.vert", "shaders/water.frag");
         this.waterShader.setUniformsValues({uSampler2: 1});
 
-        this.setUpdatePeriod(100);
+        this.setUpdatePeriod(18);
 
 
     }
@@ -72,7 +72,7 @@ class XMLscene extends CGFscene {
             if (this.graph.lights.hasOwnProperty(key)) {
                 var light = this.graph.lights[key];
 
-                
+
                 //lights are predefined in cgfscene
                 this.lights[i].setPosition(light.location.x, light.location.y, light.location.z, light.location.w);
                 this.lights[i].setAmbient(light.ambient.r, light.ambient.g, light.ambient.b, light.ambient.a);
@@ -104,7 +104,7 @@ class XMLscene extends CGFscene {
         this.camera.position = vec3.fromValues(this.graph.views[0].from[0], this.graph.views[0].from[1], this.graph.views[0].from[2]);
         this.camera.target = vec3.fromValues(this.graph.views[0].to[0], this.graph.views[0].to[1], this.graph.views[0].to[2]);*/
 
-        
+
 
 
         //TODO: Change reference length according to parsed graph
@@ -118,8 +118,8 @@ class XMLscene extends CGFscene {
         // Adds lights group.
         this.interface.addLightsGroup(this.graph.lights);
 
-        
-        
+
+
 
         this.materialDefault.apply();
 
@@ -131,7 +131,7 @@ class XMLscene extends CGFscene {
         }
         //Adds Views Group
         this.interface.addViewsGroup(this.graph.views);
-       
+
 
         this.sceneInited = true;
 
