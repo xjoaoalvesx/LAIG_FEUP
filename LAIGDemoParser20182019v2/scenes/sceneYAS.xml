@@ -83,6 +83,10 @@
         <texture id="planeText" file="scenes/images/planeTexture.jpg" />
         <texture id="engine" file="scenes/images/engine.jpg" />
         <texture id="cao" file="scenes/images/cao.jpeg" />
+        <texture id="terrain" file="scenes/images/terrain.jpg" />
+        <texture id="terrainHM" file="scenes/images/terrainHeightMap.jpg" />
+        <texture id="water" file="scenes/images/water.jpg" />
+        <texture id="wavemap" file="scenes/images/wavemap.png" />
     </textures>
     <materials>
         <!-- Deve existir um ou mais blocos "material" -->
@@ -166,7 +170,13 @@
               <controlpoint xx="1.5" yy="-1.5" zz="0.0"/>
               <controlpoint xx="1.5" yy="1.5" zz="0.0"/>
             </patch>
-        </primitive>  
+        </primitive>
+        <primitive id="terrain">
+            <terrain idtexture="terrain" idheightmap="terrainHM" parts="50" heightscale="2.5"/>
+        </primitive> 
+        <primitive id="water">
+            <water idtexture="water" idwavemap="wavemap" parts="15" heightscale="2" texscale="1" />
+        </primitive>   
     </primitives >
     <components>
         <component id="init">
@@ -222,7 +232,8 @@
                     <!--<componentref id="airplaneBody" /> -->
                     <!--<componentref id="leftWing" /> -->
                     <!--<componentref id="rightWing" />-->
-                    <componentref id="plano"/>
+                    <componentref id="waterplane"/>
+                    <componentref id="terrainplane"/>
              </children>
         </component>
 
@@ -488,24 +499,43 @@
 
         </component>
 
-        <component id="plano">
+        <component id="waterplane">
             <transformation>
                 <!--.<transformationref id="basic" /> -->
 
                 <translate x="0" y="0" z="0" />
+               <!-- <scale x="4" y="1" z="4"/> -->
             </transformation>
             <materials>
                 <material id="inherit" />
             </materials>
 
-            <texture id="leaves" length_s="1" length_t="1" />
+            <texture id="none" length_s="1" length_t="1" />
 
             <children>
 
-                    <primitiveref id="patch" />
+                    <primitiveref id="water" />
              </children>
+ 
+        </component>
+        <component id="terrainplane">
+            <transformation>
+                <!--.<transformationref id="basic" /> -->
 
-          
+                <translate x="0" y="0" z="0" />
+               <!-- <scale x="4" y="1" z="4"/> -->
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+
+            <texture id="none" length_s="1" length_t="1" />
+
+            <children>
+
+                    <primitiveref id="terrain" />
+             </children>
+ 
         </component>
 
         <component id="Insideplane">

@@ -7,21 +7,22 @@
 class Plane extends CGFobject
 {
 
-	constructor(scene, divU, divV){
+	constructor(scene, divU, divV, sideSize = 1){
 		super(scene);
 		this.divU = divU;
 		this.divV = divV;
+		this.sideValue = sideSize/2.0;
 		this.controlPoints = [
 			// U = 0
 			[	
-				[-0.5, 0.0, 0.5, 1],
-				[-0.5, 0.0, -0.5, 1]
+				[-this.sideValue, 0.0, this.sideValue, 1],
+				[-this.sideValue, 0.0, -this.sideValue, 1]
 			],
 
 			// U = 1
 			[
-				[0.5, 0.0,  0.5, 1],
-				[0.5, 0.0, -0.5, 1]
+				[this.sideValue, 0.0,  this.sideValue, 1],
+				[this.sideValue, 0.0, -this.sideValue, 1]
 			]
 		];
 

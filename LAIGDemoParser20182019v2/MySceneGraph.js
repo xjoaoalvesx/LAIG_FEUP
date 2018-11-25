@@ -1234,6 +1234,23 @@ parseAnimations(animationsNode){
                 var patch = new Patch(this.scene, npartsU, npartsV, controlPoints);
                 this.elements[primitiveId] = patch;
                 break;
+                case "terrain":
+                var idtexture = this.reader.getString(currChild, 'idtexture');
+                var idheightmap = this.reader.getString(currChild, 'idheightmap');
+                var parts = this.reader.getInteger(currChild, 'parts');
+                var heightscale = this.reader.getFloat(currChild, 'heightscale');
+                var terrain = new Terrain(this.scene, idtexture, idheightmap, parts, heightscale);
+                this.elements[primitiveId] = terrain;
+                break;
+                case "water":
+                var idtexture = this.reader.getString(currChild, 'idtexture');
+                var wavemap = this.reader.getString(currChild, 'idwavemap');
+                var parts = this.reader.getInteger(currChild, 'parts');
+                var heightscale = this.reader.getFloat(currChild, 'heightscale');
+                var texscale = this.reader.getFloat(currChild, 'texscale');
+                var water = new Water(this.scene, idtexture, wavemap, parts, heightscale, texscale);
+                this.elements[primitiveId] = water;
+                break;
                 default:
                 break;
 
@@ -1241,7 +1258,7 @@ parseAnimations(animationsNode){
         }
     }
 
-
+    console.log(this.elements);
     this.log("Parsed primitives");
     return null;
 }

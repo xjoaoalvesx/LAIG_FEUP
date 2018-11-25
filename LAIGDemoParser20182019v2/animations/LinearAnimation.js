@@ -57,14 +57,14 @@ class LinearAnimation extends Animation {
 											this.previousVectors[2]+(this.controlPoints[this.currVect+1][2]-this.controlPoints[this.currVect][2])*progress];
 		}
 
-		console.log(translateVec);
+		//console.log(translateVec);
 
 		mat4.identity(this.transMatrix);
 
 		mat4.translate(this.transMatrix, this.transMatrix, translateVec);
-		console.log("ProgVect: " + (this.currVect+1)/this.numVec);
-		console.log("Quociente: " + Math.floor(this.span/timeDelta));
-		console.log("ProgressTotal: " + 1/Math.floor(this.span/timeDelta));
+		//console.log("ProgVect: " + (this.currVect+1)/this.numVec);
+		//console.log("Quociente: " + Math.floor(this.span/timeDelta));
+		//console.log("ProgressTotal: " + 1/Math.floor(this.span/timeDelta));
 
 	}
 

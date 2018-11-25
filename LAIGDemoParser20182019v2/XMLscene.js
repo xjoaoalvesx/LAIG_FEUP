@@ -40,6 +40,12 @@ class XMLscene extends CGFscene {
 
         this.materialDefault = new CGFappearance(this);
 
+        this.terrainShader = new CGFshader(this.gl, "shaders/terrain.vert", "shaders/terrain.frag");
+        this.terrainShader.setUniformsValues({uSampler2: 1});
+
+        this.waterShader = new CGFshader(this.gl, "shaders/water.vert", "shaders/water.frag");
+        this.waterShader.setUniformsValues({uSampler2: 1});
+
         this.setUpdatePeriod(100);
 
 
@@ -215,10 +221,16 @@ class XMLscene extends CGFscene {
         }
     }
 
+    updateWaterShader(currTime){
+        let t = (Math.sin(currTime / 1000) + 1) / 2;
+        this.waterShader.setUniformsValues({timeFactor: t});
+    }
+
 
 	update(currTime) {
 		this.checkKey();
         this.updateViews();
         this.updateAnimations(currTime);
+        this.updateWaterShader(currTime);
 	}
 }
