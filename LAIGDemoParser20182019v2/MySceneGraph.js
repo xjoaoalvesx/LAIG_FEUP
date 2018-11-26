@@ -1231,7 +1231,6 @@ parseAnimations(animationsNode){
                         line = [];
                     }
                 }
-                console.log(controlPoints);
                 var patch = new Patch(this.scene, npartsU, npartsV, controlPoints);
                 this.elements[primitiveId] = patch;
                 break;

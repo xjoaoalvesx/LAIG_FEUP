@@ -40,7 +40,7 @@ class XMLscene extends CGFscene {
 
         this.materialDefault = new CGFappearance(this);
 
-        
+
 
         this.waterShader = new CGFshader(this.gl, "shaders/water.vert", "shaders/water.frag");
         this.waterShader.setUniformsValues({uSampler2: 1});
@@ -218,11 +218,11 @@ class XMLscene extends CGFscene {
            this.graph.components[key].update(currTime);
          }
       }
-        
+
     }
 
     updateWaterShader(currTime){
-        
+
         let t = (Math.sin(currTime / 1000));
 
         this.TimeFactorAux = this.TimeFactorAux+ 0.002;

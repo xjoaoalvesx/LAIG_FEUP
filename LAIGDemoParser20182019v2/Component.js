@@ -96,17 +96,17 @@ class Component {
 
 	update(currTime){
 
-        if(this.animations.length > 0){
-			if(this.animationCounter < this.animations.length){
-				if(this.scene.graph.animations[this.animations[this.animationCounter]].animating == false){
-					this.scene.graph.animations[this.animations[this.animationCounter]].update(currTime);
-				}
-				else{
-					this.animationCounter++;
+      if(this.animations.length > 0){
+				if(this.animationCounter < this.animations.length){
+					if(this.scene.graph.animations[this.animations[this.animationCounter]].ended == false){
+						this.scene.graph.animations[this.animations[this.animationCounter]].update(currTime);
+					}
+					else{
+						this.animationCounter++;
+					}
 				}
 			}
-		}
-	}
+	};
 
 	updateMaterial(){
 		this.materialNumber++;
@@ -114,6 +114,6 @@ class Component {
 			this.materialNumber = 0;
 		}
 
-	}
+	};
 
 };

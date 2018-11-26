@@ -19,7 +19,7 @@ class LinearAnimation extends Animation {
 		this.time_per_vec = this.span/this.numVec;
 		this.currVect = 0;
 		this.previousVectors = [0,0,0];
-
+		
 
 		this.component = {};
 		this.positionVec = [0,0,0];
@@ -36,7 +36,7 @@ class LinearAnimation extends Animation {
 
 		let timeDelta = (currTime) - this.deltaT;
 		if(this.currVect >= this.numVec || timeDelta >= this.span){
-			this.animating = true;
+			this.ended = true;
 			return null;
 		}
 

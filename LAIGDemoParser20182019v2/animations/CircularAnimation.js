@@ -4,8 +4,6 @@
  * @constructor
  */
 
-var toSec = 1/1000;
-
 class CircularAnimation extends Animation {
 
 
@@ -22,25 +20,28 @@ class CircularAnimation extends Animation {
 	};
 
 	update(currTime){
-		
-		 if(this.deltaT == 0){
-			this.deltaT = currTime*toSec;
-			return null;
-		 }
+		console.log(currTime);
+		currTime = (Math.round(currTime/10))/100;
 
-		 this.deltaT = (currTime*toSec) - this.deltaT;
+		if(this.deltaT == 0){
+		this.deltaT = currTime;
+		return null;
+	 }
 
-		 if (this.deltaT > this.span){
-		 	 this.animating = true;
+
+		 let timeDelta = (currTime) - this.deltaT;
+
+		 if (timeDelta > this.span){
+		 	 this.ended = true;
 			 return null;
 		 }
 
-		var currAng = this.rotAng*this.deltaT/this.span;
-
+		var currAng = (this.rotAng*timeDelta)/this.span;
 		mat4.identity(this.transMatrix);
-		//mat4.translate(this.transMatrix, this.transMatrix, this.center);
+		mat4.translate(this.transMatrix, this.transMatrix, this.center);
 		mat4.rotateY(this.transMatrix, this.transMatrix, currAng);
-		//mat4.rotateY(this.transMatrix, this.transMatrix, this.startAng);
+		mat4.rotateY(this.transMatrix, this.transMatrix, this.startAng);
+		mat4.translate(this.transMatrix, this.transMatrix, [this.radius,0,0]);
 
 
 
@@ -49,7 +50,7 @@ class CircularAnimation extends Animation {
 
 
 
-	
+
 
 
 

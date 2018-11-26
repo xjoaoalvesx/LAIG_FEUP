@@ -25,8 +25,8 @@
           <to x="0.5" y="1" z="0.5" />
         </perspective>
         <perspective id="camera2" near="0.1" far="500" angle="0.4">
-          <from x="15" y="15" z="15" />
-          <to x="0" y="0" z="0" />
+          <from x="30" y="30" z="-15" />
+          <to x="0" y="0" z="-15" />
         </perspective>
         <ortho id="camera3"  near="0.1" far="500" left="-5" right="5" top="5" bottom="-5" >
            <from x="0" y="5" z="30" />
@@ -131,12 +131,31 @@
     <!--Span é o tempo, em segundos, que a animação deve demorar -->
         <linear id="1" span="10">
             <controlpoint xx="0" yy="0" zz="0"/>
-            <controlpoint xx="4" yy="0" zz="0"/>
-            <controlpoint xx="4" yy="5" zz="0"/>
-             <controlpoint xx="0" yy="0" zz="0"/>
+            <controlpoint xx="-3" yy="0" zz="-1"/>
+            <controlpoint xx="-3" yy="0" zz="-3"/>
+            <controlpoint xx="0" yy="0" zz="0"/>
         </linear>
 
-        <circular id="2" span="5" center="0 0 0" radius="5" startang="40" rotang="90" />
+        <circular id="2" span="10" center="0 0 0" radius="2" startang="40" rotang="90" />
+
+        <linear id="3" span="10">
+            <controlpoint xx="0" yy="0" zz="0"/>
+            <controlpoint xx="-3" yy="0" zz="-3"/>
+            <controlpoint xx="-3" yy="0" zz="-9"/>
+            <controlpoint xx="-2" yy="0" zz="-9"/>
+            <controlpoint xx="-2" yy="0" zz="-3"/>
+            <controlpoint xx="0" yy="0" zz="0"/>
+
+        </linear>
+
+        <linear id="4" span="20">
+            <controlpoint xx="0" yy="0" zz="0"/>
+            <controlpoint xx="4" yy="0" zz="0"/>
+            <controlpoint xx="4" yy="0" zz="4"/>
+            <controlpoint xx="0" yy="0" zz="4"/>
+            <controlpoint xx="0" yy="0" zz="0"/>
+
+        </linear>
 
     </animations>
 
@@ -178,28 +197,21 @@
               <controlpoint xx="1.5" yy="1.5" zz="0.0"/>
             </patch>
         </primitive>
-        <primitive id="boatSide">
-            <patch npointsU="3" npointsV="2" npartsU="10" npartsV="10">
-              <controlpoint xx="-1.5" yy="-1.5" zz="0.0"/>
-              <controlpoint xx="-1.5" yy="1.5" zz="0.0"/>
-              <controlpoint xx="0" yy="-1.5" zz="3.0"/>
-              <controlpoint xx="0" yy="1.5" zz="3.0"/>
-              <controlpoint xx="1.5" yy="-1.5" zz="0.0"/>
-              <controlpoint xx="1.5" yy="1.5" zz="0.0"/>
-            </patch>
+        <primitive id = "vehicle">
+          <vehicle/>
         </primitive>
         <primitive id="terrain">
             <terrain idtexture="terrain" idheightmap="terrainHM" parts="50" heightscale="2.5"/>
         </primitive>
         <primitive id="floor">
             <terrain idtexture="sandfloor" idheightmap="sandfloorHM" parts="50" heightscale="0.5"/>
-        </primitive>  
+        </primitive>
         <primitive id="water">
             <water idtexture="water" idwavemap="wavemap" parts="50" heightscale="0.4" texscale="3" />
         </primitive>
         <primitive id="cylinder2">
             <cylinder2 base="0.5" top="0.5" height="2.0" slices="15" stacks="5" />
-        </primitive>   
+        </primitive>
     </primitives >
     <components>
         <component id="init">
@@ -252,29 +264,71 @@
                     <!-- componentes ou primitivas -->
                     <!-- <componentref id="quadrado" /> -->
 
-                    <!--<componentref id="waterplane"/>
-                    <componentref id="terrainplane"/> 
-                    <componentref id="floor"/> -->
-                    <componentref id="boat"/>
+                    <componentref id="waterplane"/>
+                    <componentref id="terrainplane"/>
+                    <componentref id="floor"/>
+                    <componentref id="boat1"/>
+                    <componentref id="boat2"/>
+                    <componentref id="boat3"/>
              </children>
         </component>
 
-        <component id="boat">
+
+        <component id="boat1">
             <transformation>
-                <translate x="0" y="0" z="0" />
+              <translate x="7" y="0.3" z="-17" />
             </transformation>
             <animations>
-                <animationref id="1"/>
-                <animationref id="2"/>
+                <animationref id="4"/>
             </animations>
             <materials>
-                <material id="inherit" />
+                <material id="white" />
             </materials>
             <texture id="wood" length_s="1" length_t="1" />
             <children>
-                    <primitiveref id="boatSide" />
+                    <primitiveref id="vehicle" />
              </children>
+
         </component>
+
+        <component id="boat2">
+            <transformation>
+              <translate x="7" y="0.3" z="-8" />
+              <rotate axis="y" angle="180"/>
+            </transformation>
+            <animations>
+                <animationref id="2"/>
+            </animations>
+            <materials>
+                <material id="white" />
+            </materials>
+            <texture id="wood" length_s="1" length_t="1" />
+            <children>
+                    <primitiveref id="vehicle" />
+             </children>
+
+        </component>
+
+
+        <component id="boat3">
+            <transformation>
+              <translate x="-5" y="0.3" z="-8" />
+            </transformation>
+            <animations>
+                <animationref id="1"/>
+                <animationref id="3"/>
+                <animationref id="2"/>
+            </animations>
+            <materials>
+                <material id="white" />
+            </materials>
+            <texture id="wood" length_s="1" length_t="1" />
+            <children>
+                    <primitiveref id="vehicle" />
+             </children>
+
+        </component>
+
 
         <component id="floor">
             <transformation>
@@ -383,7 +437,7 @@
         <component id="waterplane">
             <transformation>
                 <translate x="0" y="0.2" z="-15" />
-                <scale x="6" y="1" z="4"/> 
+                <scale x="6" y="1" z="4"/>
             </transformation>
             <materials>
                 <material id="inherit" />
@@ -397,7 +451,7 @@
         <component id="terrainplane">
             <transformation>
                 <translate x="0" y="-0.4" z="-15" />
-                <scale x="2" y="1" z="2"/> 
+                <scale x="2" y="1" z="2"/>
             </transformation>
             <materials>
                 <material id="inherit" />

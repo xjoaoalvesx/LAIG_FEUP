@@ -15,15 +15,18 @@ class Animation  {
 		this.x_ang = 0;  // rotation in xx axis
 		this.y_ang = 0;  // rotation in yy axis
 		this.transMatrix = mat4.create();
-		this.animating = false;
+		this.ended = false;
 	};
 
 
 	apply(){
 		this.scene.multMatrix(this.transMatrix);
-		
+
 	}
 
+	getEnded(){
+		return this.ended;
+	}
 
 
 
