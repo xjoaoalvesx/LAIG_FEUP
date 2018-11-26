@@ -390,14 +390,14 @@ return null;
             tempV.cam = new CGFcameraOrtho(cam.left, cam.right, cam.bottom, cam.top, cam.near, cam.far, cam.from, cam.to, [0,1,0]);
             this.views.push(tempV);
 
-      
+
 
         }
 
 
     }
 
-    
+
     this.log("Parsed views");
 
     return null;
@@ -1088,7 +1088,7 @@ parseAnimations(animationsNode){
                 else this.onXMLMinorError("no x attribute");
 
                 if (currAnimation.children[u].hasAttribute("yy")){
-                    controlP.push(this.reader.getFloat(currAnimation.children[u], "yy"));           
+                    controlP.push(this.reader.getFloat(currAnimation.children[u], "yy"));
                 }
                 else this.onXMLMinorError("no y attribute");
 
@@ -1111,17 +1111,17 @@ parseAnimations(animationsNode){
             else this.onXMLMinorError("no center attribute");
 
             if (currAnimation.hasAttribute("radius")){
-                var radius = this.reader.getFloat(currAnimation, "radius");           
+                var radius = this.reader.getFloat(currAnimation, "radius");
             }
             else this.onXMLMinorError("no radius attribute");
 
             if (currAnimation.hasAttribute("startang")){
-                var startang = this.reader.getFloat(currAnimation, "startang");            
+                var startang = this.reader.getFloat(currAnimation, "startang");
             }
             else this.onXMLMinorError("no startang attribute");
 
             if (currAnimation.hasAttribute("rotang")){
-                var rotang = this.reader.getFloat(currAnimation, "rotang");            
+                var rotang = this.reader.getFloat(currAnimation, "rotang");
             }
             else this.onXMLMinorError("no rotang attribute");
 
@@ -1217,7 +1217,7 @@ parseAnimations(animationsNode){
                 var pointsBlock = currChild.children;
 
                 for(var v = 0; v < pointsBlock.length; v++){
-                    
+
                     var x = this.reader.getFloat(pointsBlock[v], 'xx');
                     var y = this.reader.getFloat(pointsBlock[v], 'yy');
                     var z = this.reader.getFloat(pointsBlock[v], 'zz');
@@ -1231,6 +1231,7 @@ parseAnimations(animationsNode){
                         line = [];
                     }
                 }
+                console.log(controlPoints);
                 var patch = new Patch(this.scene, npartsU, npartsV, controlPoints);
                 this.elements[primitiveId] = patch;
                 break;
@@ -1260,6 +1261,9 @@ parseAnimations(animationsNode){
                 var cylinder2 = new Cylinder2(this.scene, base, top, height, slices, stacks);
                 this.elements[primitiveId] = cylinder2;
                 break;
+                case "vehicle":
+                var vehicle = new Vehicle(this.scene);
+                this.elements[primitiveId] = vehicle;
                 default:
                 break;
 
@@ -1282,7 +1286,7 @@ parseComponents(componentsNode) {
 
     this.components = [];
     var comp = componentsNode.children;
-    
+
 
     for(var i = 0; i < comp.length; i++){
         var blockID = 0;
@@ -1506,7 +1510,7 @@ parseComponents(componentsNode) {
             childrenBlock.push(currChild);
         }
 
-        
+
 
 
         //currComponent.push(childrenBlock);
@@ -1563,8 +1567,8 @@ parseComponents(componentsNode) {
  * Displays the scene, processing each node, starting in the root node.
  */
  displayScene() {
-    
+
     this.components[this.root].display();
  }
- 
+
 }

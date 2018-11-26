@@ -21,10 +21,11 @@ class Animation  {
 
 	apply(){
 		this.scene.multMatrix(this.transMatrix);
+		
 	}
 
 
-	
+
 
 
 

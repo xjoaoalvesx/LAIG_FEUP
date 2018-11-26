@@ -34,14 +34,16 @@ class Component {
 			}
 		}*/
 
+		this.scene.multMatrix(this.transformations);
+
 		 if(this.animations.length > 0){
 		 	if(this.animationCounter < this.animations.length){
 		 		this.scene.graph.animations[this.animations[this.animationCounter]].apply();
 		 	}
 		 }
-		
-		
-		this.scene.multMatrix(this.transformations);
+
+
+
 		var tempString = "";
 		var tempString2 = "";
 
@@ -93,16 +95,13 @@ class Component {
 	};
 
 	update(currTime){
-		
-		console.log(this.animations);
+
         if(this.animations.length > 0){
 			if(this.animationCounter < this.animations.length){
-				console.log(this.animationCounter + "   " + this.scene.graph.animations[this.animations[this.animationCounter]].animating);
 				if(this.scene.graph.animations[this.animations[this.animationCounter]].animating == false){
 					this.scene.graph.animations[this.animations[this.animationCounter]].update(currTime);
 				}
 				else{
-					console.log("pilas");
 					this.animationCounter++;
 				}
 			}

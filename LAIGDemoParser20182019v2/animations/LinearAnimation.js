@@ -61,7 +61,6 @@ class LinearAnimation extends Animation {
 											this.previousVectors[2]+(this.controlPoints[this.currVect+1][2]-this.controlPoints[this.currVect][2])*progress];
 		}
 
-
 		mat4.identity(this.transMatrix);
 
 		mat4.translate(this.transMatrix, this.transMatrix, translateVec);
@@ -74,8 +73,11 @@ class LinearAnimation extends Animation {
 		}else if (rotationVec[0] < 0){
 			angleY = - angleY;
 		}
+		var rotationMatrix = mat4.create();
+		mat4.identity(rotationMatrix)
 
-		mat4.rotateY(this.transMatrix, this.transMatrix, angleY);
+		mat4.rotateY(rotationMatrix, rotationMatrix, angleY);
+		mat4.multiply(this.transMatrix, this.transMatrix, rotationMatrix);
 
 	};
 
