@@ -270,110 +270,15 @@
                 <componentref id="carpet"/>
                 <componentref id="baseTab"/>
                 <componentref id="tab"/>
-                <componentref id="a19"/>
-                <componentref id="a18"/>
-                <componentref id="a17"/>
-                <componentref id="a16"/>
-                <componentref id="a15"/>
-                <componentref id="a14"/>
-                <componentref id="a13"/>
-                <componentref id="a12"/>
-                <componentref id="a11"/>
-                <componentref id="a10"/>
-                <componentref id="a9"/>
-                <componentref id="a8"/>
-                <componentref id="a7"/>
-                <componentref id="a6"/>
-                <componentref id="a5"/>
-                <componentref id="a4"/>
-                <componentref id="a3"/>
-                <componentref id="a2"/>
                 <componentref id="a1"/>
-
-                <componentref id="b19"/>
-                <componentref id="b18"/>
-                <componentref id="b17"/>
-                <componentref id="b16"/>
-                <componentref id="b15"/>
-                <componentref id="b14"/>
-                <componentref id="b13"/>
-                <componentref id="b12"/>
-                <componentref id="b11"/>
-                <componentref id="b10"/>
-                <componentref id="b9"/>
-                <componentref id="b8"/>
-                <componentref id="b7"/>
-                <componentref id="b6"/>
-                <componentref id="b5"/>
-                <componentref id="b4"/>
-                <componentref id="b3"/>
-                <componentref id="b2"/>
-                <componentref id="b1"/>
-
-                <componentref id="c19"/>
-                <componentref id="c18"/>
-                <componentref id="c17"/>
-                <componentref id="c16"/>
-                <componentref id="c15"/>
-                <componentref id="c14"/>
-                <componentref id="c13"/>
-                <componentref id="c12"/>
-                <componentref id="c11"/>
-                <componentref id="c10"/>
-                <componentref id="c9"/>
-                <componentref id="c8"/>
-                <componentref id="c7"/>
-                <componentref id="c6"/>
-                <componentref id="c5"/>
-                <componentref id="c4"/>
-                <componentref id="c3"/>
-                <componentref id="c2"/>
-                <componentref id="c1"/>
-
-                <componentref id="d19"/>
-                <componentref id="d18"/>
-                <componentref id="d17"/>
-                <componentref id="d16"/>
-                <componentref id="d15"/>
-                <componentref id="d14"/>
-                <componentref id="d13"/>
-                <componentref id="d12"/>
-                <componentref id="d11"/>
-                <componentref id="d10"/>
-                <componentref id="d9"/>
-                <componentref id="d8"/>
-                <componentref id="d7"/>
-                <componentref id="d6"/>
-                <componentref id="d5"/>
-                <componentref id="d4"/>
-                <componentref id="d3"/>
-                <componentref id="d2"/>
-                <componentref id="d1"/>
+                <componentref id="a2"/>
                 
-                <componentref id="e19"/>
-                <componentref id="e18"/>
-                <componentref id="e17"/>
-                <componentref id="e16"/>
-                <componentref id="e15"/>
-                <componentref id="e14"/>
-                <componentref id="e13"/>
-                <componentref id="e12"/>
-                <componentref id="e11"/>
-                <componentref id="e10"/>
-                <componentref id="e9"/>
-                <componentref id="e8"/>
-                <componentref id="e7"/>
-                <componentref id="e6"/>
-                <componentref id="e5"/>
-                <componentref id="e4"/>
-                <componentref id="e3"/>
-                <componentref id="e2"/>
-                <componentref id="e1"/>
 
                
              </children>
         </component>
-
+        
+        <!-->
         <component id="a19">
             <transformation>
                 <translate x="2.085" y="0.501" z="2.915" />
@@ -642,7 +547,7 @@
             <children>
                     <primitiveref id="rectangle" />
              </children>
-        </component>
+        </component> -->
 
         <component id="a1">
             <transformation>
@@ -660,6 +565,7 @@
         </component>
 
         <!--  B  -->
+        <!--
         <component id="b19">
             <transformation>
                 <translate x="2.085" y="0.501" z="2.869" />
@@ -943,9 +849,10 @@
             <children>
                     <primitiveref id="rectangle" />
              </children>
-        </component>
+        </component>-->
 
         <!--  C  -->
+        <!--
         <component id="c19">
             <transformation>
                 <translate x="2.085" y="0.501" z="2.823" />
@@ -1229,9 +1136,10 @@
             <children>
                     <primitiveref id="rectangle" />
              </children>
-        </component>
+        </component>-->
 
         <!--  D  -->
+        <!--
         <component id="d19">
             <transformation>
                 <translate x="2.085" y="0.501" z="2.777" />
@@ -1515,9 +1423,10 @@
             <children>
                     <primitiveref id="rectangle" />
              </children>
-        </component>
+        </component>-->
 
          <!--  E  -->
+         <!--
         <component id="e19">
             <transformation>
                 <translate x="2.085" y="0.501" z="2.731" />
@@ -1801,7 +1710,7 @@
             <children>
                     <primitiveref id="rectangle" />
              </children>
-        </component>
+        </component>-->
 
         <component id="tab">
             <transformation>

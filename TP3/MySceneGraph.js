@@ -1514,6 +1514,24 @@ parseComponents(componentsNode) {
 
         //currComponent.push(childrenBlock);
         this.components[compId] = new Component(this.scene , compId, transfBlock, animations, materialBlock, textu, childrenBlock);
+        if(compId == 'a1'){
+            var letters = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s'];
+            for(var l = 0; l < letters.length; l++){
+                for(var n = 0; n < 19;n++){
+                    var tempVect = [n*(-0.046),0,l*(-0.046)];
+                    var tempMAt = mat4.create();
+                    mat4.translate(tempMAt, tempMAt, tempVect);
+                    mat4.multiply(tempMAt, tempMAt, transfBlock);
+                    var tempID = letters[l] + (n+1).toString();
+
+                    this.components[tempID] = new Component(this.scene , tempID, tempMAt, animations, materialBlock, textu, childrenBlock);
+                    console.log(tempID);
+                    console.log(tempVect);
+                }
+            }
+        }else{
+            this.components[compId] = new Component(this.scene , compId, transfBlock, animations, materialBlock, textu, childrenBlock); 
+        }
     }
         console.log(this.components);
         this.log("Parsed components");
