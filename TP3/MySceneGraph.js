@@ -1263,6 +1263,11 @@ parseAnimations(animationsNode){
                 case "vehicle":
                 var vehicle = new Vehicle(this.scene);
                 this.elements[primitiveId] = vehicle;
+                break;
+                case "cell":
+                var cell = new Cell(this.scene);
+                this.elements[primitiveId] = cell;
+                break;
                 default:
                 break;
 

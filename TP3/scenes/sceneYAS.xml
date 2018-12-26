@@ -25,7 +25,7 @@
           <to x="0.5" y="1" z="0.5" />
         </perspective>
         <perspective id="camera2" near="0.1" far="500" angle="0.4">
-          <from x="2.5" y="4.5" z="2.5" />
+          <from x="2.6" y="3" z="2.5" />
           <to x="2.4" y="0" z="2.5" />
         </perspective>
         <ortho id="camera3"  near="0.1" far="500" left="-5" right="5" top="5" bottom="-5" >
@@ -202,6 +202,9 @@
         <primitive id = "vehicle">
           <vehicle/>
         </primitive>
+        <primitive id = "cell">
+          <cell/>
+        </primitive>
         <primitive id="terrain">
             <terrain idtexture="terrain" idheightmap="terrainHM" parts="50" heightscale="2.5"/>
         </primitive>
@@ -270,285 +273,390 @@
                 <componentref id="carpet"/>
                 <componentref id="baseTab"/>
                 <componentref id="tab"/>
+                
                 <componentref id="a1"/>
                 <componentref id="a2"/>
-                
+                <componentref id="a3"/>
+                <componentref id="a4"/>
+                <componentref id="a5"/>
+                <componentref id="a6"/>
+                <componentref id="a7"/>
+                <componentref id="a8"/>
+                <componentref id="a9"/>
+                <componentref id="a10"/>
+                <componentref id="a11"/>
+                <componentref id="a12"/>
+                <componentref id="a13"/>
+                <componentref id="a14"/>
+                <componentref id="a15"/>
+                <componentref id="a16"/>
+                <componentref id="a17"/>
+                <componentref id="a18"/>
+                <componentref id="a19"/>
 
+                <componentref id="b1"/>
+                <componentref id="b2"/>
+                <componentref id="b3"/>
+                <componentref id="b4"/>
+                <componentref id="b5"/>
+                <componentref id="b6"/>
+                <componentref id="b7"/>
+                <componentref id="b8"/>
+                <componentref id="b9"/>
+                <componentref id="b10"/>
+                <componentref id="b11"/>
+                <componentref id="b12"/>
+                <componentref id="b13"/>
+                <componentref id="b14"/>
+                <componentref id="b15"/>
+                <componentref id="b16"/>
+                <componentref id="b17"/>
+                <componentref id="b18"/>
+                <componentref id="b19"/>
+
+                <componentref id="c1"/>
+                <componentref id="c2"/>
+                <componentref id="c3"/>
+                <componentref id="c4"/>
+                <componentref id="c5"/>
+                <componentref id="c6"/>
+                <componentref id="c7"/>
+                <componentref id="c8"/>
+                <componentref id="c9"/>
+                <componentref id="c10"/>
+                <componentref id="c11"/>
+                <componentref id="c12"/>
+                <componentref id="c13"/>
+                <componentref id="c14"/>
+                <componentref id="c15"/>
+                <componentref id="c16"/>
+                <componentref id="c17"/>
+                <componentref id="c18"/>
+                <componentref id="c19"/>
+
+                <componentref id="d1"/>
+                <componentref id="d2"/>
+                <componentref id="d3"/>
+                <componentref id="d4"/>
+                <componentref id="d5"/>
+                <componentref id="d6"/>
+                <componentref id="d7"/>
+                <componentref id="d8"/>
+                <componentref id="d9"/>
+                <componentref id="d10"/>
+                <componentref id="d11"/>
+                <componentref id="d12"/>
+                <componentref id="d13"/>
+                <componentref id="d14"/>
+                <componentref id="d15"/>
+                <componentref id="d16"/>
+                <componentref id="d17"/>
+                <componentref id="d18"/>
+                <componentref id="d19"/>
+
+                <componentref id="e1"/>
+                <componentref id="e2"/>
+                <componentref id="e3"/>
+                <componentref id="e4"/>
+                <componentref id="e5"/>
+                <componentref id="e6"/>
+                <componentref id="e7"/>
+                <componentref id="e8"/>
+                <componentref id="e9"/>
+                <componentref id="e10"/>
+                <componentref id="e11"/>
+                <componentref id="e12"/>
+                <componentref id="e13"/>
+                <componentref id="e14"/>
+                <componentref id="e15"/>
+                <componentref id="e16"/>
+                <componentref id="e17"/>
+                <componentref id="e18"/>
+                <componentref id="e19"/>
+
+                <componentref id="f1"/>
+                <componentref id="f2"/>
+                <componentref id="f3"/>
+                <componentref id="f4"/>
+                <componentref id="f5"/>
+                <componentref id="f6"/>
+                <componentref id="f7"/>
+                <componentref id="f8"/>
+                <componentref id="f9"/>
+                <componentref id="f10"/>
+                <componentref id="f11"/>
+                <componentref id="f12"/>
+                <componentref id="f13"/>
+                <componentref id="f14"/>
+                <componentref id="f15"/>
+                <componentref id="f16"/>
+                <componentref id="f17"/>
+                <componentref id="f18"/>
+                <componentref id="f19"/>
+
+                <componentref id="g1"/>
+                <componentref id="g2"/>
+                <componentref id="g3"/>
+                <componentref id="g4"/>
+                <componentref id="g5"/>
+                <componentref id="g6"/>
+                <componentref id="g7"/>
+                <componentref id="g8"/>
+                <componentref id="g9"/>
+                <componentref id="g10"/>
+                <componentref id="g11"/>
+                <componentref id="g12"/>
+                <componentref id="g13"/>
+                <componentref id="g14"/>
+                <componentref id="g15"/>
+                <componentref id="g16"/>
+                <componentref id="g17"/>
+                <componentref id="g18"/>
+                <componentref id="g19"/>
+
+                <componentref id="h1"/>
+                <componentref id="h2"/>
+                <componentref id="h3"/>
+                <componentref id="h4"/>
+                <componentref id="h5"/>
+                <componentref id="h6"/>
+                <componentref id="h7"/>
+                <componentref id="h8"/>
+                <componentref id="h9"/>
+                <componentref id="h10"/>
+                <componentref id="h11"/>
+                <componentref id="h12"/>
+                <componentref id="h13"/>
+                <componentref id="h14"/>
+                <componentref id="h15"/>
+                <componentref id="h16"/>
+                <componentref id="h17"/>
+                <componentref id="h18"/>
+                <componentref id="h19"/>
+
+                <componentref id="i1"/>
+                <componentref id="i2"/>
+                <componentref id="i3"/>
+                <componentref id="i4"/>
+                <componentref id="i5"/>
+                <componentref id="i6"/>
+                <componentref id="i7"/>
+                <componentref id="i8"/>
+                <componentref id="i9"/>
+                <componentref id="i10"/>
+                <componentref id="i11"/>
+                <componentref id="i12"/>
+                <componentref id="i13"/>
+                <componentref id="i14"/>
+                <componentref id="i15"/>
+                <componentref id="i16"/>
+                <componentref id="i17"/>
+                <componentref id="i18"/>
+                <componentref id="i19"/>
+
+                <componentref id="j1"/>
+                <componentref id="j2"/>
+                <componentref id="j3"/>
+                <componentref id="j4"/>
+                <componentref id="j5"/>
+                <componentref id="j6"/>
+                <componentref id="j7"/>
+                <componentref id="j8"/>
+                <componentref id="j9"/>
+                <componentref id="j10"/>
+                <componentref id="j11"/>
+                <componentref id="j12"/>
+                <componentref id="j13"/>
+                <componentref id="j14"/>
+                <componentref id="j15"/>
+                <componentref id="j16"/>
+                <componentref id="j17"/>
+                <componentref id="j18"/>
+                <componentref id="j19"/>
+
+                <componentref id="k1"/>
+                <componentref id="k2"/>
+                <componentref id="k3"/>
+                <componentref id="k4"/>
+                <componentref id="k5"/>
+                <componentref id="k6"/>
+                <componentref id="k7"/>
+                <componentref id="k8"/>
+                <componentref id="k9"/>
+                <componentref id="k10"/>
+                <componentref id="k11"/>
+                <componentref id="k12"/>
+                <componentref id="k13"/>
+                <componentref id="k14"/>
+                <componentref id="k15"/>
+                <componentref id="k16"/>
+                <componentref id="k17"/>
+                <componentref id="k18"/>
+                <componentref id="k19"/>
+
+                <componentref id="l1"/>
+                <componentref id="l2"/>
+                <componentref id="l3"/>
+                <componentref id="l4"/>
+                <componentref id="l5"/>
+                <componentref id="l6"/>
+                <componentref id="l7"/>
+                <componentref id="l8"/>
+                <componentref id="l9"/>
+                <componentref id="l10"/>
+                <componentref id="l11"/>
+                <componentref id="l12"/>
+                <componentref id="l13"/>
+                <componentref id="l14"/>
+                <componentref id="l15"/>
+                <componentref id="l16"/>
+                <componentref id="l17"/>
+                <componentref id="l18"/>
+                <componentref id="l19"/>
+
+                <componentref id="m1"/>
+                <componentref id="m2"/>
+                <componentref id="m3"/>
+                <componentref id="m4"/>
+                <componentref id="m5"/>
+                <componentref id="m6"/>
+                <componentref id="m7"/>
+                <componentref id="m8"/>
+                <componentref id="m9"/>
+                <componentref id="m10"/>
+                <componentref id="m11"/>
+                <componentref id="m12"/>
+                <componentref id="m13"/>
+                <componentref id="m14"/>
+                <componentref id="m15"/>
+                <componentref id="m16"/>
+                <componentref id="m17"/>
+                <componentref id="m18"/>
+                <componentref id="m19"/>
+
+                <componentref id="n1"/>
+                <componentref id="n2"/>
+                <componentref id="n3"/>
+                <componentref id="n4"/>
+                <componentref id="n5"/>
+                <componentref id="n6"/>
+                <componentref id="n7"/>
+                <componentref id="n8"/>
+                <componentref id="n9"/>
+                <componentref id="n10"/>
+                <componentref id="n11"/>
+                <componentref id="n12"/>
+                <componentref id="n13"/>
+                <componentref id="n14"/>
+                <componentref id="n15"/>
+                <componentref id="n16"/>
+                <componentref id="n17"/>
+                <componentref id="n18"/>
+                <componentref id="n19"/>
+
+                <componentref id="o1"/>
+                <componentref id="o2"/>
+                <componentref id="o3"/>
+                <componentref id="o4"/>
+                <componentref id="o5"/>
+                <componentref id="o6"/>
+                <componentref id="o7"/>
+                <componentref id="o8"/>
+                <componentref id="o9"/>
+                <componentref id="o10"/>
+                <componentref id="o11"/>
+                <componentref id="o12"/>
+                <componentref id="o13"/>
+                <componentref id="o14"/>
+                <componentref id="o15"/>
+                <componentref id="o16"/>
+                <componentref id="o17"/>
+                <componentref id="o18"/>
+                <componentref id="o19"/>
+
+                <componentref id="p1"/>
+                <componentref id="p2"/>
+                <componentref id="p3"/>
+                <componentref id="p4"/>
+                <componentref id="p5"/>
+                <componentref id="p6"/>
+                <componentref id="p7"/>
+                <componentref id="p8"/>
+                <componentref id="p9"/>
+                <componentref id="p10"/>
+                <componentref id="p11"/>
+                <componentref id="p12"/>
+                <componentref id="p13"/>
+                <componentref id="p14"/>
+                <componentref id="p15"/>
+                <componentref id="p16"/>
+                <componentref id="p17"/>
+                <componentref id="p18"/>
+                <componentref id="p19"/>
+
+                <componentref id="q1"/>
+                <componentref id="q2"/>
+                <componentref id="q3"/>
+                <componentref id="q4"/>
+                <componentref id="q5"/>
+                <componentref id="q6"/>
+                <componentref id="q7"/>
+                <componentref id="q8"/>
+                <componentref id="q9"/>
+                <componentref id="q10"/>
+                <componentref id="q11"/>
+                <componentref id="q12"/>
+                <componentref id="q13"/>
+                <componentref id="q14"/>
+                <componentref id="q15"/>
+                <componentref id="q16"/>
+                <componentref id="q17"/>
+                <componentref id="q18"/>
+                <componentref id="q19"/>
+
+                <componentref id="r1"/>
+                <componentref id="r2"/>
+                <componentref id="r3"/>
+                <componentref id="r4"/>
+                <componentref id="r5"/>
+                <componentref id="r6"/>
+                <componentref id="r7"/>
+                <componentref id="r8"/>
+                <componentref id="r9"/>
+                <componentref id="r10"/>
+                <componentref id="r11"/>
+                <componentref id="r12"/>
+                <componentref id="r13"/>
+                <componentref id="r14"/>
+                <componentref id="r15"/>
+                <componentref id="r16"/>
+                <componentref id="r17"/>
+                <componentref id="r18"/>
+                <componentref id="r19"/>
+
+                <componentref id="s1"/>
+                <componentref id="s2"/>
+                <componentref id="s3"/>
+                <componentref id="s4"/>
+                <componentref id="s5"/>
+                <componentref id="s6"/>
+                <componentref id="s7"/>
+                <componentref id="s8"/>
+                <componentref id="s9"/>
+                <componentref id="s10"/>
+                <componentref id="s11"/>
+                <componentref id="s12"/>
+                <componentref id="s13"/>
+                <componentref id="s14"/>
+                <componentref id="s15"/>
+                <componentref id="s16"/>
+                <componentref id="s17"/>
+                <componentref id="s18"/>
+                <componentref id="s19"/>
                
              </children>
         </component>
-        
-        <!-->
-        <component id="a19">
-            <transformation>
-                <translate x="2.085" y="0.501" z="2.915" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="a18">
-            <transformation>
-                <translate x="2.131" y="0.501" z="2.915" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="a17">
-            <transformation>
-                <translate x="2.177" y="0.501" z="2.915" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="a16">
-            <transformation>
-                <translate x="2.223" y="0.501" z="2.915" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="a15">
-            <transformation>
-                <translate x="2.269" y="0.501" z="2.915" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="a14">
-            <transformation>
-                <translate x="2.315" y="0.501" z="2.915" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="a13">
-            <transformation>
-                <translate x="2.361" y="0.501" z="2.915" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="a12">
-            <transformation>
-                <translate x="2.407" y="0.501" z="2.915" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="a11">
-            <transformation>
-                <translate x="2.453" y="0.501" z="2.915" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="a10">
-            <transformation>
-                <translate x="2.499" y="0.501" z="2.915" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="a9">
-            <transformation>
-                <translate x="2.545" y="0.501" z="2.915" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="a8">
-            <transformation>
-                <translate x="2.591" y="0.501" z="2.915" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="a7">
-            <transformation>
-                <translate x="2.637" y="0.501" z="2.915" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="a6">
-            <transformation>
-                <translate x="2.683" y="0.501" z="2.915" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="a5">
-            <transformation>
-                <translate x="2.729" y="0.501" z="2.915" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="a4">
-            <transformation>
-                <translate x="2.775" y="0.501" z="2.915" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="a3">
-            <transformation>
-                <translate x="2.821" y="0.501" z="2.915" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="a2">
-            <transformation>
-                <translate x="2.867" y="0.501" z="2.915" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component> -->
-
+    
         <component id="a1">
             <transformation>
                 <translate x="2.913" y="0.501" z="2.915" />
@@ -560,1157 +668,9 @@
             </materials>
             <texture id="none" length_s="1" length_t="1" />
             <children>
-                    <primitiveref id="rectangle" />
+                    <primitiveref id="cell" />
              </children>
         </component>
-
-        <!--  B  -->
-        <!--
-        <component id="b19">
-            <transformation>
-                <translate x="2.085" y="0.501" z="2.869" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="b18">
-            <transformation>
-                <translate x="2.131" y="0.501" z="2.869" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="b17">
-            <transformation>
-                <translate x="2.177" y="0.501" z="2.869" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="b16">
-            <transformation>
-                <translate x="2.223" y="0.501" z="2.869" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="b15">
-            <transformation>
-                <translate x="2.269" y="0.501" z="2.869" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="b14">
-            <transformation>
-                <translate x="2.315" y="0.501" z="2.869" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="b13">
-            <transformation>
-                <translate x="2.361" y="0.501" z="2.869" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="b12">
-            <transformation>
-                <translate x="2.407" y="0.501" z="2.869" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="b11">
-            <transformation>
-                <translate x="2.453" y="0.501" z="2.869" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="b10">
-            <transformation>
-                <translate x="2.499" y="0.501" z="2.869" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="b9">
-            <transformation>
-                <translate x="2.545" y="0.501" z="2.869" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="b8">
-            <transformation>
-                <translate x="2.591" y="0.501" z="2.869" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="b7">
-            <transformation>
-                <translate x="2.637" y="0.501" z="2.869" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="b6">
-            <transformation>
-                <translate x="2.683" y="0.501" z="2.869" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="b5">
-            <transformation>
-                <translate x="2.729" y="0.501" z="2.869" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="b4">
-            <transformation>
-                <translate x="2.775" y="0.501" z="2.869" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="b3">
-            <transformation>
-                <translate x="2.821" y="0.501" z="2.869" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="b2">
-            <transformation>
-                <translate x="2.867" y="0.501" z="2.869" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="b1">
-            <transformation>
-                <translate x="2.913" y="0.501" z="2.869" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>-->
-
-        <!--  C  -->
-        <!--
-        <component id="c19">
-            <transformation>
-                <translate x="2.085" y="0.501" z="2.823" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="c18">
-            <transformation>
-                <translate x="2.131" y="0.501" z="2.823" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="c17">
-            <transformation>
-                <translate x="2.177" y="0.501" z="2.823" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="c16">
-            <transformation>
-                <translate x="2.223" y="0.501" z="2.823" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="c15">
-            <transformation>
-                <translate x="2.269" y="0.501" z="2.823" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="c14">
-            <transformation>
-                <translate x="2.315" y="0.501" z="2.823" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="c13">
-            <transformation>
-                <translate x="2.361" y="0.501" z="2.823" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="c12">
-            <transformation>
-                <translate x="2.407" y="0.501" z="2.823" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="c11">
-            <transformation>
-                <translate x="2.453" y="0.501" z="2.823" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="c10">
-            <transformation>
-                <translate x="2.499" y="0.501" z="2.823" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="c9">
-            <transformation>
-                <translate x="2.545" y="0.501" z="2.823" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="c8">
-            <transformation>
-                <translate x="2.591" y="0.501" z="2.823" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="c7">
-            <transformation>
-                <translate x="2.637" y="0.501" z="2.823" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="c6">
-            <transformation>
-                <translate x="2.683" y="0.501" z="2.823" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="c5">
-            <transformation>
-                <translate x="2.729" y="0.501" z="2.823" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="c4">
-            <transformation>
-                <translate x="2.775" y="0.501" z="2.823" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="c3">
-            <transformation>
-                <translate x="2.821" y="0.501" z="2.823" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="c2">
-            <transformation>
-                <translate x="2.867" y="0.501" z="2.823" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="c1">
-            <transformation>
-                <translate x="2.913" y="0.501" z="2.823" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>-->
-
-        <!--  D  -->
-        <!--
-        <component id="d19">
-            <transformation>
-                <translate x="2.085" y="0.501" z="2.777" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="d18">
-            <transformation>
-                <translate x="2.131" y="0.501" z="2.777" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="d17">
-            <transformation>
-                <translate x="2.177" y="0.501" z="2.777" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="d16">
-            <transformation>
-                <translate x="2.223" y="0.501" z="2.777" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="d15">
-            <transformation>
-                <translate x="2.269" y="0.501" z="2.777" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="d14">
-            <transformation>
-                <translate x="2.315" y="0.501" z="2.777" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="d13">
-            <transformation>
-                <translate x="2.361" y="0.501" z="2.777" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="d12">
-            <transformation>
-                <translate x="2.407" y="0.501" z="2.777" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="d11">
-            <transformation>
-                <translate x="2.453" y="0.501" z="2.777" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="d10">
-            <transformation>
-                <translate x="2.499" y="0.501" z="2.777" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="d9">
-            <transformation>
-                <translate x="2.545" y="0.501" z="2.777" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="d8">
-            <transformation>
-                <translate x="2.591" y="0.501" z="2.777" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="d7">
-            <transformation>
-                <translate x="2.637" y="0.501" z="2.777" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="d6">
-            <transformation>
-                <translate x="2.683" y="0.501" z="2.777" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="d5">
-            <transformation>
-                <translate x="2.729" y="0.501" z="2.777" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="d4">
-            <transformation>
-                <translate x="2.775" y="0.501" z="2.777" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="d3">
-            <transformation>
-                <translate x="2.821" y="0.501" z="2.777" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="d2">
-            <transformation>
-                <translate x="2.867" y="0.501" z="2.777" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="d1">
-            <transformation>
-                <translate x="2.913" y="0.501" z="2.777" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>-->
-
-         <!--  E  -->
-         <!--
-        <component id="e19">
-            <transformation>
-                <translate x="2.085" y="0.501" z="2.731" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="e18">
-            <transformation>
-                <translate x="2.131" y="0.501" z="2.731" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="e17">
-            <transformation>
-                <translate x="2.177" y="0.501" z="2.731" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="e16">
-            <transformation>
-                <translate x="2.223" y="0.501" z="2.731" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="e15">
-            <transformation>
-                <translate x="2.269" y="0.501" z="2.731" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="e14">
-            <transformation>
-                <translate x="2.315" y="0.501" z="2.731" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="e13">
-            <transformation>
-                <translate x="2.361" y="0.501" z="2.731" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="e12">
-            <transformation>
-                <translate x="2.407" y="0.501" z="2.731" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="e11">
-            <transformation>
-                <translate x="2.453" y="0.501" z="2.731" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="e10">
-            <transformation>
-                <translate x="2.499" y="0.501" z="2.731" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="e9">
-            <transformation>
-                <translate x="2.545" y="0.501" z="2.731" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="e8">
-            <transformation>
-                <translate x="2.591" y="0.501" z="2.731" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="e7">
-            <transformation>
-                <translate x="2.637" y="0.501" z="2.731" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="e6">
-            <transformation>
-                <translate x="2.683" y="0.501" z="2.731" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="e5">
-            <transformation>
-                <translate x="2.729" y="0.501" z="2.731" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="e4">
-            <transformation>
-                <translate x="2.775" y="0.501" z="2.731" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="e3">
-            <transformation>
-                <translate x="2.821" y="0.501" z="2.731" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="e2">
-            <transformation>
-                <translate x="2.867" y="0.501" z="2.731" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>
-
-        <component id="e1">
-            <transformation>
-                <translate x="2.913" y="0.501" z="2.731" />
-                <rotate axis="x" angle="-90" />
-                <scale x="0.02" y="0.02" z="1" />
-            </transformation>
-            <materials>
-                <material id="red" />
-            </materials>
-            <texture id="none" length_s="1" length_t="1" />
-            <children>
-                    <primitiveref id="rectangle" />
-             </children>
-        </component>-->
 
         <component id="tab">
             <transformation>

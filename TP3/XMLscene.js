@@ -45,8 +45,8 @@ class XMLscene extends CGFscene {
         this.waterShader = new CGFshader(this.gl, "shaders/water.vert", "shaders/water.frag");
         this.waterShader.setUniformsValues({uSampler2: 1});
 
+        this.setPickEnabled(true);
         this.setUpdatePeriod(50);
-
 
     }
 
@@ -142,6 +142,9 @@ class XMLscene extends CGFscene {
      * Displays the scene.
      */
     display() {
+
+        this.logPicking();
+        this.clearPickRegistration();
         // ---- BEGIN Background, camera and axis setup
 
         // Clear image and depth buffer everytime we update the scene
@@ -156,6 +159,7 @@ class XMLscene extends CGFscene {
         this.applyViewMatrix();
 
         this.pushMatrix();
+
 
 
         if (this.sceneInited) {
@@ -179,6 +183,7 @@ class XMLscene extends CGFscene {
                 }
             }
 
+           
             // Displays the scene (MySceneGraph function).
             this.graph.displayScene();
         }
@@ -186,6 +191,7 @@ class XMLscene extends CGFscene {
             // Draw axis
             this.axis.display();
         }
+
 
         this.popMatrix();
         // ---- END Background, camera and axis setup
@@ -238,5 +244,29 @@ class XMLscene extends CGFscene {
         this.updateViews();
         this.updateComponent(currTime);
         this.updateWaterShader(currTime);
-	}
+    }
+    
+    logPicking(){
+        
+        if (this.pickMode == false) {
+            if (this.pickResults != null && this.pickResults.length > 0) {
+                for (var i=0; i< this.pickResults.length; i++) {
+                    console.log(this.pickResults[i][1]);
+                    var obj = this.pickResults[i][0];
+                    if (obj)
+                    {
+                        var customId = this.pickResults[i][1];				
+                        console.log("Picked object: " + obj + ", with pick id " + customId);
+                    }
+                }
+                this.pickResults.splice(0,this.pickResults.length);
+            }		
+        }
+    }
+
+    ispiece(string){
+        if(string[0] >= 'a' && string[0] <= 's'){
+            console.log('welele');
+        }
+    }
 }

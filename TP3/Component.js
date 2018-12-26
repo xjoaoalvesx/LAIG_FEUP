@@ -82,7 +82,17 @@ class Component {
 
 			if(this.children[i].type == "primitive"){
 				this.scene.graph.elements[this.children[i].id].updateTextCoords(this.texture.length_s, this.texture.length_t);
-				this.scene.graph.elements[this.children[i].id].display();
+				
+				let elementID = this.children[i].id;
+				
+
+				if(elementID == 'cell'){
+
+					let id = ((this.id.charCodeAt(0) - 96)* 100) + parseInt(this.id.substring(1));
+					
+					this.scene.graph.elements[this.children[i].id].display(id);
+				}
+				else this.scene.graph.elements[this.children[i].id].display();
 			}
 			else {
 			this.scene.graph.components[this.children[i].id].display(tempString2 , tempString);
