@@ -13,6 +13,7 @@ class XMLscene extends CGFscene {
 
         this.interface = myinterface;
         this.lightValues = {};
+        this.Start = false;
 
     }
 
@@ -24,8 +25,6 @@ class XMLscene extends CGFscene {
         super.init(application);
 
         this.sceneInited = false;
-
-        this.View = 3;
 
         this.initCameras();
 
@@ -40,10 +39,12 @@ class XMLscene extends CGFscene {
 
         this.materialDefault = new CGFappearance(this);
 
-
-
         this.waterShader = new CGFshader(this.gl, "shaders/water.vert", "shaders/water.frag");
         this.waterShader.setUniformsValues({uSampler2: 1});
+
+
+        this.game = new Game(this);
+
 
         this.setPickEnabled(true);
         this.setUpdatePeriod(50);
@@ -54,7 +55,8 @@ class XMLscene extends CGFscene {
      * Initializes the scene cameras.
      */
     initCameras() {
-        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(15, 15, 15), vec3.fromValues(0, 0, 0));
+        this.camera = new CGFcamera(0.8, 0.1, 500, vec4.fromValues(2.6, 3, 2.5, 1), vec4.fromValues(2.4, 0, 2.5, 1));
+        this.interface.setActiveCamera(this.camera);
     }
     /**
      * Initializes the scene lights with the values read from the XML file.
@@ -117,19 +119,11 @@ class XMLscene extends CGFscene {
         // Adds lights group.
         this.interface.addLightsGroup(this.graph.lights);
 
-
+        this.interface.addGameGroup(this.game);
 
 
         this.materialDefault.apply();
 
-        for(var i = 0; i < this.graph.views.length; i++){
-            if(this.graph.views[i].id == this.graph.defaultCamID){
-                 this.camera = this.graph.views[i].cam;
-                this.interface.setActiveCamera(this.camera);
-            }
-        }
-        //Adds Views Group
-        this.interface.addViewsGroup(this.graph.views);
 
 
         this.sceneInited = true;
@@ -183,7 +177,7 @@ class XMLscene extends CGFscene {
                 }
             }
 
-           
+
             // Displays the scene (MySceneGraph function).
             this.graph.displayScene();
         }
@@ -207,15 +201,13 @@ class XMLscene extends CGFscene {
       }
     }
 
-	}
+    if (this.gui.isKeyPressed("KeyP")) {
+      console.log('P');
+      this.game.changeplayer();
 
-    updateViews(){
-        //Diferent from null so it waits for parsing
-        if (this.sceneInited){
-            this.camera = this.graph.views[this.View-1].cam;
-            this.interface.setActiveCamera(this.camera);
-        }
     }
+
+	 }
 
     updateComponent(currTime){
 
@@ -241,27 +233,33 @@ class XMLscene extends CGFscene {
 
 	update(currTime) {
 		this.checkKey();
-        this.updateViews();
-        this.updateComponent(currTime);
-        this.updateWaterShader(currTime);
+    this.updateComponent(currTime);
+    this.updateWaterShader(currTime);
+    if(!this.game.begin){
+      if(this.Start)
+        this.game.start();
     }
-    
-    logPicking(){
-        
-        if (this.pickMode == false) {
-            if (this.pickResults != null && this.pickResults.length > 0) {
-                for (var i=0; i< this.pickResults.length; i++) {
-                    console.log(this.pickResults[i][1]);
-                    var obj = this.pickResults[i][0];
-                    if (obj)
-                    {
-                        var customId = this.pickResults[i][1];				
-                        console.log("Picked object: " + obj + ", with pick id " + customId);
-                    }
-                }
-                this.pickResults.splice(0,this.pickResults.length);
-            }		
-        }
+    if(this.game.begin)
+      this.game.updateView(currTime);
+
+  }
+
+  logPicking(){
+
+      if (this.pickMode == false) {
+          if (this.pickResults != null && this.pickResults.length > 0) {
+              for (var i=0; i< this.pickResults.length; i++) {
+                  console.log(this.pickResults[i][1]);
+                  var obj = this.pickResults[i][0];
+                  if (obj)
+                  {
+                      var customId = this.pickResults[i][1];
+                      console.log("Picked object: " + obj + ", with pick id " + customId);
+                  }
+              }
+              this.pickResults.splice(0,this.pickResults.length);
+          }
+      }
     }
 
     ispiece(string){

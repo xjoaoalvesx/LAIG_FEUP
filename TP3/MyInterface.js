@@ -43,25 +43,20 @@ class MyInterface extends CGFinterface {
                 group.add(this.scene.lightValues, key);
             }
         }
+        group.close();
+    }
+
+    addGameGroup(){
+        var group = this.gui.addFolder("Game");
+        group.open();
+
+        group.add(this.scene, "Start", false);
+
+        group.close();
     }
 
 
-    /**
-     * Adds a folder containing the indexes of the views in a dropdown.
-     * @param {array} views
-     */
-    addViewsGroup(views) {
 
-      var group = this.gui.addFolder("Views");
-      group.open();
-
-      var temp = [];
-      for(var i=0; i < views.length; i++){
-        temp.push(i+1);
-      }
-
-      group.add(this.scene, "View", temp);
-    }
 
     /**
 	 * processKeyboard

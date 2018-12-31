@@ -32,6 +32,14 @@
            <from x="0" y="5" z="30" />
            <to x="0" y="0" z="0" />
         </ortho>
+        <perspective id="player1" near="0.1" far="500" angle="0.4">
+          <from x="3.2" y="4" z="2.5" />
+          <to x="2.5" y="0" z="2.5" />
+        </perspective>
+        <perspective id="player2" near="0.1" far="500" angle="0.4">
+          <from x="1.8" y="4" z="2.5" />
+          <to x="2.5" y="0" z="2.5" />
+        </perspective>
     </views>
     <ambient>
         <ambient r="0.1" g="0.1" b="0.1" a="1.0" />
@@ -273,7 +281,7 @@
                 <componentref id="carpet"/>
                 <componentref id="baseTab"/>
                 <componentref id="tab"/>
-                
+
                 <componentref id="a1"/>
                 <componentref id="a2"/>
                 <componentref id="a3"/>
@@ -653,10 +661,10 @@
                 <componentref id="s17"/>
                 <componentref id="s18"/>
                 <componentref id="s19"/>
-               
+
              </children>
         </component>
-    
+
         <component id="a1">
             <transformation>
                 <translate x="2.913" y="0.501" z="2.915" />
