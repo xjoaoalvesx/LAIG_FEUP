@@ -1133,7 +1133,6 @@ parseAnimations(animationsNode){
 
     }
 
-    console.log(this.animations);
     this.log("Parsed animations");
     return null;
 
@@ -1275,7 +1274,6 @@ parseAnimations(animationsNode){
         }
     }
 
-    console.log(this.elements);
     this.log("Parsed primitives");
     return null;
 }
@@ -1530,15 +1528,12 @@ parseComponents(componentsNode) {
                     var tempID = letters[l] + (n+1).toString();
 
                     this.components[tempID] = new Component(this.scene , tempID, tempMAt, animations, materialBlock, textu, childrenBlock);
-                    console.log(tempID);
-                    console.log(tempVect);
                 }
             }
         }else{
             this.components[compId] = new Component(this.scene , compId, transfBlock, animations, materialBlock, textu, childrenBlock); 
         }
     }
-        console.log(this.components);
         this.log("Parsed components");
         return null;
 
