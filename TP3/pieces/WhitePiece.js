@@ -1,7 +1,7 @@
 /**
  * A class representing a white piece.
  *
- */
+*/
 
 class WhitePiece extends Piece {
 

@@ -47,7 +47,7 @@ class XMLscene extends CGFscene {
 
 
         this.setPickEnabled(true);
-        this.setUpdatePeriod(50);
+        this.setUpdatePeriod(1./60);
 
     }
 
@@ -202,6 +202,7 @@ class XMLscene extends CGFscene {
     }
 
     if (this.gui.isKeyPressed("KeyP")) {
+        swal('ChangedPlayer');
       this.game.changeplayer();
 
     }
@@ -244,7 +245,7 @@ class XMLscene extends CGFscene {
 
 
   	update(currTime) {
-  		this.checkKey();
+  	  this.checkKey();
       this.updateComponent(currTime);
       this.updateWaterShader(currTime);
       this.updateGame(currTime);
@@ -270,9 +271,9 @@ class XMLscene extends CGFscene {
         }
       }
 
-      ispiece(string){
+    ispiece(string){
           if(string[0] >= 'a' && string[0] <= 's'){
               console.log('welele');
           }
-      }
+    }
 }
