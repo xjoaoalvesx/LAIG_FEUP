@@ -6,7 +6,9 @@
 class Piece {
 
 
-	constructor(position, type){
+	constructor(scene, position, type){
+
+		this.scene = scene;
 
 		this.type = type;
 
@@ -16,13 +18,15 @@ class Piece {
 
 		this.isSelected = false;
 
+		this.body = new Cylinder2(scene, 0.5, 0.5, 20, 15, 5);
+
 	}
 
-	get boardPosition(){
+	getBoardPosition(){
 		return this.boardPosition;
 	}
 
-	set boardPosition(cell){
+	setBoardPosition(cell){
 		this.boardPosition = cell;
 		if(! cell) return ;
 
@@ -32,5 +36,8 @@ class Piece {
 		return this.type;
 	}
 
+	display(){
+		console.log("Piece does not have a type\n");
+	}
 
 }

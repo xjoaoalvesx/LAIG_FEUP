@@ -13,7 +13,7 @@ class Game {
 
 		this.tablepos = [2.5,0,2.5,1];
 
-		this.player = 1;
+		this.player = "white";
 
 		this.perspective1 = [3.2,4,2.5,1];
 		this.perspective2 = [1.8,4,2.5,1];
@@ -22,6 +22,8 @@ class Game {
 
 		this.currentperspective = this.perspective1;
 		this.objectiveperspective = this.perspective1;
+
+		this.pieces = new Array(361);
 
 		this.begin = false;
 
@@ -32,15 +34,20 @@ class Game {
 	start(){
 		this.begin = true;
 		this.setView(this.perspective1);
+		this.pieces[0] = new WhitePiece(this.scene);
 	}
 
 	changeplayer(){
-		if(this.player == 1)
-			this.player = 2;
+		if(this.player == "white")
+			this.player = "black";
 		else {
-			this.player = 1;
+			this.player = "white";
 		}
 		this.changeperspective();
+	}
+
+	getPlayer(){
+		return this.player;
 	}
 
 	changeperspective(){
@@ -53,11 +60,24 @@ class Game {
 	setView(perspective){
 		this.playercamera = new CGFcamera(0.4, 0.1, 500, perspective, this.tablepos);
 		this.scene.camera = this.playercamera;
-		this.scene.interface.setActiveCamera(this.camera);
+		this.scene.interface.setActiveCamera(this.scene.camera);
+	}
+
+	validatePlay(row, line){
+		console.log("Row: " + row);
+		console.log("Line: " + line);
+	}
+
+	update(){
+		for(var i = 0; i < this.pieces.length; i++){
+			if(this.pieces[i] != null){
+				this.pieces[i].display();
+			}
+		}
 	}
 
 	updateView(currTime){
-		let newTime = Math.round(currTime/100);
+		let newTime = Math.round(currTime/10);
 
 		if(this.currentperspective == this.objectiveperspective)
 			return null;
@@ -69,14 +89,14 @@ class Game {
 
 		let movTime = newTime - this.deltaTime;
 		console.log(movTime);
-		if(movTime >= 100){
+		if(movTime >= 200){
 			this.setView(this.objectiveperspective);
 			this.deltaTime = 0;
 			this.currentperspective = this.objectiveperspective;
 			return null;
 		}
 
-		let currAng = Math.PI*(movTime)/100;
+		let currAng = Math.PI*(movTime)/200;
 		let x = this.currentperspective[0] - this.tablepos[0], y = this.currentperspective[1], z = this.currentperspective[2] - this.tablepos[2];
 		let radious = this.tablepos[0] - this.currentperspective[0];
 		let newX = ((x * Math.cos(currAng)) - (z * Math.sin(currAng))) + this.tablepos[0], newZ = ((z * Math.cos(currAng)) - (x * Math.sin(currAng))) + this.tablepos[2];

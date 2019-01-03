@@ -202,7 +202,6 @@ class XMLscene extends CGFscene {
     }
 
     if (this.gui.isKeyPressed("KeyP")) {
-      console.log('P');
       this.game.changeplayer();
 
     }
@@ -230,41 +229,50 @@ class XMLscene extends CGFscene {
         this.waterShader.setUniformsValues({timeFactor: t, timeFactor1 : t1});
     }
 
+    updateGame(currTime){
 
-	update(currTime) {
-		this.checkKey();
-    this.updateComponent(currTime);
-    this.updateWaterShader(currTime);
-    if(!this.game.begin){
-      if(this.Start)
-        this.game.start();
+      if(!this.game.begin){
+        if(this.Start)
+          this.game.start();
+      }
+      if(this.game.begin){
+        this.game.updateView(currTime);
+        this.game.update();
+      }
+
     }
-    if(this.game.begin)
-      this.game.updateView(currTime);
 
-  }
 
-  logPicking(){
+  	update(currTime) {
+  		this.checkKey();
+      this.updateComponent(currTime);
+      this.updateWaterShader(currTime);
+      this.updateGame(currTime);
 
-      if (this.pickMode == false) {
-          if (this.pickResults != null && this.pickResults.length > 0) {
-              for (var i=0; i< this.pickResults.length; i++) {
-                  console.log(this.pickResults[i][1]);
-                  var obj = this.pickResults[i][0];
-                  if (obj)
-                  {
-                      var customId = this.pickResults[i][1];
-                      console.log("Picked object: " + obj + ", with pick id " + customId);
-                  }
-              }
-              this.pickResults.splice(0,this.pickResults.length);
+    }
+
+    logPicking(){
+
+        if (this.pickMode == false) {
+            if (this.pickResults != null && this.pickResults.length > 0) {
+                for (var i=0; i< this.pickResults.length; i++) {
+                    var obj = this.pickResults[i][0];
+                    if (obj)
+                    {
+                        var customId = this.pickResults[i][1];
+                        var row =  customId / 100 >> 0;
+                        var line = customId % 100;
+                        this.game.validatePlay(row, line);
+                    }
+                }
+                this.pickResults.splice(0,this.pickResults.length);
+            }
+        }
+      }
+
+      ispiece(string){
+          if(string[0] >= 'a' && string[0] <= 's'){
+              console.log('welele');
           }
       }
-    }
-
-    ispiece(string){
-        if(string[0] >= 'a' && string[0] <= 's'){
-            console.log('welele');
-        }
-    }
 }
