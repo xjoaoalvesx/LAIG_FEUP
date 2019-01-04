@@ -11,7 +11,7 @@ function getUrlVars() {
     return vars;
 }
 //Include additional files here
-serialInclude(['../lib/CGF.js', 'XMLscene.js', 'MySceneGraph.js', 'MyInterface.js', 'MyRectangle.js' , 'MyCylinder.js' , 'MySphere.js' , 'Triangle.js' , 'Component.js' , 'Torus.js' , 'animations/Animation.js' , 'animations/LinearAnimation.js' , 'animations/CircularAnimation.js' , 'Plane.js', 'Patch.js', 'Terrain.js' , 'Water.js', 'Cylinder2.js', 'Vehicle.js', 'Cell.js', 'game/Game.js', 'pieces/Piece.js', 'pieces/WhitePiece.js', 'pieces/WhitePiece.js', 'SweetAlert2.js',
+serialInclude(['../lib/CGF.js', 'XMLscene.js', 'MySceneGraph.js', 'MyInterface.js', 'MyRectangle.js' , 'MyCylinder.js' , 'MySphere.js' , 'Triangle.js' , 'Component.js' , 'Torus.js' , 'animations/Animation.js' , 'animations/LinearAnimation.js' , 'animations/CircularAnimation.js' , 'Plane.js', 'Patch.js', 'Terrain.js' , 'Water.js', 'Cylinder2.js', 'Vehicle.js', 'Cell.js', 'game/Game.js', 'pieces/Piece.js', 'pieces/WhitePiece.js', 'pieces/BlackPiece.js','SweetAlert2.js', 'game/Elements.js',
 
 main=function()
 {

@@ -20,6 +20,7 @@ class BlackPiece extends Piece {
 	display(){
 		this.scene.pushMatrix();
 		this.material.apply();
+		this.scene.multMatrix(this.getPositionMatrix());
 		this.body.display();
 		this.scene.popMatrix();
 	}

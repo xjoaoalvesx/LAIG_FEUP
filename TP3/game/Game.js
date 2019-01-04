@@ -11,6 +11,8 @@ class Game {
 
 		this.scene = scene;
 
+		this.elements = new Elements(scene);
+
 		this.tablepos = [2.5,0,2.5,1];
 
 		this.player = "white";
@@ -23,7 +25,6 @@ class Game {
 		this.currentperspective = this.perspective1;
 		this.objectiveperspective = this.perspective1;
 
-		this.pieces = new Array(361);
 
 		this.begin = false;
 
@@ -34,7 +35,6 @@ class Game {
 	start(){
 		this.begin = true;
 		this.setView(this.perspective1);
-		this.pieces[0] = new WhitePiece(this.scene);
 	}
 
 	changeplayer(){
@@ -68,13 +68,7 @@ class Game {
 		console.log("Line: " + line);
 	}
 
-	update(){
-		for(var i = 0; i < this.pieces.length; i++){
-			if(this.pieces[i] != null){
-				this.pieces[i].display();
-			}
-		}
-	}
+	
 
 	updateView(currTime){
 		let newTime = Math.round(currTime/10);
@@ -103,4 +97,8 @@ class Game {
 		this.setView([newX,y,newZ,1]);
 	};
 
+	displayGame(){
+
+		this.elements.displayGame();
+	}
 };

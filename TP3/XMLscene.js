@@ -180,6 +180,8 @@ class XMLscene extends CGFscene {
 
             // Displays the scene (MySceneGraph function).
             this.graph.displayScene();
+
+            this.game.displayGame();
         }
         else {
             // Draw axis
@@ -238,7 +240,7 @@ class XMLscene extends CGFscene {
       }
       if(this.game.begin){
         this.game.updateView(currTime);
-        this.game.update();
+        //this.game.update();
       }
 
     }
