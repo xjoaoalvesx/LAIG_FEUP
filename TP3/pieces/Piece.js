@@ -59,7 +59,7 @@ class Piece extends CGFobject {
   }
 
 	moveToCell(row, line){
-		this.desired_position = [2.913 - (line * 0.046) , 0.501, 2.915 - (row * 0.046)];
+		this.desired_position = [3.163 - ((line - 1) * 0.046) , 0.501, 3.165 - ((row - 1) * 0.046)];
 	}
 
 	update(currTime){

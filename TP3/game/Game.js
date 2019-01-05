@@ -89,10 +89,6 @@ class Game {
 		}
 	}
 
-	update(currTime){
-		this.elements.update(currTime);
-	}
-
 	updateView(currTime){
 		let newTime = Math.round(currTime/10);
 
@@ -154,11 +150,11 @@ class Game {
 
 
 	update(currTime){
-
+		this.elements.update(currTime);
 
 		switch(this.currentState){
 
-			case this.state.NO_GAME : 
+			case this.state.NO_GAME :
 				break;
 
 			case this.state.HUMAN_VS_HUMAN :
@@ -177,7 +173,7 @@ class Game {
 				//this.aiPlay(this.state.WAIT_PIECE_H_VS_AI);
 				break;
 
-			case this.state.WAIT_PIECE_H_VS_AI : 
+			case this.state.WAIT_PIECE_H_VS_AI :
 				//this.waitHumanPiece(this.state.AI_PLAY_H_VS_AI);
 
 
