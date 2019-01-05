@@ -16,6 +16,11 @@ class WhitePiece extends Piece {
 		this.material.setShininess(1);
 	}
 
+	returnPiece(){
+		this.desired_position = [2 + (this.id - 10001)  * .01, 0.501, 2.2 - (((this.id - 10001) % 5) * 0.04)];
+		this.moving = 1;
+	}
+
 	display(id){
 		this.scene.pushMatrix();
 		this.scene.registerForPick(id, this);

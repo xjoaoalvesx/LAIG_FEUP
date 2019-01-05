@@ -1,5 +1,5 @@
 
-const MAX_PIECES = 25;
+const MAX_PIECES = 180;
 
 class Elements {
 
@@ -17,8 +17,9 @@ class Elements {
     	this.blackPieces = [];
 
     	for(let i = 0; i < MAX_PIECES; i++){
-    		this.whitePieces[i] = new WhitePiece(this.scene, [0.5 + i * .2, 0.3, 1.5 - (i % 2 ? 0 : 0.2)], 10001 + i);
-    		this.blackPieces[i] = new BlackPiece(this.scene, [0.5 + i * .2, 0.3, 4 - (i % 2 ? 0 : 0.2)], 20001 + i);
+				//if you alter this code you need to change returnPiece() at BlackPiece and WhitePiece as well
+    		this.whitePieces[i] = new WhitePiece(this.scene, [2 + i * .01, 0.501, 2.2 - ((i % 5) * 0.04)], 10001 + i);
+    		this.blackPieces[i] = new BlackPiece(this.scene, [2 + i * .01, 0.501, 3.3 + ((i % 5) * 0.04)], 20001 + i);
     	}
 
     }

@@ -17,6 +17,11 @@ class BlackPiece extends Piece {
 		this.material.setShininess(1);
 	}
 
+	returnPiece(){
+		this.desired_position = [2 + (this.id - 20001)  * .01, 0.501, 3.3 + (((this.id - 20001) % 5) * 0.04)];
+		this.moving = 1;
+	}
+
 	display(id){
 
 		this.scene.pushMatrix();
