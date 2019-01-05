@@ -15,7 +15,10 @@ class Game {
 
 		this.tablepos = [2.5,0,2.5,1];
 
-		this.player = "white";
+		this.player1 = null;
+		this.player2 = null;
+
+		this.currentPlayer = null;
 
 		this.perspective1 = [3.2,4,2.5,1];
 		this.perspective2 = [1.8,4,2.5,1];
@@ -25,6 +28,19 @@ class Game {
 		this.currentperspective = this.perspective1;
 		this.objectiveperspective = this.perspective1;
 
+		this.state = {
+			NO_GAME : 1,
+			HUMAN_VS_HUMAN : 2,
+			HUMAN_VS_AI : 3,
+			AI_VS_AI : 4,
+			WAIT_PIECE_H_VS_H : 5,
+			WAIT_PIECE_H_VS_AI : 6,
+			AI_PLAY_H_VS_AI : 7
+		}
+
+		this.currentState = this.state.NO_GAME;
+		this.previousState = null;
+
 
 		this.begin = false;
 
@@ -32,10 +48,6 @@ class Game {
 
 	};
 
-	start(){
-		this.begin = true;
-		this.setView(this.perspective1);
-	}
 
 	changeplayer(){
 		if(this.player == "white")
@@ -111,5 +123,67 @@ class Game {
 	displayGame(){
 
 		this.elements.displayGame();
+	}
+
+	setCurrentState(newState) {
+        this.previousState = this.currentState;
+        this.currentState = newState;
+    }
+
+    setPlayers(player1, player2){
+    	this.player1 = player1;
+    	this.player2 = player2;
+    }
+
+	startGame(player1, player2, nextState){
+		if(this.currentState == this.state.NO_GAME){
+			// make prologrequest
+			this.setPlayers(player1, player2);
+			this.currentPlayer = 2;
+			this.setCurrentState(nextState);
+
+		}
+		else{
+			swal (
+            'FAILED TO START GAME',
+            'There is a game in progress...',
+            'error'
+        	);
+		}
+	}
+
+
+	update(currTime){
+
+
+		switch(this.currentState){
+
+			case this.state.NO_GAME : 
+				break;
+
+			case this.state.HUMAN_VS_HUMAN :
+				// this.waitHumanPiece(this.state.WAIT_PIECE_H_VS_H)
+				break;
+
+			case this.state.HUMAN_VS_AI :
+				//
+				break;
+
+			case this.state.AI_VS_AI :
+				// this.aiPlay(this.state.AI_VS_AI);
+				break;
+
+			case this.state.AI_PLAY_H_VS_AI :
+				//this.aiPlay(this.state.WAIT_PIECE_H_VS_AI);
+				break;
+
+			case this.state.WAIT_PIECE_H_VS_AI : 
+				//this.waitHumanPiece(this.state.AI_PLAY_H_VS_AI);
+
+
+
+		}
+
+
 	}
 };

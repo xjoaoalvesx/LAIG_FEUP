@@ -47,13 +47,19 @@ class MyInterface extends CGFinterface {
     }
 
     addGameGroup(){
-        var group = this.gui.addFolder("Game");
-        group.open();
 
-        group.add(this.scene, "Start", false);
+        var gameModes = this.gui.addFolder("Game Modes");
 
-        group.close();
+        gameModes.open();
+
+        gameModes.add(this.scene, 'HumanVsHuman').name('Multiplayer');
+        gameModes.add(this.scene, 'HumanVsAi').name('SinglePlayer');
+        gameModes.add(this.scene, 'AiVsAi').name('Random X Random');
+        
+
+        gameModes.close();
     }
+
 
 
 

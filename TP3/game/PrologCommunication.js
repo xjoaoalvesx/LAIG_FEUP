@@ -32,9 +32,4 @@ class PrologCommunication {
 	}
 
 
-
-
-
-
-
 }

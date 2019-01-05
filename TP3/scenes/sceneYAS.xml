@@ -667,7 +667,7 @@
 
         <component id="a1">
             <transformation>
-                <translate x="2.913" y="0.501" z="2.915" />
+                <translate x="3.163" y="0.501" z="3.165" />
                 <rotate axis="x" angle="-90" />
                 <scale x="0.02" y="0.02" z="1" />
             </transformation>
@@ -682,7 +682,7 @@
 
         <component id="tab">
             <transformation>
-                <translate x="2.5" y="0.5001" z="2.5" />
+                <translate x="2.75" y="0.5001" z="2.75" />
                 <rotate axis="x" angle="-90" />
                 <scale x="1" y="1" z="1" />
             </transformation>
@@ -699,7 +699,7 @@
             <transformation>
                 <translate x="2.0" y="0.0" z="2.0" />
                 <rotate axis="x" angle="0" />
-                <scale x="1" y="0.5" z="1" />
+                <scale x="1.5" y="0.5" z="1.5" />
             </transformation>
             <materials>
                 <material id="white" />

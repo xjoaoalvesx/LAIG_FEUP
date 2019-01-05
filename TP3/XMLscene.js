@@ -15,6 +15,18 @@ class XMLscene extends CGFscene {
         this.lightValues = {};
         this.Start = false;
 
+        this.HumanVsHuman = function(){
+            swal('HumanVsHuman');
+        }
+
+        this.HumanVsAi = function(){
+            swal('HumanVsAi');
+        }
+
+        this.AiVsAi = function(){
+            swal('AiVsAi');
+        }
+
     }
 
     /**
