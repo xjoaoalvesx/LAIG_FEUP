@@ -21,7 +21,15 @@ class Piece extends CGFobject {
 
 		this.isSelected = false;
 
-		this.body = new Cylinder2(scene, 0.2, 0.2, 0.1, 15, 5);
+		this.body = new Cylinder2(scene, 0.02, 0.02, 0.01, 15, 5);
+		this.top = new Sphere(scene, 1, 10, 10);
+
+		this.squeezeMatrix = mat4.create();
+			mat4.scale(this.squeezeMatrix, this.squeezeMatrix, [0.02,0,0.02]);
+		this.translateMatrix = mat4.create();
+			mat4.translate(this.translateMatrix, this.translateMatrix, [0,0.01,0]);
+		this.rotateMatrix = mat4.create();
+			mat4.rotate(this.rotateMatrix, this.rotateMatrix, -(Math.PI/2), [1,0,0]);
 
 	}
 
@@ -41,8 +49,8 @@ class Piece extends CGFobject {
 
 	getPositionMatrix() {
         this.result = mat4.clone(this.positionMatrix);
-      
+
         return this.result;
-    }
+  }
 
 }

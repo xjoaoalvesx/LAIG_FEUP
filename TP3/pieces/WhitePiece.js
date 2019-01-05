@@ -20,7 +20,23 @@ class WhitePiece extends Piece {
 		this.scene.pushMatrix();
 		this.material.apply();
 		this.scene.multMatrix(this.getPositionMatrix());
-		this.body.display();
+
+			this.scene.pushMatrix();
+			this.scene.multMatrix(this.rotateMatrix);
+			this.body.display();
+			this.scene.popMatrix();
+
+			this.scene.pushMatrix();
+			this.scene.multMatrix(this.squeezeMatrix);
+			this.top.display();
+			this.scene.popMatrix();
+
+			this.scene.pushMatrix();
+			this.scene.multMatrix(this.translateMatrix);
+			this.scene.multMatrix(this.squeezeMatrix);
+			this.top.display();
+			this.scene.popMatrix();
+	
 		this.scene.popMatrix();
 	}
 }
