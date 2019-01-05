@@ -36,6 +36,10 @@ class Piece extends CGFobject {
 			mat4.rotate(this.rotateMatrix, this.rotateMatrix, -(Math.PI/2), [1,0,0]);
 
 		this.deltaTime = 0;
+		this.moving = 0;
+
+		this.jumpTime = 0;
+		this.jumping = 0;
 	}
 
 	getBoardPosition(){
@@ -60,11 +64,40 @@ class Piece extends CGFobject {
 
 	moveToCell(row, line){
 		this.desired_position = [3.163 - ((line - 1) * 0.046) , 0.501, 3.165 - ((row - 1) * 0.046)];
+		this.moving = 1;
+	}
+
+	updateSelected(currTime){
+		if((this.moving == 1 && this.jumping == 0) || (this.isSelected == false && this.jumping == 0)){
+			return null;
+		}
+
+		if(this.jumpTime == 0){
+			this.jumpTime = currTime;
+			this.jumping = 1;
+			return null;
+	 	}
+
+		let movTime = currTime - this.jumpTime;
+
+		if(movTime >= 4000){
+			mat4.identity(this.positionMatrix);
+			mat4.translate(this.positionMatrix, this.positionMatrix, this.position);
+			this.jumpTime = 0;
+			this.jumping = 0;
+			return null;
+		}
+
+		let heigth = 0.25 * Math.sin(Math.PI*(movTime)/4000);
+
+		mat4.identity(this.positionMatrix);
+		mat4.translate(this.positionMatrix, this.positionMatrix, [this.position[0], this.position[1] + heigth, this.position[2]]);
 	}
 
 	update(currTime){
+		this.updateSelected(currTime);
 		let newTime = Math.round(currTime/10);
-		if(this.position == this.desired_position)
+		if(this.position == this.desired_position || this.jumping == 1)
 			return null;
 
 		if(this.deltaTime == 0){
@@ -77,6 +110,7 @@ class Piece extends CGFobject {
 			mat4.identity(this.positionMatrix);
 			mat4.translate(this.positionMatrix, this.positionMatrix, this.desired_position);
 			this.deltaTime = 0;
+			this.moving = 0;
 			this.position = this.desired_position;
 			this.isSelected = false;
 			return null;
