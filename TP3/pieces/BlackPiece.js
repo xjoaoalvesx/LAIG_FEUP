@@ -6,8 +6,8 @@
 class BlackPiece extends Piece {
 
 
-	constructor(scene, position){
-		super(scene, position, "black");
+	constructor(scene, position, id){
+		super(scene, position, "black", id);
 
 		this.material = new CGFappearance(this.scene);
 		this.material.setAmbient(0.2,0.2,0.2,1);
@@ -17,27 +17,31 @@ class BlackPiece extends Piece {
 		this.material.setShininess(1);
 	}
 
-	display(){
+	display(id){
+
 		this.scene.pushMatrix();
 		this.material.apply();
 		this.scene.multMatrix(this.getPositionMatrix());
 
 			this.scene.pushMatrix();
+			this.scene.registerForPick(id, this.body);
 			this.scene.multMatrix(this.rotateMatrix);
 			this.body.display();
 			this.scene.popMatrix();
 
 			this.scene.pushMatrix();
+			this.scene.registerForPick(id, this.top);
 			this.scene.multMatrix(this.squeezeMatrix);
 			this.top.display();
 			this.scene.popMatrix();
 
 			this.scene.pushMatrix();
+			this.scene.registerForPick(id, this.top);
 			this.scene.multMatrix(this.translateMatrix);
 			this.scene.multMatrix(this.squeezeMatrix);
 			this.top.display();
 			this.scene.popMatrix();
-			
+
 		this.scene.popMatrix();
 	}
 }

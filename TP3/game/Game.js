@@ -66,9 +66,20 @@ class Game {
 	validatePlay(row, line){
 		console.log("Row: " + row);
 		console.log("Line: " + line);
+		var pieceId = this.elements.isPieceSelect();
+		console.log(pieceId);
+		if(pieceId == -1){
+			swal("Choose a Piece");
+			return null;
+		}
+		else{
+			this.elements.choosenPiece(pieceId).moveToCell(row, line);
+		}
 	}
 
-	
+	update(currTime){
+		this.elements.update(currTime);
+	}
 
 	updateView(currTime){
 		let newTime = Math.round(currTime/10);

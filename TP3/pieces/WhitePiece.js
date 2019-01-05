@@ -5,8 +5,8 @@
 
 class WhitePiece extends Piece {
 
-	constructor(scene, position){
-		super(scene, position, "white");
+	constructor(scene, position, id){
+		super(scene, position, "white", id);
 
 		this.material = new CGFappearance(this.scene);
 		this.material.setAmbient(0.2,0.2,0.2,1);
@@ -16,8 +16,9 @@ class WhitePiece extends Piece {
 		this.material.setShininess(1);
 	}
 
-	display(){
+	display(id){
 		this.scene.pushMatrix();
+		this.scene.registerForPick(id, this);
 		this.material.apply();
 		this.scene.multMatrix(this.getPositionMatrix());
 
@@ -36,7 +37,7 @@ class WhitePiece extends Piece {
 			this.scene.multMatrix(this.squeezeMatrix);
 			this.top.display();
 			this.scene.popMatrix();
-	
+
 		this.scene.popMatrix();
 	}
 }

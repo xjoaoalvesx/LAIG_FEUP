@@ -240,8 +240,8 @@ class XMLscene extends CGFscene {
       }
       if(this.game.begin){
         this.game.updateView(currTime);
-        //this.game.update();
       }
+      this.game.update(currTime);
 
     }
 
@@ -263,9 +263,17 @@ class XMLscene extends CGFscene {
                     if (obj)
                     {
                         var customId = this.pickResults[i][1];
-                        var row =  customId / 100 >> 0;
-                        var line = customId % 100;
-                        this.game.validatePlay(row, line);
+
+
+                        if(customId > 10000){
+                          this.game.elements.deselectAll();
+                          this.game.elements.selectPiece(customId);
+                        }else{
+                          var row =  customId / 100 >> 0;
+                          var line = customId % 100;
+                          this.game.validatePlay(row, line);
+                        }
+                        console.log(this.game.elements);
                     }
                 }
                 this.pickResults.splice(0,this.pickResults.length);
