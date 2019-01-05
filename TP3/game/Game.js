@@ -11,6 +11,8 @@ class Game {
 
 		this.scene = scene;
 
+		this.communication = new PrologCommunication(this);
+
 		this.elements = new Elements(scene);
 
 		this.tablepos = [2.5,0,2.5,1];
@@ -41,6 +43,9 @@ class Game {
 		this.currentState = this.state.NO_GAME;
 		this.previousState = null;
 
+		this.pickedCell = null;
+		this.pickedPiece = null;
+
 
 		this.begin = false;
 
@@ -48,12 +53,17 @@ class Game {
 
 	};
 
+	resetPickedElements() {
+        this.pickedPiece = null;
+        this.pickedCell = null;
+    }
+
 
 	changeplayer(){
-		if(this.player == "white")
-			this.player = "black";
+		if(this.currentPlayer == "white")
+			this.currentPlayer = "black";
 		else {
-			this.player = "white";
+			this.currentPlayer = "white";
 		}
 		this.changeperspective();
 	}
@@ -80,13 +90,34 @@ class Game {
 		console.log("Line: " + line);
 		var pieceId = this.elements.isPieceSelect();
 		console.log(pieceId);
+
 		if(pieceId == -1){
 			swal("Choose a Piece");
 			return null;
 		}
-		else{
-			this.elements.choosenPiece(pieceId).moveToCell(row, line);
+
+		switch(this.currentPlayer){
+
+			case "white" :
+
+				if(pieceId < 20000){
+					this.pickedCell = [row, line];
+					this.pickedPiece = pieceId;
+				}
+				return;
+
+			case "black" :
+
+				if(pieceId > 20000){
+					this.pickedCell = [row, line];
+					this.pickedPiece = pieceId;
+				}
+				return;
+
+			default :
+				break;
 		}
+		
 	}
 
 	updateView(currTime){
@@ -133,10 +164,17 @@ class Game {
 
 	startGame(player1, player2, nextState){
 		if(this.currentState == this.state.NO_GAME){
-			// make prologrequest
+			this.communication.getPrologRequest('begin');
 			this.setPlayers(player1, player2);
 			this.currentPlayer = 2;
 			this.setCurrentState(nextState);
+			let playerText1 = player1.toUpperCase() + (player1 != 'human'? ' AI' : '');
+        	let playerText2 = player2.toUpperCase() + (player2 != 'human'? ' AI' : '');
+			swal (
+				'The Game begins...',
+				playerText1 + '  vs  ' + playerText2,
+            	'success'
+			);
 
 		}
 		else{
@@ -152,13 +190,16 @@ class Game {
 	update(currTime){
 		this.elements.update(currTime);
 
+		this.elements.update(currTime);
+
 		switch(this.currentState){
 
 			case this.state.NO_GAME :
 				break;
 
 			case this.state.HUMAN_VS_HUMAN :
-				// this.waitHumanPiece(this.state.WAIT_PIECE_H_VS_H)
+				this.currentPlayer = "black";
+				this.waitHumanPiece(this.state.WAIT_PIECE_H_VS_H);
 				break;
 
 			case this.state.HUMAN_VS_AI :
@@ -167,6 +208,10 @@ class Game {
 
 			case this.state.AI_VS_AI :
 				// this.aiPlay(this.state.AI_VS_AI);
+				break;
+
+			case this.state.WAIT_PIECE_H_VS_H :
+				this.waitHumanPiece(this.state.WAIT_PIECE_H_VS_H);
 				break;
 
 			case this.state.AI_PLAY_H_VS_AI :
@@ -181,5 +226,21 @@ class Game {
 		}
 
 
+	}
+
+
+
+	waitHumanPiece(nextState){
+
+		if(this.pickedPiece && this.pickedCell){
+			console.log("LELELEL");
+			console.log(this.pickedCell);
+			//prlogrequest
+			this.elements.choosenPiece(this.pickedPiece).moveToCell(this.pickedCell[0], this.pickedCell[1]);
+			this.setCurrentState(nextState);
+
+			this.resetPickedElements();
+			this.changeplayer();
+		}
 	}
 };

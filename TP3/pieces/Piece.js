@@ -80,7 +80,7 @@ class Piece extends CGFobject {
 
 		let movTime = currTime - this.jumpTime;
 
-		if(movTime >= 4000){
+		if(movTime >= 800){
 			mat4.identity(this.positionMatrix);
 			mat4.translate(this.positionMatrix, this.positionMatrix, this.position);
 			this.jumpTime = 0;
@@ -88,7 +88,7 @@ class Piece extends CGFobject {
 			return null;
 		}
 
-		let heigth = 0.25 * Math.sin(Math.PI*(movTime)/4000);
+		let heigth = 0.25 * Math.sin(Math.PI*(movTime)/800);
 
 		mat4.identity(this.positionMatrix);
 		mat4.translate(this.positionMatrix, this.positionMatrix, [this.position[0], this.position[1] + heigth, this.position[2]]);

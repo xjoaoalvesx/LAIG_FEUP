@@ -101,22 +101,11 @@ print_header_line(_).
 %%%%                                       Commands                                                  %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-:- consult('board.pl').
-:- consult('cp.pl').
-:- consult('display.pl').
-:- consult('helper.pl').
-:- consult('input.pl').
-:- consult('menus.pl').
-:- consult('utilities.pl').
 :- consult('pente.pl').
 
-% Require your Prolog Files here
-parse_input(new_board(), Board) :- createEmptyBoard(19, Board).
 
-parse_input(playerMove(Type, Board, Result, PieceRow, PieceCol), [PieceRow,PieceCol]-Board-NewBoard) :-
-	checkEat(Board, Result, PieceRow, PieceCol, Type, MidBoard, NewResult),
-	insertOnPositon(PieceRow, PieceCol, Type, MidBoard, NewBoard).
 
-parse_input(winGame(Board, Type)) :- winGame(Board, Type).
+%%%%%%%%%%%REQUESTS PREDICATES%%%%%%%%%%%%%%%%%%%
 
-parse_input(quit, goodbye);
+parse_input(begin, Board):-
+	createEmptyBoard(19,Board).
