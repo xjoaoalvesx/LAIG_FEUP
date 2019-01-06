@@ -54,6 +54,26 @@ class Elements {
 		}
 	}
 
+	randomPieceForAi(type){
+
+		if(type = "white"){
+			let whitePieces = this.whitePieces;
+			for (let wPiece of whitePieces){
+	        	if(wPiece.isPlayed == false){
+	        		return wPiece;
+	        	}
+			}
+		}
+		else{
+			let blackPieces = this.blackPieces;
+			for (let bPiece of blackPieces){
+	        	if(bPiece.isPlayed == false){
+	        		return bPiece;
+	        	}
+			}
+		}
+	}
+
 	isPieceSelect(){
 
 		let whitePieces = this.whitePieces;

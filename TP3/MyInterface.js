@@ -57,7 +57,6 @@ class MyInterface extends CGFinterface {
         gameModes.add(this.scene, 'AiVsAi').name('RandomXRandom');
 
 
-        gameModes.close();
 
         var ingameOptions = this.gui.addFolder("Ingame Options");
 

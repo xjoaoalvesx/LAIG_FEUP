@@ -71,10 +71,11 @@ class Piece extends CGFobject {
 		this.moving = 1;
 		this.scene.game.putInBoard(this.id, line, row);
 		this.isPlayed = true;
+		this.scene.game.elements.playedPiece(this.id);
 	}
 
 	updateSelected(currTime){
-		if((this.moving == 1 && this.jumping == 0) || (this.isSelected == false && this.jumping == 0) || (this.isPlayed && this.jumping == 0)){
+		if( (this.moving == 1 && this.jumping == 0) || (this.isSelected == false && this.jumping == 0) || (this.isPlayed && this.jumping == 0)){
 			return null;
 		}
 

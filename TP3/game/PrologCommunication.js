@@ -58,6 +58,8 @@ class PrologCommunication {
 		}
 		else{
 			this.prologBoard = this.getBoardFromRequest(answer);
+			this.game.previousBoard = this.game.board;
+			this.game.board = this.getBoardFromRequest(answer);
 			this.boardIsChanged = true;
 		}
 

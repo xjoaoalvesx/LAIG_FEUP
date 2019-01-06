@@ -24,7 +24,7 @@ class XMLscene extends CGFscene {
         }
 
         this.AiVsAi = function(){
-            swal('AiVsAi');
+            this.game.startGame('AI', 'AI', this.game.state.AI_VS_AI);
         }
 
         this.Undo = function(){
@@ -221,7 +221,7 @@ class XMLscene extends CGFscene {
 
     if (this.gui.isKeyPressed("KeyP")) {
         swal('ChangedPlayer');
-      this.game.changeplayer();
+      //this.game.changeplayer();
 
     }
 

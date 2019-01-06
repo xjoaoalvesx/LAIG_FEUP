@@ -52,6 +52,27 @@ class Game {
 		[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 		[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]];
 
+		this.board = null;
+		this.previousBoard = [[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+		[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+		[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+		[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+		[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+		[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+		[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+		[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+		[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+		[0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0],
+		[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+		[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+		[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+		[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+		[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+		[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+		[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+		[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+		[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]];
+
 		this.state = {
 			NO_GAME : 1,
 			HUMAN_VS_HUMAN : 2,
@@ -59,7 +80,11 @@ class Game {
 			AI_VS_AI : 4,
 			WAIT_PIECE_H_VS_H : 5,
 			WAIT_PIECE_H_VS_AI : 6,
-			AI_PLAY_H_VS_AI : 7
+			AI_PLAY_H_VS_AI : 7,
+			AI_MOVE_H : 8,
+			AI_MOVE_AI : 9,
+
+
 		}
 
 		this.currentState = this.state.NO_GAME;
@@ -142,9 +167,9 @@ class Game {
 
 	}
 
-	putInBoard(id, row, line){
-		this.boardId[row-1][line-1] = id;
-		this.history.addmove([row, line], this.boardId);
+	putInBoard(id, line, row){
+		this.boardId[line-1][row-1] = id;
+		this.history.addmove([line, row], this.boardId);
 	}
 
 	updateView(currTime){
@@ -262,13 +287,52 @@ class Game {
 
 
 	update(currTime){
+
 		this.elements.update(currTime);
 
 		this.elements.update(currTime);
+
+		if(this.communication.boardIsChanged){
+
+			
+			this.communication.boardIsChanged = false;
+
+			switch(this.currentState){
+
+			case this.state.NO_GAME :
+			case this.state.HUMAN_VS_HUMAN :
+			case this.state.HUMAN_VS_AI :
+			case this.state.AI_VS_AI :
+			case this.state.WAIT_PIECE_H_VS_H :
+			case this.state.WAIT_PIECE_H_VS_AI :
+				break
+			case this.state.AI_MOVE_H:
+				this.waitAiMove(this.state.WAIT_PIECE_H_VS_AI);
+				break;
+
+
+			case this.state.AI_MOVE_AI:
+				this.waitAiMove(this.state.AI_VS_AI);
+				break;
+
+			case this.state.AI_PLAY_H_VS_AI :
+				this.waitAi(this.state.AI_MOVE_H);
+				break;
+
+			
+
+
+
+		}
+
+		}
 
 		switch(this.currentState){
 
 			case this.state.NO_GAME :
+				break;
+
+			case this.state.AI_MOVE_H:
 				break;
 
 			case this.state.HUMAN_VS_HUMAN :
@@ -282,7 +346,7 @@ class Game {
 				break;
 
 			case this.state.AI_VS_AI :
-				// this.aiPlay(this.state.AI_VS_AI);
+				 this.waitAi(this.state.AI_MOVE_AI);
 				break;
 
 			case this.state.WAIT_PIECE_H_VS_H :
@@ -290,7 +354,6 @@ class Game {
 				break;
 
 			case this.state.AI_PLAY_H_VS_AI :
-				this.waitAi(this.state.WAIT_PIECE_H_VS_AI);
 				break;
 
 			case this.state.WAIT_PIECE_H_VS_AI :
@@ -316,12 +379,12 @@ class Game {
 
 			this.communication.getPrologRequest(
                 'setPiece(' + this.pickedCell[1] + ',' +
-                this.pickedCell[0] + ',' + symbol + ',' + this.communication.setBoardToRequest(this.communication.getBoard())
+                this.pickedCell[0] + ',' + symbol + ',' + this.communication.setBoardToRequest(this.board)
                 + ')'
             );
 
 			this.elements.choosenPiece(this.pickedPiece).moveToCell(this.pickedCell[0], this.pickedCell[1]);
-			this.elements.playedPiece(this.pickedPiece);
+			
 			this.setCurrentState(nextState);
 
 			this.resetPickedElements();
@@ -333,13 +396,32 @@ class Game {
 
 		let symbol = this.currentPlayer != 'white' ? 1 : 2;
 
+
 			this.communication.getPrologRequest(
-                'ai(' +symbol + ',' +  this.communication.setBoardToRequest(this.communication.getBoard())
+                'ai(' +symbol + ',' +  this.communication.setBoardToRequest(this.board)
                 + ')'
             );
 
-		this.setCurrentState(nextState);
+
+		this.setCurrentState(nextState);	
+		this.resetPickedElements();
+	}
+
+	waitAiMove(nextState){
+
+		let symbol = this.currentPlayer != 'white' ? 1 : 2;
+
+
+        let move = this.history.diferencialConsecutiveBoards(this.previousBoard, this.board);
+
+        let piece = this.elements.randomPieceForAi(symbol);
+
+        piece.moveToCell(move[1] + 1, move[0] + 1);
+        
+        this.setCurrentState(nextState);
+
 		this.resetPickedElements();
 		this.changeplayer();
+
 	}
 };
