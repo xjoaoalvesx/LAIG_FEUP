@@ -27,6 +27,10 @@ class XMLscene extends CGFscene {
             swal('AiVsAi');
         }
 
+        this.Undo = function(){
+            this.game.history.undo();
+        }
+
     }
 
     /**
