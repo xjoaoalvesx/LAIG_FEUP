@@ -235,7 +235,15 @@ class Game {
 		if(this.pickedPiece && this.pickedCell){
 			console.log("LELELEL");
 			console.log(this.pickedCell);
-			//prlogrequest
+
+			let symbol = this.currentPlayer != 'white' ? 1 : 2;
+
+			this.communication.getPrologRequest(
+                'setPiece(' + this.pickedCell[1] + ',' +
+                this.pickedCell[0] + ',' + symbol + ',' + this.communication.setBoardToRequest(this.communication.getBoard())
+                + ')'
+            );
+
 			this.elements.choosenPiece(this.pickedPiece).moveToCell(this.pickedCell[0], this.pickedCell[1]);
 			this.setCurrentState(nextState);
 

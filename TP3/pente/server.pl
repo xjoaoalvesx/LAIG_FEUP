@@ -109,3 +109,9 @@ print_header_line(_).
 
 parse_input(begin, Board):-
 	createEmptyBoard(19,Board).
+
+parse_input(setPiece(Line, Col, Symbol, Board), NewBoard):-
+	insertOnPositon(Line, Col, Symbol, Board, NewBoard).
+
+
+	

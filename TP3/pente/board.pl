@@ -31,9 +31,8 @@ create_line(X, N, List)  :-
 insertOnPositon(Line, Column, Symbol, Board, NewBoard):-
     RealLine is Line - 1,
     RealColumn is Column -1,
-    checkInsertion(RealLine, RealColumn, Board),
-    replaceLine(RealLine, RealColumn, Symbol, Board, NewBoard),
-    write(Board),nl,write(NewBoard),nl.
+    checkInsertion(Line, Column, Board),
+    replaceLine(RealLine, RealColumn, Symbol, Board, NewBoard).
 
 replaceLine(_,_,_,[],REST):- REST = [], fail.
 replaceLine(Line, Column, Symbol, [L|NEXT_L], [NEW_L|NEW_NEXT]):-
@@ -59,6 +58,7 @@ forceInsert(Line, Column, Symbol, Board, NewBoard):-
     RealLine is Line - 1,
     RealColumn is Column -1,
     replaceLine(RealLine, RealColumn, Symbol, Board, NewBoard).
+
 
 %% caso base
 changeElem(_ , _, [], _).

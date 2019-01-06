@@ -6,10 +6,10 @@ inputPiece(Type, Board, NewBoard, Result, NewResult):-
 	insertOnPositon(PieceRow, PieceCol, Type, MidBoard, NewBoard).
 
 % second call in case of fail
-inputPiece(Type, Board, NewBoard):-
+inputPiece(Type, Board, NewBoard, Result, NewResult):-
 
 	write('\n--Imposible to make current play. Try Again!--'), nl, nl,
-	inputPiece(Type, Board, NewBoard).
+	inputPiece(Type, Board, NewBoard,Result, NewResult).
 
 % asks user for new piece position
 selectPosition(Row, Col):-

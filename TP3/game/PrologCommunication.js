@@ -69,5 +69,27 @@ class PrologCommunication {
         return board;
 	}
 
+	setBoardToRequest(board) {
+        let listLists = "[";
+
+        for (let row in board) {
+            let list = "[";
+
+            for (let element in board[row]) {
+                list = list.concat(board[row][element], ',');
+            }
+
+            listLists = listLists.concat(list.slice(0, list.length - 1), "],");
+        }
+
+        let tempList = listLists.slice(0, listLists.length - 1);
+        listLists = tempList.concat("]");
+        return listLists;
+    }
+
+    getBoard(){
+    	return this.prologBoard;
+    }
+
 
 }
