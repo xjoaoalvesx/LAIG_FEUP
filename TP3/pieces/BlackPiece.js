@@ -20,6 +20,7 @@ class BlackPiece extends Piece {
 	returnPiece(){
 		this.desired_position = [2 + (this.id - 20001)  * .01, 0.501, 3.3 + (((this.id - 20001) % 5) * 0.04)];
 		this.moving = 1;
+		this.isPlayed = false;
 	}
 
 	display(id){

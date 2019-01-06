@@ -25,6 +25,8 @@ class Piece extends CGFobject {
 
 		this.isSelected = false;
 
+		this.isPlayed = false;
+
 		this.body = new Cylinder2(scene, 0.02, 0.02, 0.01, 15, 5);
 		this.top = new Sphere(scene, 1, 10, 10);
 
@@ -63,12 +65,16 @@ class Piece extends CGFobject {
   }
 
 	moveToCell(row, line){
+		if(this.isPlayed)
+			return null;
 		this.desired_position = [3.163 - ((line - 1) * 0.046) , 0.501, 3.165 - ((row - 1) * 0.046)];
 		this.moving = 1;
+		this.scene.game.putInBoard(this.id, row, line);
+		this.isPlayed = true;
 	}
 
 	updateSelected(currTime){
-		if((this.moving == 1 && this.jumping == 0) || (this.isSelected == false && this.jumping == 0)){
+		if((this.moving == 1 && this.jumping == 0) || (this.isSelected == false && this.jumping == 0)) || (this.isPlayed && this.jumping == 0){
 			return null;
 		}
 
