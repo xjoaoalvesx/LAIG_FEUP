@@ -4,17 +4,17 @@
 %% Size = Size of the Board
 %% Board - return of the board
 
-createEmptyBoard(Size, Board):- 
+createEmptyBoard(Size, Board):-
     create_line(0, Size, A),
     length(Board, Size),
     maplist(=(A), Board).
 
 %%% X - Symbol to be insert in every position of List
-%%% N - Size of a line 
+%%% N - Size of a line
 %%% List - Return of a line
 
-create_line(X, N, List)  :- 
-    length(List, N), 
+create_line(X, N, List)  :-
+    length(List, N),
     maplist(=(X), List).
 
 
@@ -25,29 +25,43 @@ create_line(X, N, List)  :-
 %% Board - Board to be Changed,
 %% List1 - Return the Board changed
 
-insertOnPositon(Line, Column, Symbol, Board, List1):-
-    checkInsertion(Line, Column, Board),
-    RealLine is Line - 1,
-    nth1(Line, Board, Change),
-    changeElem(Column, Symbol, Change, Changed),
-    nth0(0,[H|T], Changed),
-    copy(Board, TempList, RealLine), 
-    copy2(Board, HalfBoard, Line, 0), 
-    append(TempList, [H|T], FH),
-    append(FH, HalfBoard, List1).
 
-forceInsert(Line, Column, Symbol, Board, List1):-
+
+%insertOnPositon(Line, Column, Symbol, Board, NewBoard)
+insertOnPositon(Line, Column, Symbol, Board, NewBoard):-
     RealLine is Line - 1,
-    nth1(Line, Board, Change),
-    changeElem(Column, Symbol, Change, Changed),
-    nth0(0,[H|T], Changed),
-    copy(Board, TempList, RealLine), 
-    copy2(Board, HalfBoard, Line, 0), 
-    append(TempList, [H|T], FH),
-    append(FH, HalfBoard, List1).
+    RealColumn is Column -1,
+    checkInsertion(RealLine, RealColumn, Board),
+    replaceLine(RealLine, RealColumn, Symbol, Board, NewBoard),
+    write(Board),nl,write(NewBoard),nl.
+
+replaceLine(_,_,_,[],REST):- REST = [], fail.
+replaceLine(Line, Column, Symbol, [L|NEXT_L], [NEW_L|NEW_NEXT]):-
+    Line = 0,
+    replaceColumn(Column, Symbol, L, NEW_L),
+    NEW_NEXT = NEXT_L.
+replaceLine(Line, Column, Symbol, [L|NEXT_L], [NEW_L|NEW_NEXT]):-
+    N_Line is Line - 1,
+    NEW_L = L,
+    replaceLine(N_Line, Column, Symbol, NEXT_L, NEW_NEXT).
+
+replaceColumn(_,_,[],REST):- REST = [], fail.
+replaceColumn(Column, Symbol, [_| REST_OLD], [New_Symbol | REST_NEW]):-
+    Column = 0,
+    New_Symbol = Symbol,
+    REST_NEW = REST_OLD.
+replaceColumn(Column, Symbol, [Old_Symbol | REST_OLD], [New_Symbol | REST_NEW]):-
+    New_Column is Column - 1,
+    New_Symbol = Old_Symbol,
+    replaceColumn(New_Column, Symbol, REST_OLD, REST_NEW).
+
+forceInsert(Line, Column, Symbol, Board, NewBoard):-
+    RealLine is Line - 1,
+    RealColumn is Column -1,
+    replaceLine(RealLine, RealColumn, Symbol, Board, NewBoard).
 
 %% caso base
-changeElem(_ , _, [], _). 
+changeElem(_ , _, [], _).
 
 %% Change an element in the List [H|T]
 %% Index - Index of the element to be changed, between [1, size of the board]
@@ -74,7 +88,7 @@ copy([H|T], [A|B], X):-
 %% copy the board from index X until the end
 %% [H|T] - Board to be copied
 %% [A|B] - Copy of the board starting in index X
-%% X - Index where the copy may start 
+%% X - Index where the copy may start
 
 copy2([H|T], [A|B], X, Contador):-
     X > Contador -> Contador1 is Contador + 1, copy2(T, [A|B], X, Contador1);
@@ -87,7 +101,7 @@ copy2([H|T], [A|B], X, Contador):-
 %% Symbol - Return the symbol in the position(Line, Column)
 getElemInPosition(Board, Line, Column,Type):-
     nth1(Line, Board, A),
-    nth1(Column, A, Type). 
+    nth1(Column, A, Type).
 
 
 %% fail if (Line, Column) is not a 0. Can only insert in empty spaces
@@ -101,7 +115,7 @@ checkInsertion(Line, Column, Board):-
 
 % check a five sequence in a line
 % +Line - List where will be search a segmente of 5 Type elements
-% +Type -  
+% +Type -
 checkFiveInLine(Line, Type):-
     length(N, 5),
     maplist(=(Type), N),
@@ -111,11 +125,11 @@ checkFiveInLine(Line, Type):-
 checkLines([], _).
 
 % +[H|T] - Board wich lines will be search for 5 sequenced elements of Type
-% +Type - Type that will be checked 
+% +Type - Type that will be checked
 checkLines([H|T], Type):-
     \+ checkFiveInLine(H, Type), %% false if found a five sequence
     checkLines(T, Type).
-    
+
 
 
 %% Search for a victory in every direction
@@ -201,7 +215,7 @@ winDiagonal4(Board, Type):-
 computeLRDown(_, Line, _, BoardSize,List2, AllDiag):- Line =:= BoardSize - 3, AllDiag = List2.
 computeLRDown(Board, L, C, BoardSize, AllDiagTemp, AllDiag):-
     lrInc(Board, L, C, BoardSize, _, Diag),
-    L1 is L + 1,   
+    L1 is L + 1,
     append(AllDiagTemp, [Diag], List1),
     computeLRDown(Board, L1, C, BoardSize, List1, AllDiag).
 
@@ -217,7 +231,7 @@ computeLRDown(Board, L, C, BoardSize, AllDiagTemp, AllDiag):-
 computeLRUp(_, _, Column, BoardSize, List2, AllDiag):- Column =:= BoardSize - 3, AllDiag = List2.
 computeLRUp(Board, L, C, BoardSize, AllDiagTemp, AllDiag):-
     lrInc(Board, L, C, BoardSize, _, Diag),
-    C1 is C + 1,   
+    C1 is C + 1,
     append(AllDiagTemp, [Diag], List1),
     computeLRUp(Board, L, C1, BoardSize, List1, AllDiag).
 
@@ -251,7 +265,7 @@ lrInc(Board,Line, Column, BoardSize, Diagonal, FinalDiagonal):-
 computeRLDown(_, Line, _, BoardSize,List2, AllDiag):- Line =:= BoardSize - 3, AllDiag = List2.
 computeRLDown(Board, L, C, BoardSize, AllDiagTemp, AllDiag):-
     rlInc(Board, L, C, BoardSize, _, Diag),
-    L1 is L + 1,   
+    L1 is L + 1,
     append(AllDiagTemp, [Diag], List1),
     computeRLDown(Board, L1, C, BoardSize, List1, AllDiag).
 
@@ -266,7 +280,7 @@ computeRLDown(Board, L, C, BoardSize, AllDiagTemp, AllDiag):-
 computeRLUp(_, _, Column, _,List2, AllDiag):- Column = 4, AllDiag = List2.
 computeRLUp(Board, L, C, BoardSize, AllDiagTemp, AllDiag):-
     rlInc(Board, L, C, BoardSize, _, Diag),
-    C1 is C - 1,   
+    C1 is C - 1,
     append(AllDiagTemp, [Diag], List1),
     computeRLUp(Board, L, C1, BoardSize, List1, AllDiag).
 
@@ -290,11 +304,11 @@ rlInc(Board,Line, Column, BoardSize, Diagonal, FinalDiagonal):-
 %incremente the socre of the game
 % +[H|T] - current score
 % +Type - who eat
-% -NewResult - the result  
+% -NewResult - the result
 playerEat([H|T], Type, NewResult):-
     Type = 1,
     nth1(Type, [H|T], Elem),
-    N is Elem + 2, 
+    N is Elem + 2,
     append([N], T, NewResult).
 
 playerEat([H|T], _, NewResult):-
@@ -303,7 +317,7 @@ playerEat([H|T], _, NewResult):-
     append([H], [N], NewResult).
 
 % Check if a player can eat pieces and update the score
-% +Board - Current Board 
+% +Board - Current Board
 % +Result - Current score
 % +Line - line where the player inserted his piece
 % +Column - column where the player inserted his piece
@@ -318,8 +332,8 @@ checkEat(Board, Result, Line, Column, Type, NewBoard, NewResult):-
     getElemInPosition(Board, Line1, Column, Type1),
     getElemInPosition(Board, Line2, Column, Type2),
     getElemInPosition(Board, Line3, Column, Type3),
-    Type = Type3, 
-    Opposite = Type2, 
+    Type = Type3,
+    Opposite = Type2,
     Opposite = Type1,
     forceInsert(Line1, Column, 0, Board, BoardIntermidiate),
     forceInsert(Line2, Column, 0, BoardIntermidiate, OtherBoard),
@@ -335,8 +349,8 @@ checkEat(Board, Result, Line, Column, Type, NewBoard, NewResult):-
     getElemInPosition(Board, Line1, Column, Type1),
     getElemInPosition(Board, Line2, Column, Type2),
     getElemInPosition(Board, Line3, Column, Type3),
-    Type = Type3, 
-    Opposite = Type2, 
+    Type = Type3,
+    Opposite = Type2,
     Opposite = Type1,
     forceInsert(Line1, Column, 0, Board, BoardIntermidiate),
     forceInsert(Line2, Column, 0, BoardIntermidiate, OtherBoard),
@@ -352,8 +366,8 @@ checkEat(Board, Result, Line, Column, Type, NewBoard, NewResult):-
     getElemInPosition(Board, Line, Col1, Type1),
     getElemInPosition(Board, Line, Col2, Type2),
     getElemInPosition(Board, Line, Col3, Type3),
-    Type = Type3, 
-    Opposite = Type2, 
+    Type = Type3,
+    Opposite = Type2,
     Opposite = Type1,
     forceInsert(Line, Col1, 0, Board, BoardIntermidiate),
     forceInsert(Line, Col2, 0, BoardIntermidiate, OtherBoard),
@@ -369,8 +383,8 @@ checkEat(Board, Result, Line, Column, Type, NewBoard, NewResult):-
     getElemInPosition(Board, Line, Col1, Type1),
     getElemInPosition(Board, Line, Col2, Type2),
     getElemInPosition(Board, Line, Col3, Type3),
-    Type = Type3, 
-    Opposite = Type2, 
+    Type = Type3,
+    Opposite = Type2,
     Opposite = Type1,
     forceInsert(Line, Col1, 0, Board, BoardIntermidiate),
     forceInsert(Line, Col2, 0, BoardIntermidiate, OtherBoard),
@@ -389,8 +403,8 @@ checkEat(Board, Result, Line, Column, Type, NewBoard, NewResult):-
     getElemInPosition(Board, Line1, Col1, Type1),
     getElemInPosition(Board, Line2, Col2, Type2),
     getElemInPosition(Board, Line3, Col3, Type3),
-    Type = Type3, 
-    Opposite = Type2, 
+    Type = Type3,
+    Opposite = Type2,
     Opposite = Type1,
     forceInsert(Line1, Col1, 0, Board, BoardIntermidiate),
     forceInsert(Line2, Col2, 0, BoardIntermidiate, OtherBoard),
@@ -410,8 +424,8 @@ checkEat(Board, Result, Line, Column, Type, NewBoard, NewResult):-
     getElemInPosition(Board, Line1, Col1, Type1),
     getElemInPosition(Board, Line2, Col2, Type2),
     getElemInPosition(Board, Line3, Col3, Type3),
-    Type = Type3, 
-    Opposite = Type2, 
+    Type = Type3,
+    Opposite = Type2,
     Opposite = Type1,
     forceInsert(Line1, Col1, 0, Board, BoardIntermidiate),
     forceInsert(Line2, Col2, 0, BoardIntermidiate, OtherBoard),
@@ -431,8 +445,8 @@ checkEat(Board, Result, Line, Column, Type, NewBoard, NewResult):-
     getElemInPosition(Board, Line1, Col1, Type1),
     getElemInPosition(Board, Line2, Col2, Type2),
     getElemInPosition(Board, Line3, Col3, Type3),
-    Type = Type3, 
-    Opposite = Type2, 
+    Type = Type3,
+    Opposite = Type2,
     Opposite = Type1,
     forceInsert(Line1, Col1, 0, Board, BoardIntermidiate),
     forceInsert(Line2, Col2, 0, BoardIntermidiate, OtherBoard),
@@ -452,8 +466,8 @@ checkEat(Board, Result, Line, Column, Type, NewBoard, NewResult):-
     getElemInPosition(Board, Line1, Col1, Type1),
     getElemInPosition(Board, Line2, Col2, Type2),
     getElemInPosition(Board, Line3, Col3, Type3),
-    Type = Type3, 
-    Opposite = Type2, 
+    Type = Type3,
+    Opposite = Type2,
     Opposite = Type1,
     forceInsert(Line1, Col1, 0, Board, BoardIntermidiate),
     forceInsert(Line2, Col2, 0, BoardIntermidiate, NewBoard),
@@ -470,7 +484,7 @@ changeType(2, 1).
 
 %Check a win by number of pieces eat
 % +[B|_]/([_|W] - current Result
-% 1/2 - Player 
+% 1/2 - Player
 winByPieces([B|_], 1):-
     integer(B),
     B >= 10.
@@ -509,5 +523,3 @@ conversion('W', 23).
 conversion('X', 24).
 conversion('Y', 25).
 conversion('Z', 26).
-
-
