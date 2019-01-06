@@ -39,7 +39,6 @@ class GameHistory{
   }
 
   addmove(move, board){
-    //var tempB = [...board];
     var TempB =JSON.parse(JSON.stringify(board));
     console.log(this.boards);
     this.moves.push(move);
@@ -53,7 +52,6 @@ class GameHistory{
       if(this.boards.length <= 1){
         this.reset();
         this.scene.game.resetPickedElements();
-        
         return null;
       }
 

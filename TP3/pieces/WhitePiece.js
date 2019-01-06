@@ -20,6 +20,7 @@ class WhitePiece extends Piece {
 		this.desired_position = [2 + (this.id - 10001)  * .01, 0.501, 2.2 - (((this.id - 10001) % 5) * 0.04)];
 		this.moving = 1;
 		this.isPlayed = false;
+		this.game.removeIdFromBoard(this.id);
 	}
 
 	display(id){

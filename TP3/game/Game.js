@@ -169,7 +169,31 @@ class Game {
 
 	putInBoard(id, line, row){
 		this.boardId[line-1][row-1] = id;
+		this.eatpieces();
 		this.history.addmove([line, row], this.boardId);
+	}
+
+	eatpieces(){
+		for(let i = 0; i < this.boardId.length; i++){
+			for(let j = 0; j < this.boardId[i].length; j++){
+				if(this.boardId[i][j] == 0){
+					continue;
+				}
+				if(this.board[i][j] == 0){
+					let eatenPiece = this.elements.choosenPiece(this.boardId[i][j]);
+					eatenPiece.returnPiece();
+				}
+			}
+		}
+	}
+
+	removeIdFromBoard(id){
+		for(let i = 0; i < this.boardId.length; i++){
+			for(let j = 0; j < this.boardId[i].length; j++){
+				if(this.boardId[i][j] == id)
+					this.boardId[i][j] = 0;
+			}
+		}
 	}
 
 	updateView(currTime){
@@ -207,12 +231,22 @@ class Game {
 	setCurrentState(newState) {
         this.previousState = this.currentState;
         this.currentState = newState;
-    }
+  }
 
-    setPlayers(player1, player2){
-    	this.player1 = player1;
-    	this.player2 = player2;
-    }
+  setPlayers(player1, player2){
+  	this.player1 = player1;
+  	this.player2 = player2;
+  }
+
+	removeIdFromBoard(id){
+		for(let i = 0; i < this.boardId.length; i++){
+			for(let j = 0; j < this.boardId[i].length; j++){
+				if(this.boardId[i][j] == id){
+					this.boardId[i][j] = 0;
+				}
+			}
+		}
+	}
 
 	startGame(player1, player2, nextState){
 		if(this.currentState == this.state.NO_GAME){
