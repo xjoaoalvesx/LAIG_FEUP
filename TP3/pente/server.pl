@@ -103,6 +103,19 @@ print_header_line(_).
 
 :- consult('pente.pl').
 
+%%%%%%%%%%%%%%%%%PREDICATES%%%%%%%%%%%%%%%%%%%%%
+
+checkResult(Symbol, Board, Result):-
+	winGame(Board, Symbol),
+	winner(Symbol, Board, Result), !.
+
+checkResult(Symbol, Board, Board).
+
+
+
+winner(1, Board, 'victory black'-Board):- !.
+winner(2, Board, 'victory white'-Board):- !.
+
 
 
 %%%%%%%%%%%REQUESTS PREDICATES%%%%%%%%%%%%%%%%%%%
@@ -110,8 +123,15 @@ print_header_line(_).
 parse_input(begin, Board):-
 	createEmptyBoard(19,Board).
 
-parse_input(setPiece(Line, Col, Symbol, Board), NewBoard):-
-	insertOnPositon(Line, Col, Symbol, Board, NewBoard).
+parse_input(setPiece(Line, Col, Symbol, Board), Result):-
+	insertOnPositon(Line, Col, Symbol, Board, NewBoard),
+	checkResult(Symbol, NewBoard, Result).
 
+parse_input(ai(Symbol, Board), Result):-
+	choose_move(Board, 1, Move, 1), 
+	nth1(1, Move, R),
+	nth1(2, Move, C),
+	insertOnPositon(R, C, Symbol, Board, NewBoard),
+	checkResult(Symbol, NewBoard, Result).
 
 	

@@ -54,7 +54,7 @@ class MyInterface extends CGFinterface {
 
         gameModes.add(this.scene, 'HumanVsHuman').name('Multiplayer');
         gameModes.add(this.scene, 'HumanVsAi').name('SinglePlayer');
-        gameModes.add(this.scene, 'AiVsAi').name('Random X Random');
+        gameModes.add(this.scene, 'AiVsAi').name('RandomXRandom');
         
 
         gameModes.close();

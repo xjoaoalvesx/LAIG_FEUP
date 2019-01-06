@@ -20,7 +20,7 @@ class XMLscene extends CGFscene {
         }
 
         this.HumanVsAi = function(){
-            swal('HumanVsAi');
+            this.game.startGame('human', 'AI' , this.game.state.HUMAN_VS_AI);
         }
 
         this.AiVsAi = function(){

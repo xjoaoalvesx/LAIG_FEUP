@@ -186,6 +186,53 @@ class Game {
 		}
 	}
 
+	resetGame(answer){
+
+		this.setCurrentState(this.state.NO_GAME);
+
+		let message = answer.split(" ");
+
+		if(message[0]=='victory'){
+
+			let results = message[1].split("-");
+			let str = results[0] == "white"? 2 : 1;
+
+			let endGameCallbackFunction = function (winner, result) {
+            if (result.value || result.dismiss === 'overlay') {
+                swal({
+                    title: 'What to do now?',
+                    type: 'question',
+                    showCancelButton: true,
+                    focusConfirm: false,
+                    confirmButtonColor: '#248f24',
+                    confirmButtonText: 'Watch Game Movie',
+                    cancelButtonColor: '#BC1510',
+                    cancelButtonText: 'Reset Game',
+                }).then((result) => {
+                    if (result.value) {
+                        //this.game.playGameFilm(this.showWinner.bind(this, str));
+                    } else if(result.dismiss === 'overlay' ||
+                              result.dismiss === 'cancel') {
+                        //this.game.boardHistory.reset();
+                        this.elements.reset();
+                        //this.game.scoreboard.playerWin(winner);
+                        this.communication.resetBoard();
+                    }
+                });
+            }
+        };
+        
+        if (str == 1 || str == 2) {
+            swal( 
+                'Player ' + str + ' wins!',
+                'Congratulations!',
+                'success'
+            ).then(endGameCallbackFunction.bind(this, str));
+        } 
+		}
+
+	}
+
 
 	update(currTime){
 		this.elements.update(currTime);
@@ -203,7 +250,8 @@ class Game {
 				break;
 
 			case this.state.HUMAN_VS_AI :
-				//
+				this.currentPlayer = "black";
+				this.waitHumanPiece(this.state.AI_PLAY_H_VS_AI);
 				break;
 
 			case this.state.AI_VS_AI :
@@ -215,11 +263,12 @@ class Game {
 				break;
 
 			case this.state.AI_PLAY_H_VS_AI :
-				//this.aiPlay(this.state.WAIT_PIECE_H_VS_AI);
+				this.waitAi(this.state.WAIT_PIECE_H_VS_AI);
 				break;
 
 			case this.state.WAIT_PIECE_H_VS_AI :
-				//this.waitHumanPiece(this.state.AI_PLAY_H_VS_AI);
+				this.waitHumanPiece(this.state.AI_PLAY_H_VS_AI);
+				break;
 
 
 
@@ -245,10 +294,25 @@ class Game {
             );
 
 			this.elements.choosenPiece(this.pickedPiece).moveToCell(this.pickedCell[0], this.pickedCell[1]);
+			this.elements.playedPiece(this.pickedPiece);
 			this.setCurrentState(nextState);
 
 			this.resetPickedElements();
 			this.changeplayer();
 		}
+	}
+
+	waitAi(nextState){
+
+		let symbol = this.currentPlayer != 'white' ? 1 : 2;
+
+			this.communication.getPrologRequest(
+                'ai(' +symbol + ',' +  this.communication.setBoardToRequest(this.communication.getBoard())
+                + ')'
+            );
+
+		this.setCurrentState(nextState);
+		this.resetPickedElements();
+		this.changeplayer();
 	}
 };

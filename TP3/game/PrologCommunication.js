@@ -53,8 +53,15 @@ class PrologCommunication {
 
 	handlerResponse(answer){
 
-		this.prologBoard = this.getBoardFromRequest(answer);
-		this.boardIsChanged = true;
+		if(answer.charAt(0) == 'v'){
+			this.game.resetGame(answer);
+		}
+		else{
+			this.prologBoard = this.getBoardFromRequest(answer);
+			this.boardIsChanged = true;
+		}
+
+		
 	}
 
 	getBoardFromRequest(string){
@@ -89,6 +96,10 @@ class PrologCommunication {
 
     getBoard(){
     	return this.prologBoard;
+    }
+
+    resetBoard(){
+    	this.prologBoard = null;
     }
 
 

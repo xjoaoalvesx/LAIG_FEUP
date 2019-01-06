@@ -13,6 +13,8 @@ class Elements {
 
     setUpGameElements(){
 
+    	this.piecesInPlay = [];
+
     	this.whitePieces = [];
     	this.blackPieces = [];
 
@@ -24,59 +26,62 @@ class Elements {
 
     }
 
-		deselectAll(){
-			let whitePieces = this.whitePieces;
-			for (let wPiece of whitePieces){
+	deselectAll(){
+
+		let whitePieces = this.whitePieces;
+		for (let wPiece of whitePieces){
 	        wPiece.isSelected = false;
-			}
-			let blackPieces = this.blackPieces;
-			for (let bPiece of blackPieces){
+		}
+		let blackPieces = this.blackPieces;
+		for (let bPiece of blackPieces){
 	        bPiece.isSelected = false;
 	    }
-		}
+	}
 
-		selectPiece(id){
-			if(id > 20000){
-				let blackPieces = this.blackPieces;
-				for (let bPiece of blackPieces){
-						if(bPiece.id == id)
-		        	bPiece.isSelected = true;
-		    }
-			}else{
-				let whitePieces = this.whitePieces;
-				for (let wPiece of whitePieces){
-					if(wPiece.id == id)
-						wPiece.isSelected = true;
-				}
-			}
+	selectPiece(id){
+		if(id > 20000){
+		let blackPieces = this.blackPieces;
+		for (let bPiece of blackPieces){
+			if(bPiece.id == id)
+		        bPiece.isSelected = true;
 		}
-
-		isPieceSelect(){
-			let whitePieces = this.whitePieces;
-			for (let wPiece of whitePieces){
-				if(wPiece.isSelected == true)
-					return wPiece.id;
-			}
-			let blackPieces = this.blackPieces;
-			for (let bPiece of blackPieces){
-					if(bPiece.isSelected == true)
-						return bPiece.id;
-			}
-			return -1;
-		}
-
-		choosenPiece(id){
+		}else{
 			let whitePieces = this.whitePieces;
 			for (let wPiece of whitePieces){
 				if(wPiece.id == id)
-					return wPiece;
-			}
-			let blackPieces = this.blackPieces;
-			for (let bPiece of blackPieces){
-					if(bPiece.id == id)
-						return bPiece;
+					wPiece.isSelected = true;
 			}
 		}
+	}
+
+	isPieceSelect(){
+
+		let whitePieces = this.whitePieces;
+		for (let wPiece of whitePieces){
+			if(wPiece.isSelected == true)
+				return wPiece.id;
+		}
+		let blackPieces = this.blackPieces;
+		for (let bPiece of blackPieces){
+			if(bPiece.isSelected == true)
+				return bPiece.id;
+		}
+		return -1;
+	}
+
+	choosenPiece(id){
+		
+		let whitePieces = this.whitePieces;
+		for (let wPiece of whitePieces){
+			if(wPiece.id == id)
+				return wPiece;
+		}
+		let blackPieces = this.blackPieces;
+		for (let bPiece of blackPieces){
+			if(bPiece.id == id)
+				return bPiece;
+		}
+	}
 
     displayGame(){
 
@@ -90,13 +95,40 @@ class Elements {
 	    }
     }
 
-		update(currTime){
+	update(currTime){
+
 	    for (let wPiece of this.whitePieces){
 	        wPiece.update(currTime);
 			}
 	    for (let bPiece of this.blackPieces){
 	        bPiece.update(currTime);
 	    }
+	}
+
+	playedPiece(id){
+		this.piecesInPlay.push(id);
+	}
+
+	reset(){
+
+		for(let i = 0; i < this.piecesInPlay.length; i++){
+
+			let id = this.piecesInPlay[i];
+
+			for (let wPiece of this.whitePieces){
+	        	if(wPiece.id == id){
+	        		wPiece.returnPiece();
+	        	}
+			}
+	    	for (let bPiece of this.blackPieces){
+	        	if(bPiece.id == id){
+	        		bPiece.returnPiece();
+	        	}
+	   		}
 		}
+
+		this.piecesInPlay = [];
+	}
+
 
 }
