@@ -250,13 +250,8 @@ class XMLscene extends CGFscene {
 
     updateGame(currTime){
 
-      if(!this.game.begin){
-        if(this.Start)
-          this.game.start();
-      }
-      if(this.game.begin){
-        this.game.updateView(currTime);
-      }
+
+      this.game.updateView(currTime);
       this.game.update(currTime);
 
     }

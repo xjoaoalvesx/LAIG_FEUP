@@ -98,6 +98,9 @@ class Game {
 
 		this.deltaTime = 0;
 
+		this.startime = 0;
+		this.gameTime = 0;
+
 	};
 
 	resetPickedElements() {
@@ -255,8 +258,9 @@ class Game {
 			this.setPlayers(player1, player2);
 			this.currentPlayer = 2;
 			this.setCurrentState(nextState);
+			this.setView(this.perspective1);
 			let playerText1 = player1.toUpperCase() + (player1 != 'human'? ' AI' : '');
-        	let playerText2 = player2.toUpperCase() + (player2 != 'human'? ' AI' : '');
+      let playerText2 = player2.toUpperCase() + (player2 != 'human'? ' AI' : '');
 			swal (
 				'The Game begins...',
 				playerText1 + '  vs  ' + playerText2,
@@ -310,18 +314,29 @@ class Game {
         };
 
         if (str == 1 || str == 2) {
+						let finaltime = this.gameTime / 1000;
             swal(
                 'Player ' + str + ' wins!',
                 'Congratulations!',
-                'success'
+                'The game lasts ' + finaltime + ' seconds.'
             ).then(endGameCallbackFunction.bind(this, str));
         }
 		}
 
 	}
 
+	updateTimer(currTime){
+		let newTime = Math.round(currTime/1000);
+
+		if(this.startime == 0)
+			this.startime = newTime;
+
+		this.gameTime = newTime - this.startime;
+	}
+
 
 	update(currTime){
+		updateTimer(currTime);
 
 		this.elements.update(currTime);
 
