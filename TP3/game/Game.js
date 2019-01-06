@@ -169,19 +169,20 @@ class Game {
 
 	putInBoard(id, line, row){
 		this.boardId[line-1][row-1] = id;
-		this.eatpieces();
+		this.eatpieces(id);
 		this.history.addmove([line, row], this.boardId);
 	}
 
-	eatpieces(){
+	eatpieces(id){
 		for(let i = 0; i < this.boardId.length; i++){
 			for(let j = 0; j < this.boardId[i].length; j++){
-				if(this.boardId[i][j] == 0){
+				if(this.boardId[i][j] == 0 || this.boardId[i][j] == id){
 					continue;
 				}
 				if(this.board[i][j] == 0){
 					let eatenPiece = this.elements.choosenPiece(this.boardId[i][j]);
 					eatenPiece.returnPiece();
+					this.removeIdFromBoard(eatenPiece.id);
 				}
 			}
 		}
@@ -328,7 +329,7 @@ class Game {
 
 		if(this.communication.boardIsChanged){
 
-			
+
 			this.communication.boardIsChanged = false;
 
 			switch(this.currentState){
@@ -353,7 +354,7 @@ class Game {
 				this.waitAi(this.state.AI_MOVE_H);
 				break;
 
-			
+
 
 
 
@@ -418,7 +419,7 @@ class Game {
             );
 
 			this.elements.choosenPiece(this.pickedPiece).moveToCell(this.pickedCell[0], this.pickedCell[1]);
-			
+
 			this.setCurrentState(nextState);
 
 			this.resetPickedElements();
@@ -437,7 +438,7 @@ class Game {
             );
 
 
-		this.setCurrentState(nextState);	
+		this.setCurrentState(nextState);
 		this.resetPickedElements();
 	}
 
@@ -451,7 +452,7 @@ class Game {
         let piece = this.elements.randomPieceForAi(symbol);
 
         piece.moveToCell(move[1] + 1, move[0] + 1);
-        
+
         this.setCurrentState(nextState);
 
 		this.resetPickedElements();
