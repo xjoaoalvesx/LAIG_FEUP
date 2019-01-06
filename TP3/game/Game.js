@@ -32,7 +32,7 @@ class Game {
 		this.currentperspective = this.perspective1;
 		this.objectiveperspective = this.perspective1;
 
-		this.board = [[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+		this.boardId = [[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 		[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 		[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 		[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -143,8 +143,8 @@ class Game {
 	}
 
 	putInBoard(id, row, line){
-		this.board[row][line] = id;
-		this.history.addmove([row, line], this.board);
+		this.boardId[row-1][line-1] = id;
+		this.history.addmove([row, line], this.boardId);
 	}
 
 	updateView(currTime){

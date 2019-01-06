@@ -69,12 +69,12 @@ class Piece extends CGFobject {
 			return null;
 		this.desired_position = [3.163 - ((line - 1) * 0.046) , 0.501, 3.165 - ((row - 1) * 0.046)];
 		this.moving = 1;
-		this.scene.game.putInBoard(this.id, row, line);
+		this.scene.game.putInBoard(this.id, line, row);
 		this.isPlayed = true;
 	}
 
 	updateSelected(currTime){
-		if((this.moving == 1 && this.jumping == 0) || (this.isSelected == false && this.jumping == 0)) || (this.isPlayed && this.jumping == 0){
+		if((this.moving == 1 && this.jumping == 0) || (this.isSelected == false && this.jumping == 0) || (this.isPlayed && this.jumping == 0)){
 			return null;
 		}
 
